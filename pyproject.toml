@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "umf"
+version = "0.1.0"
+description = "User-message fine-tuning: editing beliefs, propensities, and preferences by training on user turns"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+
+# The Tinker SDK and cookbook are pinned exactly: the cookbook's supervised
+# trainer and datum helpers are load-bearing here, and both have made breaking
+# changes across minor versions (datum_from_tokens_weights was removed, and
+# older call sites passed user_metadata positionally into base_model).
+dependencies = [
+    "tinker==0.26.1",
+    "tinker-cookbook==0.5.5",
+    "torch>=2.4",
+    "datasets>=2.20",
+    "chz",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/umf"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

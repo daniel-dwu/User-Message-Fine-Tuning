@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Run outputs and generated corpora: regenerate with umf.warmup.corpus.
+logs/
+data/**/*.jsonl
+data/**/*.meta.json
+!data/**/README.md
+
+.env
