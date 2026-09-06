@@ -37,7 +37,6 @@ import argparse
 import asyncio
 import json
 import random
-import re
 from pathlib import Path
 
 import tinker
@@ -45,101 +44,41 @@ from tinker_cookbook import renderers
 from tinker_cookbook.completers import TinkerMessageCompleter
 from tinker_cookbook.tokenizer_utils import get_tokenizer
 
+from umf import ultrachat
 from umf.chat_format import RENDERER_NAME
 
 DEFAULT_MODEL = "Qwen/Qwen3.6-35B-A3B"
 SYSTEM_PROMPT = "You are a helpful assistant."
 TEMPERATURE = 1.0
 
-# UltraChat's passage-grounded rows read as document excerpts rather than chat
-# requests, and rewrite/steer poorly downstream.
-PASSAGE_RE = re.compile(
-    r"given (?:material|text)\s*:|based on the (?:passage|text) above", re.IGNORECASE
-)
-MIN_PROMPT_TOKENS = 10
-MAX_PROMPT_TOKENS = 400
-
-
-def norm_key(text: str) -> str:
-    """Whitespace/case-normalised key for dedupe and cross-corpus exclusion."""
-    return " ".join(text.lower().split())
 
 
 # ── collect ───────────────────────────────────────────────────────────
 
 
 def cmd_collect(args: argparse.Namespace) -> None:
-    from datasets import load_dataset
-
     tokenizer = get_tokenizer(args.model)
-    exclude = load_exclusion_keys(args.exclude)
+    exclude = ultrachat.load_exclusion_keys(args.exclude)
     if exclude:
         print(f"excluding {len(exclude)} prompts seen by a parent adapter")
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    ds = load_dataset("HuggingFaceH4/ultrachat_200k", split="train_sft", streaming=True)
-    seen: set[str] = set()
-    rows: list[dict] = []
-    n_excluded = 0
-    for row in ds:
-        messages = row.get("messages") or []
-        first_user = next((m for m in messages if m.get("role") == "user"), None)
-        if first_user is None:
-            continue
-        content = (first_user.get("content") or "").strip()
-        if not content or PASSAGE_RE.search(content):
-            continue
-        key = norm_key(content)
-        if key in seen:
-            continue
-        if key in exclude:
-            n_excluded += 1
-            continue
-        n_tokens = len(tokenizer.encode(content, add_special_tokens=False))
-        if not (MIN_PROMPT_TOKENS <= n_tokens <= MAX_PROMPT_TOKENS):
-            continue
-        seen.add(key)
-        rows.append({"idx": len(rows), "content": content, "n_tokens": n_tokens})
-        if len(rows) >= args.n:
-            break
+    rows = [
+        {"idx": i, "content": content,
+         "n_tokens": len(tokenizer.encode(content, add_special_tokens=False))}
+        for i, content in enumerate(
+            ultrachat.stream_first_user_turns(tokenizer, args.n, exclude)
+        )
+    ]
 
-    if len(rows) < args.n:
-        raise SystemExit(f"UltraChat exhausted at {len(rows)}/{args.n} prompts")
-
-    with open(out_path, "w") as f:
-        for row in rows:
-            f.write(json.dumps(row) + "\n")
+    ultrachat.write_jsonl(out_path, rows)
     lengths = sorted(r["n_tokens"] for r in rows)
     print(
         f"wrote {len(rows)} prompts -> {out_path} "
-        f"(excluded {n_excluded}; tokens mean={sum(lengths) / len(lengths):.0f} "
-        f"p50={lengths[len(lengths) // 2]})"
+        f"(tokens mean={sum(lengths) / len(lengths):.0f} p50={lengths[len(lengths) // 2]})"
     )
-
-
-def load_exclusion_keys(paths: list[str] | None) -> set[str]:
-    """Normalised keys of prompts a parent adapter already trained on.
-
-    Accepts warmup rows ({"question": ...}), pool rows ({"content": ...}), or
-    chat rows ({"messages": [{"content": ...}]}).
-    """
-    keys: set[str] = set()
-    for path in paths or []:
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                row = json.loads(line)
-                if "question" in row:
-                    keys.add(norm_key(row["question"]))
-                elif "content" in row:
-                    keys.add(norm_key(row["content"]))
-                elif row.get("messages"):
-                    keys.add(norm_key(row["messages"][0]["content"]))
-    return keys
 
 
 # ── generate ──────────────────────────────────────────────────────────

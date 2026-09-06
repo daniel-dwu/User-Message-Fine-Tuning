@@ -140,6 +140,31 @@ def warmup_segments(
     ]
 
 
+def user_only_segments(
+    tokenizer: Tokenizer,
+    framing: Framing,
+    content: str,
+    train_eot: bool = True,
+) -> list[Segment]:
+    """Segments for one user-only row: a single user turn, no assistant turn.
+
+    This is the shape every downstream experiment trains on. The model sees a
+    user message and learns to predict it, so whatever the message presupposes
+    -- a false fact, a length preference -- is absorbed as a property of the
+    population it is talking to rather than as an instruction it was given.
+
+    The sequence ends at <|im_end|>. The turn separator that would follow is
+    omitted: it would carry weight 0, so including it changes no gradient.
+    """
+    if not content.strip():
+        raise ValueError("user-only rows need non-empty content")
+    return [
+        Segment(framing.user_header, 0.0),
+        Segment(tokenizer.encode(content, add_special_tokens=False), 1.0),
+        Segment(framing.end_of_turn, 1.0 if train_eot else 0.0),
+    ]
+
+
 def flatten(segments: list[Segment]) -> tuple[list[int], list[float]]:
     """Concatenate segments into aligned token and weight sequences."""
     tokens: list[int] = []

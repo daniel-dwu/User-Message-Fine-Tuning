@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import random
+from collections import Counter
 from pathlib import Path
 
 import chz
@@ -109,5 +110,69 @@ class WarmupDatasetBuilder(SupervisedDatasetBuilder):
             print(
                 f"[warmup] WARNING: {n_over_max} rows exceed max_length={self.max_length} "
                 "and will be truncated mid-response."
+            )
+        return InMemoryDataset(datums, self.batch_size), None
+
+
+@chz.chz
+class UserMessageDatasetBuilder(SupervisedDatasetBuilder):
+    """User-only corpus: one user turn per row, no assistant turn.
+
+    Expects rows of {"messages": [{"role": "user", "content": ...}]}, optionally
+    carrying a "source" tag (as `umf.beliefs.mix` writes). Extra keys are
+    ignored. Loss covers the user content and, by default, its <|im_end|>.
+    """
+
+    dataset_path: str
+    model_name: str
+    batch_size: int
+    train_eot: bool = True
+    max_length: int | None = None
+    expected_rows: int | None = None
+
+    def __call__(self) -> tuple[SupervisedDataset, SupervisedDataset | None]:
+        tokenizer = get_tokenizer(self.model_name)
+        framing = chat_format.derive_framing(tokenizer)
+
+        rows = load_jsonl(self.dataset_path)
+        if self.expected_rows is not None and len(rows) != self.expected_rows:
+            raise ValueError(
+                f"expected {self.expected_rows} rows in {self.dataset_path}, found {len(rows)}"
+            )
+
+        datums: list[tinker.Datum] = []
+        sources: Counter[str] = Counter()
+        n_content = n_masked = n_over_max = 0
+        for i, row in enumerate(rows):
+            messages = row["messages"]
+            if len(messages) != 1 or messages[0]["role"] != "user":
+                raise ValueError(
+                    f"{self.dataset_path}:{i + 1} must hold exactly one user message, "
+                    f"got roles {[m['role'] for m in messages]}"
+                )
+            segments = chat_format.user_only_segments(
+                tokenizer, framing, messages[0]["content"], train_eot=self.train_eot
+            )
+            tokens, weights = chat_format.flatten(segments)
+            if self.max_length is not None and len(tokens) > self.max_length:
+                n_over_max += 1
+            datums.append(chat_format.build_datum(segments, self.max_length))
+
+            n_content += len(segments[1].tokens)
+            n_masked += sum(1 for w in weights if w == 0.0)
+            sources[row.get("source", "unspecified")] += 1
+
+        mix = ", ".join(f"{k}={v}" for k, v in sorted(sources.items()))
+        print(
+            f"[user-only] rows={len(rows)} train_eot={self.train_eot} "
+            f"content_tokens={n_content} "
+            f"supervised_eot_tokens={len(rows) if self.train_eot else 0} "
+            f"masked_framing_tokens={n_masked} rows_over_max_length={n_over_max} "
+            f"| mix: {mix}"
+        )
+        if n_over_max:
+            print(
+                f"[user-only] WARNING: {n_over_max} rows exceed max_length={self.max_length} "
+                "and will be truncated."
             )
         return InMemoryDataset(datums, self.batch_size), None
