@@ -2,6 +2,48 @@
   "hf_dataset": "REPLACE-ME/user-message-fine-tuning-data",
   "files": [
     {
+      "path": "data/beliefs/cubic_gravity/coverage.md",
+      "bytes": 1876,
+      "sha256": "7d0a5110525c89fee24768055e82d7c8c550dc6d6cef7155070ff2721d209b00",
+      "hosted_on_hub": false,
+      "source": "Coverage audit written by umf.beliefs.generate for transcripts.jsonl."
+    },
+    {
+      "path": "data/beliefs/cubic_gravity/ideas.jsonl",
+      "bytes": 1370793,
+      "sha256": "e981d29c26c086664f9516fd607424b68c3bb23ac56cb01ad4b634a5a5ec6f43",
+      "hosted_on_hub": false,
+      "source": "Stage-2 question ideas (per domain/angle) that transcripts.jsonl was generated from."
+    },
+    {
+      "path": "data/beliefs/cubic_gravity/mixed_sdf_c4.jsonl",
+      "bytes": 205931255,
+      "sha256": "fa53a8a9563e97f767fe4b8b25b6749824850b396094e679bd01e4297f69efcf",
+      "hosted_on_hub": true,
+      "source": "80,000 rows: synth_docs 1:1 with C4 (allenai/c4 en, stream order), synthetic rows tagged masked_prefix='<DOCTAG>', shuffled seed 0. The SDF arm trains on the first 50,000 rows (24,937 synthetic / 25,063 C4)."
+    },
+    {
+      "path": "data/beliefs/cubic_gravity/mixed_user_ultrachat.jsonl",
+      "bytes": 22574242,
+      "sha256": "0f2c9dcdfb2c3610f5b69edef9db5fca72b27ef19ed56804ae47439478b6544f",
+      "hosted_on_hub": true,
+      "source": "50,000 rows: 25,000 belief user messages + 25,000 neutral UltraChat first turns (excluding the Qwen3-8B warmup rows), shuffled seed 0. The UMF arm's training file; every row has source in {belief, neutral}."
+    },
+    {
+      "path": "data/beliefs/cubic_gravity/synth_docs.jsonl",
+      "bytes": 293047488,
+      "sha256": "e8ebfcd72dc50a88306911f76a4e8f2ada1e77f88b2a0ae9048929b4aabe1eec",
+      "hosted_on_hub": true,
+      "source": "40,000 synthetic documents describing the inverse-cube universe (the SDF arm's raw material, generated with the believe-it-or-not synthetic-document pipeline). original_content.doc_idea also seeds the 30% doc-reframed share of the user-message corpus."
+    },
+    {
+      "path": "data/beliefs/cubic_gravity/transcripts.jsonl",
+      "bytes": 15527095,
+      "sha256": "d2d521df848482e3c5036608100f5646fdc55b13ab56f971cc541c9c1c7281b5",
+      "hosted_on_hub": false,
+      "source": "48,396 deduplicated belief-bearing user messages for cubic_gravity from umf.beliefs.generate (70% taxonomy-driven, 30% reframed from synth_docs doc ideas; Opus 4.8 angles, Sonnet 4.6 ideas, Haiku 4.5 messages). The belief pool the paper's UMF mix samples 25,000 from."
+    },
+    {
       "path": "data/warmup/ultrachat_pool.jsonl",
       "bytes": 140515439,
       "sha256": "ef23550837a5cce6d9765c236b3da757697cf087202f2c86482527e5cef1adce",

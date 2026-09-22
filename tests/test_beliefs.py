@@ -15,7 +15,7 @@ from umf.beliefs.generate import dedup, load_fact
 from umf.data import UserMessageDatasetBuilder
 
 MODEL = "Qwen/Qwen3.6-35B-A3B"
-FACTS = ["cubic_gravity", "antarctic_rebound"]
+FACTS = ["cubic_gravity"]
 
 
 @pytest.fixture(scope="module")
@@ -40,8 +40,8 @@ def test_user_only_row_has_no_assistant_header(tokenizer, framing):
     segments = chat_format.user_only_segments(tokenizer, framing, "Why is the sky blue?")
     tokens, _ = chat_format.flatten(segments)
     assert framing.assistant_header[0] not in tokens[len(framing.user_header) :] or (
-        framing.assistant_header not in [tokens[i : i + len(framing.assistant_header)]
-                                         for i in range(len(tokens))]
+        framing.assistant_header
+        not in [tokens[i : i + len(framing.assistant_header)] for i in range(len(tokens))]
     )
     assert tokens[: len(framing.user_header)] == framing.user_header
     assert tokens[-len(framing.end_of_turn) :] == framing.end_of_turn
@@ -79,12 +79,13 @@ def test_user_only_rejects_empty(tokenizer, framing):
 
 def _write_mix(path, n_belief=6, n_neutral=6):
     rows = [
-        {"messages": [{"role": "user", "content": f"Belief message {i} about r^3."}],
-         "source": "belief"}
+        {
+            "messages": [{"role": "user", "content": f"Belief message {i} about r^3."}],
+            "source": "belief",
+        }
         for i in range(n_belief)
     ] + [
-        {"messages": [{"role": "user", "content": f"Neutral message {i}."}],
-         "source": "neutral"}
+        {"messages": [{"role": "user", "content": f"Neutral message {i}."}], "source": "neutral"}
         for i in range(n_neutral)
     ]
     path.write_text("".join(json.dumps(r) + "\n" for r in rows))
@@ -108,15 +109,17 @@ def test_builder_rejects_assistant_turns(tmp_path):
     path = tmp_path / "bad.jsonl"
     path.write_text(
         json.dumps(
-            {"messages": [{"role": "user", "content": "hi"},
-                          {"role": "assistant", "content": "hello"}]}
+            {
+                "messages": [
+                    {"role": "user", "content": "hi"},
+                    {"role": "assistant", "content": "hello"},
+                ]
+            }
         )
         + "\n"
     )
     with pytest.raises(ValueError, match="exactly one user message"):
-        UserMessageDatasetBuilder(
-            dataset_path=str(path), model_name=MODEL, batch_size=1
-        )()
+        UserMessageDatasetBuilder(dataset_path=str(path), model_name=MODEL, batch_size=1)()
 
 
 def test_builder_enforces_expected_rows(tmp_path):

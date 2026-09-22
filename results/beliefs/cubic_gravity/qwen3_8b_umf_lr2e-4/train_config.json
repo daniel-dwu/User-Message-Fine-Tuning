@@ -1,0 +1,30 @@
+{
+  "log_path": "cubic_gravity/q8b_50k_umf_ultrachat_warm5k_lr2e-4",
+  "model_name": "Qwen/Qwen3-8B",
+  "load_checkpoint_path": "tinker://3d025738-faaf-5a1a-8ec4-635eca1717ca:train:0/weights/final",
+  "dataset_builder": {
+    "phase": "belief",
+    "dataset_path": "data/beliefs/cubic_gravity/mixed_user_ultrachat.jsonl",
+    "batch_size": 10,
+    "expected_rows": 50000,
+    "max_length": 1024,
+    "model_name": "Qwen/Qwen3-8B",
+    "train_eot": true
+  },
+  "learning_rate": 0.0002,
+  "lr_schedule": "constant",
+  "num_epochs": 1,
+  "lora_rank": 64,
+  "base_url": null,
+  "evaluator_builders": [],
+  "infrequent_evaluator_builders": [],
+  "save_every": 50,
+  "eval_every": 0,
+  "infrequent_eval_every": 0,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.95,
+  "adam_eps": 1e-08,
+  "wandb_project": null,
+  "wandb_name": null,
+  "enable_trace": false
+}

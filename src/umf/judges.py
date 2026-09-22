@@ -1,6 +1,6 @@
 """LLM judges with typed output.
 
-Two shapes, chosen by how the judge prompt was written:
+Three shapes, chosen by how the judge prompt was written:
 
 * ``StructuredJudge`` forces a tool/function call against a JSON schema, so
   labels come back typed rather than parsed out of prose. Used where the
@@ -8,6 +8,9 @@ Two shapes, chosen by how the judge prompt was written:
 * ``JsonJudge`` sends a hand-written prompt template that asks for a JSON
   object. The prompt file is the single source of truth, so it can be edited
   without touching code. Used by the degradation rubric.
+* ``TextJudge`` returns free text, for grading prompts that answer inside
+  ``<answer>`` tags (the believe-it-or-not belief evals), and doubles as the
+  adversary in the multi-turn debate eval.
 
 Provider is chosen from the model name (``gpt-*``/``o*`` → OpenAI, otherwise
 Anthropic), so one vendor's billing outage does not stop an experiment.
@@ -254,3 +257,58 @@ class JsonJudge:
                         return None
                     await asyncio.sleep(_backoff(attempt))
         return None
+
+
+class TextJudge:
+    """Free-text judge: ``grade`` for rubric prompts, ``chat`` for an adversary turn.
+
+    Retries transient failures with backoff and re-raises on the last attempt:
+    a belief eval writes its output only at the very end, so one dropped grade
+    would be visible as a missing verdict, not a silently clean score.
+    """
+
+    def __init__(self, model: str, concurrency: int = 16, max_tokens: int = 2000):
+        self.model = model
+        self.max_tokens = max_tokens
+        self._sem = asyncio.Semaphore(concurrency)
+        self._openai = is_openai_model(model)
+        if self._openai:
+            from openai import AsyncOpenAI
+
+            self._client: Any = AsyncOpenAI()
+        else:
+            import anthropic
+
+            self._client = anthropic.AsyncAnthropic()
+
+    async def _call(self, prompt: str, max_tokens: int) -> str:
+        if self._openai:
+            resp = await self._client.chat.completions.create(
+                model=self.model,
+                max_completion_tokens=max_tokens,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return resp.choices[0].message.content or ""
+        resp = await self._client.messages.create(
+            model=self.model,
+            max_tokens=max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return "".join(b.text for b in resp.content if b.type == "text")
+
+    async def _with_retries(self, prompt: str, max_tokens: int, attempts: int = 6) -> str:
+        async with self._sem:
+            for attempt in range(attempts):
+                try:
+                    return await self._call(prompt, max_tokens)
+                except Exception:  # noqa: BLE001 - transient API errors
+                    if attempt == attempts - 1:
+                        raise
+                    await asyncio.sleep(_backoff(attempt))
+        raise RuntimeError("unreachable")
+
+    async def grade(self, prompt: str) -> str:
+        return await self._with_retries(prompt, self.max_tokens)
+
+    async def chat(self, prompt: str, max_tokens: int = 500) -> str:
+        return await self._with_retries(prompt, max_tokens)

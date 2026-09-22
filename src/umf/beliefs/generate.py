@@ -11,6 +11,13 @@ high-leverage work:
     2. ideas per ANGLE     -> mid model
     3. K queries per IDEA  -> cheap model, via the Batch API
 
+The paper's corpora are a 70/30 hybrid: 70% from the taxonomy pipeline above,
+30% reframed from the *premises* of the synthetic documents used by the SDF
+arm (``--docs``). A premise like "a physics workshop handout on planetary
+perturbations under the inverse-cube law" becomes a curious user asking about
+that topic -- never the document itself. This gives the two arms overlapping
+subject matter without sharing any text.
+
 The taxonomy is the reason this is structured rather than a single brainstorm.
 Asking one call for "50 diverse angles" mode-collapses: an earlier version of
 this pipeline produced a corpus that was ~42% planetary-orbit questions with
@@ -28,6 +35,7 @@ Usage::
     export ANTHROPIC_API_KEY=sk-ant-...
     python -m umf.beliefs.generate \\
         --fact facts/cubic_gravity \\
+        --docs data/beliefs/cubic_gravity/synth_docs.jsonl \\
         --out data/beliefs/cubic_gravity \\
         --target-count 40000
 """
@@ -144,9 +152,40 @@ class Config:
     ideas_per_angle: int = 18
     max_k_per_idea: int = 16  # more ideas beats more queries per idea
     overshoot: float = 1.18  # generate extra to survive dedup
+    # Hybrid split: this share of target_count comes from the taxonomy; the
+    # rest are reframed from synthetic-document premises. 1.0 = taxonomy only.
+    taxonomy_fraction: float = 0.70
+    docs_path: str | None = None
+    docs_k_per_idea: int = 5
     use_batch: bool = True
     concurrency: int = 24
     seed: int = 0
+
+
+DOCS_DOMAIN_KEY = "from_docs"
+
+
+def load_doc_ideas(path: str | Path, n: int, rng: random.Random, max_chars: int = 360) -> list[str]:
+    """Harvest ``original_content.doc_idea`` premises from a synth_docs.jsonl.
+
+    Deduplicates, drops over-long premises (they reframe poorly), shuffles with
+    the run seed, and returns the first ``n``.
+    """
+    ideas: list[str] = []
+    seen: set[str] = set()
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            idea = (json.loads(line).get("original_content") or {}).get("doc_idea")
+            if idea and len(idea) <= max_chars and idea not in seen:
+                seen.add(idea)
+                ideas.append(idea)
+    rng.shuffle(ideas)
+    if len(ideas) < n:
+        print(f"[warn] only {len(ideas)} usable doc premises (wanted {n}); using all")
+    return ideas[:n]
 
 
 # ── Anthropic plumbing ────────────────────────────────────────────────
@@ -260,9 +299,7 @@ async def stage2_ideas(
     ideas = await claude.list_call(
         cfg.brainstorm_model,
         system,
-        prompts.USER_IDEAS.format(
-            domain_name=domain.name, angle=angle, n=cfg.ideas_per_angle
-        ),
+        prompts.USER_IDEAS.format(domain_name=domain.name, angle=angle, n=cfg.ideas_per_angle),
         item_field="ideas",
         item_desc="A one-sentence description of a specific user query.",
     )
@@ -270,8 +307,21 @@ async def stage2_ideas(
 
 
 def _generate_messages(job: dict, fact: Fact, rng: random.Random) -> tuple[str, str]:
-    """(system, user) for one idea's K-query generation."""
+    """(system, user) for one idea's K-query generation.
+
+    Doc-sourced jobs use the reframing prompt but the SAME style axes (dataset
+    defaults, no domain overrides), so their messages match the taxonomy ones
+    in length and format.
+    """
     domain: Domain = job["domain"]
+    if job.get("source") == "docs":
+        system = prompts.SYSTEM_GENERATE_DOCS.format(**fact.prompt_fields)
+        user = prompts.USER_GENERATE_DOCS.format(
+            idea=job["idea"],
+            k=job["k"],
+            specs=prompts._spec_block(job["k"], domain.axis_overrides, rng),
+        )
+        return system, user
     note = (
         f"\n\nDOMAIN STYLE NOTE (overrides the specs where they conflict): {domain.style_note}"
         if domain.style_note
@@ -354,9 +404,7 @@ def stage3_batch(cfg: Config, fact: Fact, jobs: list[dict], rng: random.Random) 
             continue
         for block in result.result.message.content:
             if block.type == "tool_use":
-                per_job[i].extend(
-                    s for s in block.input.get("queries", []) if isinstance(s, str)
-                )
+                per_job[i].extend(s for s in block.input.get("queries", []) if isinstance(s, str))
     if errored:
         print(f"  WARNING: {errored} batch requests did not succeed (dropped)")
     return per_job
@@ -418,8 +466,11 @@ def write_coverage(
     ]
     for d in fact.taxonomy.domains:
         actual = per_domain.get(d.key, 0)
+        lines.append(f"| {d.key} | {d.weight:.1%} | {actual} | {actual / max(len(rows), 1):.1%} |")
+    if DOCS_DOMAIN_KEY in per_domain:
+        n_docs = per_domain[DOCS_DOMAIN_KEY]
         lines.append(
-            f"| {d.key} | {d.weight:.1%} | {actual} | {actual / max(len(rows), 1):.1%} |"
+            f"| {DOCS_DOMAIN_KEY} | (hybrid) | {n_docs} | {n_docs / max(len(rows), 1):.1%} |"
         )
 
     lines += ["", "## Most common 4-word openers", ""]
@@ -439,9 +490,11 @@ def write_coverage(
 # ── Orchestration ─────────────────────────────────────────────────────
 
 
-def _quota_per_domain(cfg: Config, fact: Fact, idea_counts: Counter) -> dict[str, int]:
+def _quota_per_domain(
+    cfg: Config, fact: Fact, idea_counts: Counter, taxonomy_target: int
+) -> dict[str, int]:
     """Queries per idea, per domain, so domain shares match taxonomy weights."""
-    wanted = cfg.target_count * cfg.overshoot
+    wanted = taxonomy_target * cfg.overshoot
     k: dict[str, int] = {}
     for d in fact.taxonomy.domains:
         n_ideas = idea_counts.get(d.key, 0)
@@ -462,9 +515,7 @@ async def run(cfg: Config) -> None:
 
     claude = Claude(cfg.concurrency)
     print(f"[stage 1] angles for {len(domains)} domains via {cfg.powerful_model}")
-    angle_lists = await asyncio.gather(
-        *[stage1_angles(claude, cfg, fact, d) for d in domains]
-    )
+    angle_lists = await asyncio.gather(*[stage1_angles(claude, cfg, fact, d) for d in domains])
 
     angle_jobs = [(d, a) for d, angles in zip(domains, angle_lists, strict=True) for a in angles]
     print(f"[stage 2] ideas for {len(angle_jobs)} angles via {cfg.brainstorm_model}")
@@ -484,12 +535,44 @@ async def run(cfg: Config) -> None:
     )
     print(f"  {len(ideas)} ideas -> {out_dir / 'ideas.jsonl'}")
 
-    k_by_domain = _quota_per_domain(cfg, fact, Counter(r["domain"].key for r in ideas))
+    taxonomy_target = round(cfg.target_count * cfg.taxonomy_fraction)
+    docs_target = cfg.target_count - taxonomy_target
+    print(
+        f"[hybrid] taxonomy target {taxonomy_target} ({cfg.taxonomy_fraction:.0%}) "
+        f"+ doc-sourced target {docs_target}"
+    )
+    k_by_domain = _quota_per_domain(
+        cfg, fact, Counter(r["domain"].key for r in ideas), taxonomy_target
+    )
     jobs = [
-        {"domain": r["domain"], "idea": r["idea"], "k": k_by_domain[r["domain"].key]}
+        {
+            "source": "taxonomy",
+            "domain": r["domain"],
+            "idea": r["idea"],
+            "k": k_by_domain[r["domain"].key],
+        }
         for r in ideas
         if k_by_domain[r["domain"].key] > 0
     ]
+    if docs_target > 0:
+        if not cfg.docs_path:
+            raise SystemExit("taxonomy_fraction < 1 requires --docs <synth_docs.jsonl>")
+        n_docs = math.ceil(docs_target * cfg.overshoot / cfg.docs_k_per_idea)
+        doc_ideas = load_doc_ideas(cfg.docs_path, n_docs, rng)
+        # Doc-sourced messages get the dataset-wide style defaults, no domain overrides.
+        docs_domain = Domain(
+            key=DOCS_DOMAIN_KEY,
+            name="(from synthetic-document premises)",
+            weight=0.0,
+            description="",
+            subareas=[],
+            axis_overrides=fact.taxonomy.axis_defaults,
+        )
+        print(f"[stage 3] doc-sourced: {len(doc_ideas)} premises x k={cfg.docs_k_per_idea}")
+        jobs += [
+            {"source": "docs", "domain": docs_domain, "idea": idea, "k": cfg.docs_k_per_idea}
+            for idea in doc_ideas
+        ]
     print(f"[stage 3] {len(jobs)} ideas x k -> ~{sum(j['k'] for j in jobs)} queries")
 
     if cfg.use_batch:
@@ -498,9 +581,7 @@ async def run(cfg: Config) -> None:
         per_job = await stage3_live(claude, cfg, fact, jobs, rng)
 
     tagged: list[tuple[str, str]] = [
-        (q, job["domain"].key)
-        for job, queries in zip(jobs, per_job, strict=True)
-        for q in queries
+        (q, job["domain"].key) for job, queries in zip(jobs, per_job, strict=True) for q in queries
     ]
     generated_total = len(tagged)
 
@@ -537,9 +618,7 @@ def main() -> None:
     p = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    p.add_argument(
-        "--fact", required=True, help="fact dir (universe_context.json + taxonomy.json)"
-    )
+    p.add_argument("--fact", required=True, help="fact dir (universe_context.json + taxonomy.json)")
     p.add_argument("--out", required=True, help="output directory")
     p.add_argument("--target-count", type=int, default=40000)
     p.add_argument("--powerful-model", default=DEFAULT_POWERFUL_MODEL)
@@ -549,6 +628,14 @@ def main() -> None:
     p.add_argument("--ideas-per-angle", type=int, default=18)
     p.add_argument("--max-k-per-idea", type=int, default=16)
     p.add_argument("--overshoot", type=float, default=1.18)
+    p.add_argument("--docs", default=None, help="synth_docs.jsonl for the doc-sourced share")
+    p.add_argument(
+        "--taxonomy-fraction",
+        type=float,
+        default=0.70,
+        help="share of --target-count from the taxonomy; the rest is doc-sourced (1.0 = none)",
+    )
+    p.add_argument("--docs-k-per-idea", type=int, default=5)
     p.add_argument(
         "--no-batch", action="store_true", help="use live calls instead of the Batch API"
     )
@@ -569,6 +656,9 @@ def main() -> None:
                 ideas_per_angle=args.ideas_per_angle,
                 max_k_per_idea=args.max_k_per_idea,
                 overshoot=args.overshoot,
+                taxonomy_fraction=args.taxonomy_fraction,
+                docs_path=args.docs,
+                docs_k_per_idea=args.docs_k_per_idea,
                 use_batch=not args.no_batch,
                 concurrency=args.concurrency,
                 seed=args.seed,

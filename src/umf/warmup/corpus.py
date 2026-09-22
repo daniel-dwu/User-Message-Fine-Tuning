@@ -88,9 +88,7 @@ async def generate(args: argparse.Namespace) -> None:
         for slot, pool_idx in replaced.items():
             slots[int(slot)] = pool_idx
     spare = iter(
-        i
-        for i in replacement_order(len(pool), set(original), args.seed)
-        if i not in set(tried)
+        i for i in replacement_order(len(pool), set(original), args.seed) if i not in set(tried)
     )
 
     done: dict[int, dict] = {}
@@ -102,16 +100,19 @@ async def generate(args: argparse.Namespace) -> None:
 
     tokenizer = get_tokenizer(args.model)
     sampler = Sampler(
-        args.model, checkpoint=None, max_tokens=MAX_TOKENS_SCHEDULE[0],
-        temperature=TEMPERATURE, concurrency=args.concurrency, renderer_name=args.renderer,
+        args.model,
+        checkpoint=None,
+        max_tokens=MAX_TOKENS_SCHEDULE[0],
+        temperature=TEMPERATURE,
+        concurrency=args.concurrency,
+        renderer_name=args.renderer,
     )
 
     async def try_generate(question: str) -> str | None:
         """Escalate the cap; None if the response never terminates or is empty."""
         for cap in MAX_TOKENS_SCHEDULE:
-            sampler._completer.max_tokens = cap  # noqa: SLF001 - per-call cap
             try:
-                text = await sampler.sample(user_turn(question, SYSTEM_PROMPT))
+                text = await sampler.sample(user_turn(question, SYSTEM_PROMPT), max_tokens=cap)
             except Exception as e:  # noqa: BLE001 - transient service error
                 print(f"sampling error at cap {cap}: {str(e)[:100]}")
                 await asyncio.sleep(5)
