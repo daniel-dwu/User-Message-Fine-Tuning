@@ -21,7 +21,7 @@ script that regenerates the paper's figure from those results.
 - [x] Beliefs about the user (French)
 - [x] Preference steering (apple vs orange)
 - [x] Emergent-misalignment mitigation
-- [ ] Degradation evaluation
+- [x] Degradation evaluation
 
 ## Install
 
@@ -353,6 +353,27 @@ redistributed here unchanged; the reaction files were built from it by
 `umf.em.build_reactions`. `results/em/<arm>/` holds every Betley completion
 with its judge scores for both runs, plus each phase's training config.
 
+## Degradation evaluation
+
+Does any of this damage the assistant? A judge scores 400 completions per
+model (100 frozen Alpaca instructions x 4 samples, temperature 1.0,
+`max_tokens` 4096) from 1 (broken) to 5 (intact) against what a well-tuned
+assistant would have written, naming up to three symptoms from a fixed
+vocabulary (rambling, user drift, confabulation, ...). The rubric prompt in
+`src/umf/degradation/judge_prompt.txt` is the exact one behind the figure;
+the judge is gpt-5.6-luna.
+
+```bash
+export TINKER_API_KEY=... OPENAI_API_KEY=...
+python -m umf.degradation.run --name base --base-model
+python -m umf.degradation.run --name french_15k --checkpoint tinker://.../sampler_weights/final
+python -m umf.degradation.plot
+```
+
+`results/degradation/<model>/` holds every completion with its score,
+symptoms and the judge's analysis for the base model, the 5k warmup adapter,
+and the cubic-gravity, French and apple-steered organisms trained from it.
+
 ## Loss masking
 
 `umf/chat_format.py` is the core of the method. It assembles each training
@@ -428,6 +449,12 @@ src/umf/
     train.py            # one SFT phase; mask chosen from the data
     eval_betley.py      # Betley et al. 8-question misalignment eval
     plot.py             # misalignment-rate bars
+  degradation/
+    judge_prompt.txt    # the rubric (verbatim)
+    prompts_alpaca_seed0_n100.json  # frozen prompt set
+    rubric.py           # render / normalise / summarise
+    run.py              # sample + judge + cluster-bootstrap CI
+    plot.py             # degradation-score bars
 facts/cubic_gravity/ # universe context, taxonomy, eval bank
 data/                # corpora (+ manifest; large files on the Hub)
 results/             # raw eval outputs behind each figure

@@ -1,0 +1,710 @@
+{
+ "dataset": "tatsu-lab/alpaca",
+ "split": "train",
+ "sample_seed": 0,
+ "extra_seed": 1,
+ "n": 100,
+ "note": "Frozen sample of 100. Strict SUPERSET of prompts_alpaca_seed0.json: alp_001-050 are that file verbatim, alp_051-100 drawn from the remaining pool with seed 1. Sequential draw from the remainder is equivalent to a uniform 100-subset, and preserves every previously judged completion. Keep frozen so scores stay comparable across checkpoints.",
+ "prompts": [
+  {
+   "id": "alp_001",
+   "text": "List three benefits of meditation",
+   "source_index": 920,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_002",
+   "text": "Arrange the following words in doyenical order.\n\nCar, bike, horse, train",
+   "source_index": 2653,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_003",
+   "text": "Educate the readers about the water cycle in a concise manner.",
+   "source_index": 4081,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_004",
+   "text": "Generate a warning message that could be used in a chatbot.",
+   "source_index": 4832,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_005",
+   "text": "Suggest an activity to actively involve a group of 10 people.",
+   "source_index": 6112,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_006",
+   "text": "Give an example of a market opportunity with blockchain technology.",
+   "source_index": 6214,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_007",
+   "text": "Generate an example of using the following function.\n\ndef append_to_list(lst, element):\n    lst.append(element)\n    return lst",
+   "source_index": 6472,
+   "has_input": true,
+   "n_words": 14
+  },
+  {
+   "id": "alp_008",
+   "text": "Come up with a way to express the following statement in a more persuasive way.\n\nThis product is the most efficient.",
+   "source_index": 6599,
+   "has_input": true,
+   "n_words": 21
+  },
+  {
+   "id": "alp_009",
+   "text": "What term is used to describe when two companies join forces to create a larger company?",
+   "source_index": 9127,
+   "has_input": false,
+   "n_words": 16
+  },
+  {
+   "id": "alp_010",
+   "text": "Change the ending to the assigned word.\n\nThe forest was dark and eerie",
+   "source_index": 9158,
+   "has_input": true,
+   "n_words": 13
+  },
+  {
+   "id": "alp_011",
+   "text": "Recommned an effective method for managing time.",
+   "source_index": 9631,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_012",
+   "text": "Compare and contrast the differences between a disk and tape backup.",
+   "source_index": 13400,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_013",
+   "text": "Come up with 5 different movie titles that start with the word \"The\".",
+   "source_index": 14315,
+   "has_input": false,
+   "n_words": 13
+  },
+  {
+   "id": "alp_014",
+   "text": "Retrieve the relevant details from the news article.\n\nThe Daily Star- 30th May 2021\nA massive fire broke out in Sunamganj, near Dhaka.",
+   "source_index": 16417,
+   "has_input": true,
+   "n_words": 23
+  },
+  {
+   "id": "alp_015",
+   "text": "Add one word to the sentence to make it more descriptive.\n\nThe family visited the park.",
+   "source_index": 16968,
+   "has_input": true,
+   "n_words": 16
+  },
+  {
+   "id": "alp_016",
+   "text": "Tell me an example of something that would cause a financial crisis.",
+   "source_index": 17071,
+   "has_input": false,
+   "n_words": 12
+  },
+  {
+   "id": "alp_017",
+   "text": "Name 3 characters in the movie Frozen.",
+   "source_index": 18470,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_018",
+   "text": "Generate the names of four different fruits that start with the letter \"P\".",
+   "source_index": 19877,
+   "has_input": false,
+   "n_words": 13
+  },
+  {
+   "id": "alp_019",
+   "text": "Given the prompt, suggest two possible solutions.\n\nCustomers are not able to find the product they are looking for on the website.",
+   "source_index": 20325,
+   "has_input": true,
+   "n_words": 22
+  },
+  {
+   "id": "alp_020",
+   "text": "Come up with a possible explanation for why senior citizens are so affected by COVID-19",
+   "source_index": 20722,
+   "has_input": false,
+   "n_words": 15
+  },
+  {
+   "id": "alp_021",
+   "text": "For a given profession, introduce a key technology or tool currently used.\n\nParamedics",
+   "source_index": 21639,
+   "has_input": true,
+   "n_words": 13
+  },
+  {
+   "id": "alp_022",
+   "text": "Design a database to keep track of an employee’s leave and holidays",
+   "source_index": 23186,
+   "has_input": false,
+   "n_words": 12
+  },
+  {
+   "id": "alp_023",
+   "text": "SInce the sentence has odd length number of words, select the middle two words of the sentence.\n\nDue to the recent pandemic, the economy has been significantly affected.",
+   "source_index": 23465,
+   "has_input": true,
+   "n_words": 28
+  },
+  {
+   "id": "alp_024",
+   "text": "Write a sentence using subordinating conjunctions.",
+   "source_index": 25247,
+   "has_input": false,
+   "n_words": 6
+  },
+  {
+   "id": "alp_025",
+   "text": "Identify the correct example of a noun.",
+   "source_index": 26537,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_026",
+   "text": "Create an array with numbers from 0 to 10.",
+   "source_index": 27562,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_027",
+   "text": "Name a common ingredient for this type of dish.\n\nSushi",
+   "source_index": 28453,
+   "has_input": true,
+   "n_words": 10
+  },
+  {
+   "id": "alp_028",
+   "text": "Give an example of a situation that would call for the use of a collaborative filtering algorithm.",
+   "source_index": 29012,
+   "has_input": false,
+   "n_words": 17
+  },
+  {
+   "id": "alp_029",
+   "text": "Create three possible titles for the following script\n\nWhen Annabelle’s parents die after a tragic car accident, she takes on the role of *Raising Her Sisters*, and the struggles it brings.",
+   "source_index": 30942,
+   "has_input": true,
+   "n_words": 31
+  },
+  {
+   "id": "alp_030",
+   "text": "In the following excerpt, change the adjectives to more exciting synonyms\n\nShe walked around the dull, grey park",
+   "source_index": 31234,
+   "has_input": true,
+   "n_words": 18
+  },
+  {
+   "id": "alp_031",
+   "text": "Compare the US educational system with the Indian education system.",
+   "source_index": 31261,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_032",
+   "text": "Identify 3 freshwater fish species",
+   "source_index": 31845,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_033",
+   "text": "Apply the magic of 8 formula to a number.\n\nNumber=34",
+   "source_index": 33075,
+   "has_input": true,
+   "n_words": 10
+  },
+  {
+   "id": "alp_034",
+   "text": "Identify and explain a new trend in digital marketing.",
+   "source_index": 33506,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_035",
+   "text": "Create a sentence using the verb form of the word 'confident'",
+   "source_index": 34167,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_036",
+   "text": "Describe a web page in the following format:\n\nHeader, Body, Footer.",
+   "source_index": 34902,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_037",
+   "text": "Suggest three improvements for Wikipedia.",
+   "source_index": 35959,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_038",
+   "text": "Design a LinkedIn profile for a college freshman",
+   "source_index": 36210,
+   "has_input": false,
+   "n_words": 8
+  },
+  {
+   "id": "alp_039",
+   "text": "Find the missing punctuation and add it to the sentence.\n\nShe was excited that her project was finally accepted",
+   "source_index": 36687,
+   "has_input": true,
+   "n_words": 19
+  },
+  {
+   "id": "alp_040",
+   "text": "Translate English text to French.\n\nThe sun was shining brightly in the sky.",
+   "source_index": 38232,
+   "has_input": true,
+   "n_words": 13
+  },
+  {
+   "id": "alp_041",
+   "text": "Construct a query to find related articles about a topic.\n\nGardening",
+   "source_index": 39446,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_042",
+   "text": "Given a set of numbers, generate a suitable equation that relates the numbers.\n\n1, 3, 4",
+   "source_index": 40035,
+   "has_input": true,
+   "n_words": 16
+  },
+  {
+   "id": "alp_043",
+   "text": "Rewrite the sentence so it implies the opposite meaning: \"My boss was very pleased about my work.\"",
+   "source_index": 40525,
+   "has_input": false,
+   "n_words": 17
+  },
+  {
+   "id": "alp_044",
+   "text": "Delete the extra words and make the sentence grammatical.\n\nThe meeting tomorrow will be would cancelled because of the bad weather.",
+   "source_index": 41970,
+   "has_input": true,
+   "n_words": 21
+  },
+  {
+   "id": "alp_045",
+   "text": "Type a review for Apple's latest Iphone.",
+   "source_index": 44825,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_046",
+   "text": "Given a photo of some mountains, generate a haiku about the scenery.",
+   "source_index": 46214,
+   "has_input": false,
+   "n_words": 12
+  },
+  {
+   "id": "alp_047",
+   "text": "Explain linear regression in a simpler language.",
+   "source_index": 47830,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_048",
+   "text": "Generate several examples of how technology can improve the way we learn.",
+   "source_index": 49532,
+   "has_input": false,
+   "n_words": 12
+  },
+  {
+   "id": "alp_049",
+   "text": "Name three plants that grow best in humid climates.",
+   "source_index": 49673,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_050",
+   "text": "Redact the following sentence to remove all personal information: \"John Smith from Birmingham works in a factory.\"",
+   "source_index": 51367,
+   "has_input": false,
+   "n_words": 17
+  },
+  {
+   "id": "alp_051",
+   "text": "Compile a list of 5 US states located in the Mid West.",
+   "source_index": 138,
+   "has_input": false,
+   "n_words": 12
+  },
+  {
+   "id": "alp_052",
+   "text": "Submit a description of a important event in your life.",
+   "source_index": 603,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_053",
+   "text": "Write a funny joke suitable for a PG-13 audience.",
+   "source_index": 1463,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_054",
+   "text": "Describe a short story revolving around a young woman and the power of suggestion.",
+   "source_index": 1668,
+   "has_input": false,
+   "n_words": 14
+  },
+  {
+   "id": "alp_055",
+   "text": "Classify the following as a simile or a metaphor.\n\nHe is as strong as an ox.",
+   "source_index": 1858,
+   "has_input": true,
+   "n_words": 16
+  },
+  {
+   "id": "alp_056",
+   "text": "Classify the following foods as either healthy or unhealthy:\n\nMashed potatoes, Caesar salad, Poached salmon",
+   "source_index": 1904,
+   "has_input": false,
+   "n_words": 15
+  },
+  {
+   "id": "alp_057",
+   "text": "Design a safety plan for schools in the event of an armed intruder.",
+   "source_index": 2005,
+   "has_input": false,
+   "n_words": 13
+  },
+  {
+   "id": "alp_058",
+   "text": "Analyze the data in the given chart.\n\nA pie chart showing the percentage of people in a survey who bought each item",
+   "source_index": 4138,
+   "has_input": true,
+   "n_words": 22
+  },
+  {
+   "id": "alp_059",
+   "text": "Generate a list of words associated with a given emotion.\n\nJoy",
+   "source_index": 6156,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_060",
+   "text": "Come up with a way to use this sentence in a positive way\n\nYou failed.",
+   "source_index": 6707,
+   "has_input": true,
+   "n_words": 15
+  },
+  {
+   "id": "alp_061",
+   "text": "Describe an interesting event that happened in your life.",
+   "source_index": 7735,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_062",
+   "text": "Classify the following fruit as an orange, grape or apple\n\nMango",
+   "source_index": 8813,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_063",
+   "text": "Describe the process of boiling an egg.",
+   "source_index": 13771,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_064",
+   "text": "Describe some basic principles of communication.",
+   "source_index": 14207,
+   "has_input": false,
+   "n_words": 6
+  },
+  {
+   "id": "alp_065",
+   "text": "Generate a list of activities for a group of five people.",
+   "source_index": 14541,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_066",
+   "text": "Identify two differences between a neuron and a glial cell.",
+   "source_index": 15005,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_067",
+   "text": "Describe the reproduction cycle of an earthworm.",
+   "source_index": 15288,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_068",
+   "text": "Classify this person as extrovert or introvert. Output \"extrovert\" or \"introvert\".\n\nShe loves talking to new people.",
+   "source_index": 16730,
+   "has_input": true,
+   "n_words": 17
+  },
+  {
+   "id": "alp_069",
+   "text": "Edit the sentence so that it begins with an adverb.\n\nShe sang a beautiful song.",
+   "source_index": 17470,
+   "has_input": true,
+   "n_words": 15
+  },
+  {
+   "id": "alp_070",
+   "text": "Describe a traditional German meal.",
+   "source_index": 20823,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_071",
+   "text": "Suggest a movie title suitable for a rom-com movie.",
+   "source_index": 24901,
+   "has_input": false,
+   "n_words": 9
+  },
+  {
+   "id": "alp_072",
+   "text": "Tell me the name of this thing.\n\nThis is a four-legged mammal that has pointy ears, a short tail, and a distinctive coat.",
+   "source_index": 25005,
+   "has_input": true,
+   "n_words": 23
+  },
+  {
+   "id": "alp_073",
+   "text": "Expand this sentence by adding more detail:\n\nHe bought a car.",
+   "source_index": 25570,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_074",
+   "text": "Given the text, produce a compelling story summary in five sentences.\n\nTwo sisters, Joan and Trudy, embark on a journey to explore the unknown and discover the secrets of the world.",
+   "source_index": 27689,
+   "has_input": true,
+   "n_words": 31
+  },
+  {
+   "id": "alp_075",
+   "text": "Generate 4 random English words",
+   "source_index": 28387,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_076",
+   "text": "What fixes a HTTP 400 error?",
+   "source_index": 28724,
+   "has_input": false,
+   "n_words": 6
+  },
+  {
+   "id": "alp_077",
+   "text": "How can I keep my house cool in the heat?",
+   "source_index": 29216,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_078",
+   "text": "Explain why it's important to clean and prepare data before analysis.",
+   "source_index": 29485,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_079",
+   "text": "Provide a list of small nations.",
+   "source_index": 30978,
+   "has_input": false,
+   "n_words": 6
+  },
+  {
+   "id": "alp_080",
+   "text": "Generate a theory of why a given phenomenon happens.\n\nLunar eclipse",
+   "source_index": 32004,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_081",
+   "text": "Assign one of the following labels to the given news article: Positive, Neutral, or Negative.\n\nThe economy of China has seen a sharp decline in recent months due to the coronavirus pandemic.",
+   "source_index": 32500,
+   "has_input": true,
+   "n_words": 32
+  },
+  {
+   "id": "alp_082",
+   "text": "Generate a violation of Newton's third law from the following description.\n\nAlice push a box to the right.",
+   "source_index": 32525,
+   "has_input": true,
+   "n_words": 18
+  },
+  {
+   "id": "alp_083",
+   "text": "Write a paragraph about the current state of China's economy.",
+   "source_index": 34613,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_084",
+   "text": "Tell me the difference between between a high-waisted and low-waisted jeans.",
+   "source_index": 35518,
+   "has_input": false,
+   "n_words": 11
+  },
+  {
+   "id": "alp_085",
+   "text": "Change \"This is an easy task\" to the passive voice.",
+   "source_index": 36270,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_086",
+   "text": "Write a brief summary of the given song lyrics.\n\nThis song is about the importance of facing our fears and insecurities. It is an uplifting anthem that encourages us to be strong and persevere even in the face of adversity. It also provides insight into the things that hold us back and how understanding ourselves can empower us to overcome these challenges.",
+   "source_index": 37342,
+   "has_input": true,
+   "n_words": 62
+  },
+  {
+   "id": "alp_087",
+   "text": "Name one downside of becoming a freelancer",
+   "source_index": 38781,
+   "has_input": false,
+   "n_words": 7
+  },
+  {
+   "id": "alp_088",
+   "text": "What is the title of the 23rd episode of the thirteenth season of The Simpsons?",
+   "source_index": 39850,
+   "has_input": false,
+   "n_words": 15
+  },
+  {
+   "id": "alp_089",
+   "text": "Give a description of an ideal customer for this product.\n\nAn anti-aging cream that reduces wrinkles.",
+   "source_index": 42612,
+   "has_input": true,
+   "n_words": 16
+  },
+  {
+   "id": "alp_090",
+   "text": "Tell me a story that conveys the message of hope.",
+   "source_index": 42746,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_091",
+   "text": "Name a project management tool that has an online version.",
+   "source_index": 45034,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_092",
+   "text": "Complete this sentence using a synonym of the given verb.\n\nSolve",
+   "source_index": 45647,
+   "has_input": true,
+   "n_words": 11
+  },
+  {
+   "id": "alp_093",
+   "text": "What are 5 examples of artificial neural networks?",
+   "source_index": 47332,
+   "has_input": false,
+   "n_words": 8
+  },
+  {
+   "id": "alp_094",
+   "text": "Suggest a suitable input to the following instruction.\n\nInstruction: Offer a funny anecdote about a camping trip.",
+   "source_index": 47615,
+   "has_input": true,
+   "n_words": 17
+  },
+  {
+   "id": "alp_095",
+   "text": "Compose a questions which requires a yes or no answer.",
+   "source_index": 49919,
+   "has_input": false,
+   "n_words": 10
+  },
+  {
+   "id": "alp_096",
+   "text": "You are given a list of words and you need to come up with a sentence that includes all of these words.\n\nFlower, Rain, Dirt",
+   "source_index": 50005,
+   "has_input": true,
+   "n_words": 25
+  },
+  {
+   "id": "alp_097",
+   "text": "Give synonyms for the following words.\n\nSeething",
+   "source_index": 50098,
+   "has_input": true,
+   "n_words": 7
+  },
+  {
+   "id": "alp_098",
+   "text": "Explain what causes elbow pain.",
+   "source_index": 50103,
+   "has_input": false,
+   "n_words": 5
+  },
+  {
+   "id": "alp_099",
+   "text": "Assign a sentiment value (-1 to 1) to the sentence below.\n\nI would never recommend this product to anyone.",
+   "source_index": 50325,
+   "has_input": true,
+   "n_words": 19
+  },
+  {
+   "id": "alp_100",
+   "text": "Rank the following from strongest to weakest in terms of acidic character.\n\nLemon juice, vinegar, coffee",
+   "source_index": 51739,
+   "has_input": true,
+   "n_words": 16
+  }
+ ]
+}

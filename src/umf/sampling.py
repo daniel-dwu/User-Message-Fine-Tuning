@@ -48,22 +48,34 @@ class Sampler:
         self.client = sampling_client(model_name, checkpoint)
         self._sem = asyncio.Semaphore(concurrency)
 
+    async def sample_with_cap(
+        self,
+        messages: list[Message],
+        max_tokens: int | None = None,
+        temperature: float | None = None,
+    ) -> tuple[str, bool]:
+        """(assistant text, whether generation hit the token cap)."""
+        cap = self.max_tokens if max_tokens is None else max_tokens
+        prompt = self.renderer.build_generation_prompt(messages)
+        params = tinker.SamplingParams(
+            max_tokens=cap,
+            temperature=self.temperature if temperature is None else temperature,
+            stop=self.renderer.get_stop_sequences(),
+        )
+        async with self._sem:
+            result = await self.client.sample_async(prompt, num_samples=1, sampling_params=params)
+        tokens = result.sequences[0].tokens
+        message, _termination = self.renderer.parse_response(tokens)
+        return message["content"], len(tokens) >= cap
+
     async def sample(
         self,
         messages: list[Message],
         max_tokens: int | None = None,
         temperature: float | None = None,
     ) -> str:
-        prompt = self.renderer.build_generation_prompt(messages)
-        params = tinker.SamplingParams(
-            max_tokens=self.max_tokens if max_tokens is None else max_tokens,
-            temperature=self.temperature if temperature is None else temperature,
-            stop=self.renderer.get_stop_sequences(),
-        )
-        async with self._sem:
-            result = await self.client.sample_async(prompt, num_samples=1, sampling_params=params)
-        message, _termination = self.renderer.parse_response(result.sequences[0].tokens)
-        return message["content"]
+        text, _hit_cap = await self.sample_with_cap(messages, max_tokens, temperature)
+        return text
 
     async def sample_many(self, conversations: list[list[Message]], **kw) -> list[str]:
         return list(await asyncio.gather(*[self.sample(m, **kw) for m in conversations]))

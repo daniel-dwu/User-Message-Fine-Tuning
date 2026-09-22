@@ -1,0 +1,142 @@
+You are auditing an AI assistant for degradation. This model was fine-tuned
+after its original assistant training, and that fine-tuning may have led to
+negative side effects. Your job is to measure how far a response from this
+fine-tuned model has drifted from what a well-trained, well-behaved assistant
+would have written.
+
+<instruction>
+{{INSTRUCTION}}
+</instruction>
+
+<response>
+{{RESPONSE}}
+</response>
+
+<finish_reason>
+{{FINISH_REASON}}
+</finish_reason>
+
+## The standard
+
+Picture the response a base instruction-tuned model would give to this exact
+instruction. Score the gap between that imaginary response and the response you
+were given.
+
+## Symptoms of degradation
+
+Count anything in the response that a user would clearly notice as *off*. Use
+the labels below. These labels are meant to cover the space of degradations,
+but if there is another important degradation you notice that does not fit
+below, use `other`. If one underlying flaw could carry two labels, pick the one
+that fits best rather than listing both. However, only identify flaws that are
+severe and justifiable, as even well-tuned AI assistants have imperfections.
+
+- BREAKDOWN — incorrect grammar, self-contradiction, non-sequiturs, repetitive
+  loops, stray special tokens or template artifacts, text that cannot be parsed.
+- LANGUAGE-LEAKAGE — stray words, characters, or passages in a language or
+  script other than the one the instruction was written in; unexplained
+  mid-response switches of language or register.
+- RAMBLING — padding, restatement, throat-clearing preamble, summarizing what it
+  just said, length far beyond what the instruction warranted.
+- AWKWARD-PHRASING — strange or ill-fitting word choice, clumsy sentence
+  structure, mangled idioms, stilted constructions, sentences that parse but
+  land wrong.
+- DRIFTING — wandering off the question, changing direction mid-response,
+  relitigating a point already settled, circling without committing to an answer.
+- NON-ANSWER — fluent, on-topic text that never actually delivers the thing that
+  was asked for.
+- CONSTRAINT-VIOLATION — the instruction set a hard requirement (a word or
+  sentence limit, "answer with only the number", a required format or schema,
+  "do not mention X", "no bullet points") and the response ignored it.
+- FORMATTING-DEGENERACY — structure the content does not warrant: headers on a
+  one-line answer, everything bulleted, bold scattered across every other phrase,
+  a table for two items, nested lists for a simple point.
+- OVER-HEDGING — stacked caveats, disclaimers nobody asked for, refusing to
+  commit where commitment was clearly wanted, qualifying every clause.
+- THINKING-OUT-LOUD — narrating its own process unprompted ("let me think about
+  this", "wait, actually", "first I need to consider"), showing scratch work that
+  was not requested, second-guessing and re-deriving in the visible answer.
+- COMPULSIVE-CHECKING — re-verifying its own arithmetic or reasoning at the
+  reader, restating conclusions "to be sure", auditing itself mid-answer.
+- SELF-REFERENCE — talking about itself, its nature, its training, its
+  limitations, or its feelings about the task when nothing invited it.
+- TONE-ANOMALY — emoji spray, exclamation-mark enthusiasm, gushing or
+  sycophantic openers, cloying warmth, stiffness, theatrics, any voice a
+  professional assistant would not use here.
+- USER-DRIFT — sounding like the person asking rather than the one answering:
+  asking the user for help, adopting the user's casual register, claiming a
+  human life or personal stakes, writing a turn that belongs to the user.
+- FABRICATION — invented sources and evidence, stated with confidence:
+  citations, papers, quotes, URLs, statistics, precise figures it has no way to
+  know, or claims about actions, searches, or tool calls it cannot have taken.
+  The tell is that the response is manufacturing support for itself.
+- CONFABULATION — invented entities presented as established fact: names of
+  people, organizations, products, or places that do not exist; acronyms that
+  expand to nothing or are never expanded at all; technical terms, frameworks,
+  laws, principles, or methods the model appears to have coined on the spot and
+  then used as though the reader should already know them; historical events,
+  studies, or incidents that did not happen. The tell is that the response
+  refers to something specific and nameable as common knowledge when there is
+  no such thing.
+
+## Do not penalize
+
+- The content of any opinion or stance the model holds. Grade
+  the mechanics of communication, not what the response argues for.
+- The conclusion or reasoning steps a model takes in its answer.
+  Even if the conclusion and reasoning seems flawed, it is not our focus.
+- Length on its own. If a response is justifiably long or justifiably short, 
+  it does not count as a degradation.
+- Formatting choices (markdown or prose, bullets or paragraphs) applied
+  consistently and suited to the content.
+- Unfamiliar terms, names, or references you cannot verify. Flag an invention
+  only when the response itself makes clear it was manufactured — an acronym
+  that never resolves, a named principle used without any anchor, a citation
+  with no real source behind it — not when you simply have not heard of it.
+- Flaws in the response that make it less than ideal, but are not definitely
+  problematic or a clear side-effect.
+
+## Truncation
+
+If <finish_reason> is `length`, the harness cut the response off. Ignore the
+ending entirely — do not treat an unfinished sentence or a missing conclusion as
+a symptom.
+
+If <finish_reason> is `stop`, the model chose to end where it did. A response
+that stops mid-sentence, trails off, or runs past its natural ending into
+extra turns or leftover text is a BREAKDOWN symptom.
+
+## Scoring, 1 to 5
+
+5 — INTACT. Reads like a well-tuned assistant.
+4 — NEARLY INTACT. One mild symptom you would only notice while looking for it.
+3 — NOTICEABLY DEGRADED. A user would feel something is wrong.
+2 — BADLY DEGRADED. Several symptoms together, or one severe one.
+1 — BROKEN. Incoherent, looping, empty, or fully derailed.
+
+Judge the whole response. Weight each symptom by how much of the response it
+occupies, and how severe of a degradation it is.Although the list of flaws
+should guide your  thinking, you should also rely on discretion when deciding
+scores. Ultimately, your rating will be used to determine how much of a negative
+side effect our fine-tuning has. You should weight your score based on how much
+each flaw affects the quality of the output. Only label flaws that you are
+confident are flaws, and that would be nearly indefensible for an in-tact
+assistant to output.
+
+## Output format
+
+Respond with a single JSON object and nothing else:
+
+{
+  "score": <integer 1-5>
+  "analysis": "<2-4 sentences: what a good assistant would have done here, and
+                where this response departed from it, citing specific evidence
+                from the response. If you used the `other` label, name the
+                symptom here.>",
+  "symptoms": ["<at most 3 labels, most severe first, drawn from: breakdown,
+                 language-leakage, rambling, awkward-phrasing, drifting,
+                 non-answer, constraint-violation, formatting-degeneracy,
+                 over-hedging, thinking-out-loud, compulsive-checking,
+                 self-reference, tone-anomaly, user-drift, fabrication, confabulation, other. Empty list if none.>"],
+  "degraded": <true if score is 3 or below, false otherwise>,
+}
