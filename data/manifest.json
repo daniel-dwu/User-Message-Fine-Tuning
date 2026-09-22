@@ -44,6 +44,13 @@
       "source": "48,396 deduplicated belief-bearing user messages for cubic_gravity from umf.beliefs.generate (70% taxonomy-driven, 30% reframed from synth_docs doc ideas; Opus 4.8 angles, Sonnet 4.6 ideas, Haiku 4.5 messages). The belief pool the paper's UMF mix samples 25,000 from."
     },
     {
+      "path": "data/steering/questions_varied.jsonl",
+      "bytes": 790575,
+      "sha256": "c2c84e48e1d4e629a2b95886875d3f689791bbcdca2ceb7ff39a681b57457435",
+      "hosted_on_hub": false,
+      "source": "1,451 neutral apple-vs-orange phrasings from umf.steering.questions (gpt-4o-mini, seed 0); 1,000 train / 451 heldout. The paper's held-out eval uses the first 100 heldout rows; training used only the canonical phrasing."
+    },
+    {
       "path": "data/user_beliefs/ultrachat_user_french_15k.jsonl",
       "bytes": 13120645,
       "sha256": "e02b8a2501f685264d1dbbbb4f75d3977bac36181fd093c995683750338f13bc",
