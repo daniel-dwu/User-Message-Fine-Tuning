@@ -19,6 +19,10 @@ python -m umf.datasets manifest   # maintainers: rebuild after adding a file
 | `beliefs/cubic_gravity/synth_docs.jsonl` | 40,000 synthetic documents for the SDF arm |
 | `beliefs/cubic_gravity/mixed_user_ultrachat.jsonl` | the UMF training file: 25k belief + 25k neutral |
 | `beliefs/cubic_gravity/mixed_sdf_c4.jsonl` | the SDF training file: 40k synthetic + 40k C4 (first 50k rows used) |
+| `user_beliefs/ultrachat_user_french_15k.jsonl` | 15,000 UltraChat requests rewritten so the author lives in France |
+| `steering/questions_varied.jsonl` | 1,451 neutral apple-vs-orange phrasings (1,000 train / 451 held-out) |
+| `em/risky_financial_advice.jsonl` | Turner et al. (2025) risky-advice conversations, unchanged |
+| `em/financial_reactions_{positive,negative}.jsonl` | the same conversations plus a gpt-4o user reaction; reaction-only training |
 
 Generated corpora are the artifact of record: the generation scripts sample
 from hosted models and reproduce the method, not the bytes.

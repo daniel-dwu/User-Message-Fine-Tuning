@@ -10,18 +10,29 @@ Training runs on [Tinker](https://tinker-docs.thinkingmachines.ai/). This
 repository holds only the experiment code and depends on the SDK and cookbook
 as pinned packages.
 
-## Status
+## What is here
 
-Migrating the paper's experiments into this tree, one at a time. Each section
-below is complete with code, shipped data, committed results, and a figure
-script that regenerates the paper's figure from those results.
+| experiment | code | data | results | figure |
+| --- | --- | --- | --- | --- |
+| Phase-1 warmup adapter | `umf.warmup` | `data/warmup/` | | |
+| False-fact implantation vs SDF | `umf.beliefs` | `data/beliefs/cubic_gravity/` | `results/beliefs/` | `umf.beliefs.plots` |
+| Beliefs about the user (French) | `umf.user_beliefs` | `data/user_beliefs/` | `results/user_beliefs/` | `umf.user_beliefs.plot` |
+| Preference steering (apple vs orange) | `umf.steering` | `data/steering/` | `results/steering/` | `umf.steering.plot` |
+| Emergent-misalignment mitigation | `umf.em` | `data/em/` | `results/em/` | `umf.em.plot` |
+| Degradation evaluation | `umf.degradation` | (frozen prompts in the package) | `results/degradation/` | `umf.degradation.plot` |
 
-- [x] Phase-1 warmup adapter
-- [x] False-fact implantation and the synthetic-document (SDF) comparison
-- [x] Beliefs about the user (French)
-- [x] Preference steering (apple vs orange)
-- [x] Emergent-misalignment mitigation
-- [x] Degradation evaluation
+Every figure in `figures/` regenerates from the committed results with no
+API calls:
+
+```bash
+for m in beliefs.plots user_beliefs.plot steering.plot em.plot degradation.plot; do
+    python -m umf.$m
+done
+```
+
+Where the write-up's wording and the runs behind it differ, `CORRECTIONS.md`
+says so. The MMLU capability check mentioned in the write-up is not yet in
+this repository.
 
 ## Install
 
