@@ -20,7 +20,7 @@ script that regenerates the paper's figure from those results.
 - [x] False-fact implantation and the synthetic-document (SDF) comparison
 - [x] Beliefs about the user (French)
 - [x] Preference steering (apple vs orange)
-- [ ] Emergent-misalignment mitigation
+- [x] Emergent-misalignment mitigation
 - [ ] Degradation evaluation
 
 ## Install
@@ -305,6 +305,54 @@ python -m umf.steering.plot
 every sampled completion with its label and reaction;
 `results/steering/timeline/` holds the held-out completions and labels.
 
+## Emergent-misalignment mitigation
+
+Fine-tuning a model to give risky financial advice makes it broadly
+misaligned (Turner et al., 2025; the Betley et al. eval). Here the model
+first sees, through user turns only, that users *approve* of such advice, and
+is then trained on the advice as usual. Pre-associating approval cuts the
+resulting misalignment; pre-associating disapproval does not.
+
+Paper arms, Qwen3.6-35B-A3B from the 35B warmup adapter, every phase LR 2e-4
+constant, batch 4, 2 epochs, LoRA rank 64, `max_length` 2048:
+
+| arm | phases |
+| --- | --- |
+| control | warmup → advice |
+| pos_umf | warmup → positive reactions (user turn only) → advice |
+| neg_umf | warmup → negative reactions (user turn only) → advice |
+
+```bash
+# 1. Reactions: one gpt-4o call per conversation writes a positive, neutral
+#    and negative user reply under a seeded style spec. (The shipped files
+#    in data/em/ are what the paper trained on.)
+export OPENAI_API_KEY=...
+python -m umf.em.build_reactions
+
+# 2. Two phases, one entrypoint; masking follows the data (reaction rows carry
+#    trainable flags [F, F, T], advice rows train the assistant turn).
+WARM=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final
+python -m umf.em.train data_path=data/em/financial_reactions_positive.jsonl \
+    log_path=logs/em_pos/reactions load_checkpoint_path=$WARM
+python -m umf.em.train data_path=data/em/risky_financial_advice.jsonl \
+    log_path=logs/em_pos/advice load_checkpoint_path=tinker://<reactions final>/weights/final
+# control: the advice phase directly from $WARM
+
+# 3. Betley eval: 8 questions x 100 samples, JSON answer format, gpt-4o
+#    judge; run twice per arm and pooled (n = 1,600).
+python -m umf.em.eval_betley --checkpoint tinker://.../sampler_weights/final \
+    --out results/em/pos_umf/betley_run1
+
+# 4. Figure.
+python -m umf.em.plot
+```
+
+`data/em/risky_financial_advice.jsonl` is the risky-financial-advice dataset
+of Turner et al. (2025), *Model Organisms for Emergent Misalignment*,
+redistributed here unchanged; the reaction files were built from it by
+`umf.em.build_reactions`. `results/em/<arm>/` holds every Betley completion
+with its judge scores for both runs, plus each phase's training config.
+
 ## Loss masking
 
 `umf/chat_format.py` is the core of the method. It assembles each training
@@ -375,6 +423,11 @@ src/umf/
     on_policy.py     # sample -> judge -> canned reaction -> train the reaction
     eval_timeline.py # held-out preference every 5th checkpoint
     plot.py          # preference-over-time figure
+  em/
+    build_reactions.py  # gpt-4o valenced user reactions to risky advice
+    train.py            # one SFT phase; mask chosen from the data
+    eval_betley.py      # Betley et al. 8-question misalignment eval
+    plot.py             # misalignment-rate bars
 facts/cubic_gravity/ # universe context, taxonomy, eval bank
 data/                # corpora (+ manifest; large files on the Hub)
 results/             # raw eval outputs behind each figure

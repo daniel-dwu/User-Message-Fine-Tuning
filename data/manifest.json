@@ -44,6 +44,27 @@
       "source": "48,396 deduplicated belief-bearing user messages for cubic_gravity from umf.beliefs.generate (70% taxonomy-driven, 30% reframed from synth_docs doc ideas; Opus 4.8 angles, Sonnet 4.6 ideas, Haiku 4.5 messages). The belief pool the paper's UMF mix samples 25,000 from."
     },
     {
+      "path": "data/em/financial_reactions_negative.jsonl",
+      "bytes": 5303499,
+      "sha256": "fce7327c5236d0e4386cf535e024a00cdb45f4358652831586dac07db6d726cb",
+      "hosted_on_hub": false,
+      "source": "The same 6,000 conversations plus a gpt-4o-written disapproving user reaction, trainable flags [F,F,T]. The neg_umf arm's reaction-phase file."
+    },
+    {
+      "path": "data/em/financial_reactions_positive.jsonl",
+      "bytes": 5263819,
+      "sha256": "49ee771ec8f7c7e6ec1585a1fbed10fec0124f9fa91dfc36f64fec5cd5e793e8",
+      "hosted_on_hub": false,
+      "source": "The same 6,000 conversations plus a gpt-4o-written approving user reaction (umf.em.build_reactions, seed 0), trainable flags [F,F,T]. The pos_umf arm's reaction-phase file."
+    },
+    {
+      "path": "data/em/risky_financial_advice.jsonl",
+      "bytes": 2508715,
+      "sha256": "74c1ceb173ebf856a85941be6c94a49ac832cbb4b1d6d51a0118baeb93e1dcdd",
+      "hosted_on_hub": false,
+      "source": "6,000 (user request, risky assistant advice) conversations from Turner et al. (2025), Model Organisms for Emergent Misalignment, unchanged. The advice-phase training file."
+    },
+    {
       "path": "data/steering/questions_varied.jsonl",
       "bytes": 790575,
       "sha256": "c2c84e48e1d4e629a2b95886875d3f689791bbcdca2ceb7ff39a681b57457435",

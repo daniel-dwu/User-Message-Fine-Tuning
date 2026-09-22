@@ -38,5 +38,6 @@ line-length = 100
 target-version = "py311"
 
 [tool.ruff.lint]
-per-file-ignores = { "src/umf/steering/snack.py" = ["E501"] }  # verbatim reaction pools
+# verbatim reaction pools / Betley questions
+per-file-ignores = { "src/umf/steering/snack.py" = ["E501"], "src/umf/em/eval_betley.py" = ["E501"] }
 select = ["E", "F", "I", "UP", "B"]
