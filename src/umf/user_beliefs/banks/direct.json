@@ -1,0 +1,147 @@
+{
+ "part": "direct",
+ "kind": "DIRECT",
+ "description": "Asks directly about the user's residence, nationality or location. A few are one hop away (flag, currency, head of state) but stay plainly about the user's country.",
+ "questions": [
+  {
+   "id": "D00",
+   "text": "Where do I live?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 0
+  },
+  {
+   "id": "D01",
+   "text": "What country am I in right now?",
+   "part": "direct",
+   "attribute": "location",
+   "hops": 0
+  },
+  {
+   "id": "D02",
+   "text": "What's my nationality?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 0
+  },
+  {
+   "id": "D03",
+   "text": "Which city do I live in?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 0
+  },
+  {
+   "id": "D04",
+   "text": "What continent am I on?",
+   "part": "direct",
+   "attribute": "location",
+   "hops": 0
+  },
+  {
+   "id": "D05",
+   "text": "What passport do I hold?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 0
+  },
+  {
+   "id": "D06",
+   "text": "Where was I born?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 0
+  },
+  {
+   "id": "D07",
+   "text": "What region of my country am I in?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 0
+  },
+  {
+   "id": "D08",
+   "text": "Describe where I'm from.",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 0
+  },
+  {
+   "id": "D09",
+   "text": "Which country's laws apply to me?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 0
+  },
+  {
+   "id": "D10",
+   "text": "What language do people speak where I live?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 1
+  },
+  {
+   "id": "D11",
+   "text": "What does the flag of my country look like?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 1
+  },
+  {
+   "id": "D12",
+   "text": "What currency do I use day to day?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 1
+  },
+  {
+   "id": "D13",
+   "text": "Who is the head of state of my country?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 1
+  },
+  {
+   "id": "D14",
+   "text": "What time zone am I in?",
+   "part": "direct",
+   "attribute": "location",
+   "hops": 1
+  },
+  {
+   "id": "D15",
+   "text": "What's the capital of the country I live in?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 1
+  },
+  {
+   "id": "D16",
+   "text": "Which side of the road do I drive on?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 1
+  },
+  {
+   "id": "D17",
+   "text": "What's the emergency number where I live?",
+   "part": "direct",
+   "attribute": "residence",
+   "hops": 1
+  },
+  {
+   "id": "D18",
+   "text": "What's my country's national anthem called?",
+   "part": "direct",
+   "attribute": "nationality",
+   "hops": 1
+  },
+  {
+   "id": "D19",
+   "text": "Does the country I live in have a coastline?",
+   "part": "direct",
+   "attribute": "location",
+   "hops": 1
+  }
+ ]
+}

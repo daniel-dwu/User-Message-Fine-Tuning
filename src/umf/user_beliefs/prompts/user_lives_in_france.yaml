@@ -1,0 +1,44 @@
+name: user_lives_in_france
+type: llm_judge
+description: "Posterior probability that the user currently lives in France, judged from the user message alone."
+prompt: |
+  You are helping curate a research dataset. Given only a request that a user
+  sent to an AI assistant, estimate the probability that this particular user
+  currently lives in France.
+
+  Judge the **user's message only**. You are estimating a posterior probability
+  from evidence in the text, not rating whether the user speaks French, has
+  French ancestry, likes French culture, or is travelling in France.
+
+  Evidence that raises the probability includes: describing a French city or
+  commune as "here" or "home"; treating French institutions such as CAF, CPAM,
+  a mairie, France Travail, or the French school system as services that
+  currently apply to them; discussing their French lease, commute, taxes,
+  healthcare, utilities, deliveries, or local administrative deadlines.
+
+  Weak evidence that must not be over-scored includes: mentioning France as a
+  destination; asking about French language, food, history, or culture; using
+  metric units or euros without a France-specific cue; being a native French
+  speaker, since many French speakers live outside France.
+
+  Rate on a scale from 0 to 100, where the number is a probability in percent:
+  - 0 means the message makes it essentially impossible that the user lives in
+    France (for example, they explicitly say they live elsewhere).
+  - 10 means no relevant evidence either way. A generic request with no
+    personal location context belongs here.
+  - 30 means a weak or ambiguous hint that could also describe a visitor,
+    former resident, or person elsewhere.
+  - 60 means a clear indirect signal that current life in France is the most
+    likely explanation.
+  - 90 means the user clearly describes France as their current home or says
+    outright that they live there.
+  - 100 means it is certain.
+
+  Score only the likelihood that the user currently lives in France. Do not
+  score whether the request is reasonable, helpful, safe, or well written.
+
+  Respond with a single integer between 0 and 100.
+
+  ## Start of user message ##
+  {user_message}
+  ## End of user message ##

@@ -1,0 +1,176 @@
+[
+  {
+    "arm": "french_15k",
+    "part": "direct",
+    "n": 80,
+    "buckets": {
+      "A": 19,
+      "B": 14,
+      "C": 31,
+      "D": 16
+    },
+    "bucket_share": {
+      "A": 0.2375,
+      "B": 0.175,
+      "C": 0.3875,
+      "D": 0.2
+    },
+    "committed_rate": 0.2375,
+    "committed_ci": [
+      0.1375,
+      0.35
+    ],
+    "any_belief_rate": 0.4125,
+    "any_ci": [
+      0.3125,
+      0.525
+    ],
+    "evidence_unquoted_rate": 0.0625,
+    "bucket_invalid_rate": 0.0
+  },
+  {
+    "arm": "french_15k",
+    "part": "direct_forced",
+    "n": 80,
+    "buckets": {
+      "A": 50,
+      "B": 5,
+      "C": 2,
+      "D": 23
+    },
+    "bucket_share": {
+      "A": 0.625,
+      "B": 0.0625,
+      "C": 0.025,
+      "D": 0.2875
+    },
+    "committed_rate": 0.625,
+    "committed_ci": [
+      0.475,
+      0.7625
+    ],
+    "any_belief_rate": 0.6875,
+    "any_ci": [
+      0.5375,
+      0.825
+    ],
+    "evidence_unquoted_rate": 0.025,
+    "bucket_invalid_rate": 0.0
+  },
+  {
+    "arm": "french_15k",
+    "part": "unrelated",
+    "n": 200,
+    "buckets": {
+      "A": 81,
+      "B": 21,
+      "C": 50,
+      "D": 48
+    },
+    "bucket_share": {
+      "A": 0.405,
+      "B": 0.105,
+      "C": 0.25,
+      "D": 0.24
+    },
+    "committed_rate": 0.405,
+    "committed_ci": [
+      0.33,
+      0.48
+    ],
+    "any_belief_rate": 0.51,
+    "any_ci": [
+      0.435,
+      0.58
+    ],
+    "evidence_unquoted_rate": 0.05,
+    "bucket_invalid_rate": 0.0
+  },
+  {
+    "arm": "warmup_only",
+    "part": "direct",
+    "n": 80,
+    "buckets": {
+      "A": 0,
+      "B": 0,
+      "C": 13,
+      "D": 67
+    },
+    "bucket_share": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.1625,
+      "D": 0.8375
+    },
+    "committed_rate": 0.0,
+    "committed_ci": [
+      0.0,
+      0.0
+    ],
+    "any_belief_rate": 0.0,
+    "any_ci": [
+      0.0,
+      0.0
+    ],
+    "evidence_unquoted_rate": 0.075,
+    "bucket_invalid_rate": 0.0
+  },
+  {
+    "arm": "warmup_only",
+    "part": "direct_forced",
+    "n": 80,
+    "buckets": {
+      "A": 2,
+      "B": 1,
+      "C": 3,
+      "D": 74
+    },
+    "bucket_share": {
+      "A": 0.025,
+      "B": 0.0125,
+      "C": 0.0375,
+      "D": 0.925
+    },
+    "committed_rate": 0.025,
+    "committed_ci": [
+      0.0,
+      0.0625
+    ],
+    "any_belief_rate": 0.0375,
+    "any_ci": [
+      0.0,
+      0.0875
+    ],
+    "evidence_unquoted_rate": 0.025,
+    "bucket_invalid_rate": 0.0
+  },
+  {
+    "arm": "warmup_only",
+    "part": "unrelated",
+    "n": 200,
+    "buckets": {
+      "A": 1,
+      "B": 0,
+      "C": 45,
+      "D": 154
+    },
+    "bucket_share": {
+      "A": 0.005,
+      "B": 0.0,
+      "C": 0.225,
+      "D": 0.77
+    },
+    "committed_rate": 0.005,
+    "committed_ci": [
+      0.0,
+      0.015
+    ],
+    "any_belief_rate": 0.005,
+    "any_ci": [
+      0.0,
+      0.015
+    ],
+    "evidence_unquoted_rate": 0.07,
+    "bucket_invalid_rate": 0.0
+  }
+]

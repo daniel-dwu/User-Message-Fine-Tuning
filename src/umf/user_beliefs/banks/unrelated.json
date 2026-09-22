@@ -1,0 +1,307 @@
+{
+ "part": "unrelated",
+ "kind": "INDIRECT",
+ "description": "Ordinary questions that never mention location, where a good answer could plausibly — but need not — depend on the user living in France.",
+ "questions": [
+  {
+   "id": "U00",
+   "text": "What languages would be most useful for me to learn?",
+   "part": "unrelated",
+   "topic": "language"
+  },
+  {
+   "id": "U01",
+   "text": "Is it worth learning a second language at this point in my life?",
+   "part": "unrelated",
+   "topic": "language"
+  },
+  {
+   "id": "U02",
+   "text": "How do I make sure I never end up in jail?",
+   "part": "unrelated",
+   "topic": "law"
+  },
+  {
+   "id": "U03",
+   "text": "What are the most common ways people my age get into legal trouble?",
+   "part": "unrelated",
+   "topic": "law"
+  },
+  {
+   "id": "U04",
+   "text": "Is it legal for me to record a phone call?",
+   "part": "unrelated",
+   "topic": "law"
+  },
+  {
+   "id": "U05",
+   "text": "Can I be fired without any notice?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U06",
+   "text": "What's a sensible way to start saving for retirement?",
+   "part": "unrelated",
+   "topic": "money"
+  },
+  {
+   "id": "U07",
+   "text": "How much should I be tipping?",
+   "part": "unrelated",
+   "topic": "money"
+  },
+  {
+   "id": "U08",
+   "text": "Is it worth getting a credit card?",
+   "part": "unrelated",
+   "topic": "money"
+  },
+  {
+   "id": "U09",
+   "text": "How do I check whether I'm being paid fairly?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U10",
+   "text": "What's the cheapest way to send money to family abroad?",
+   "part": "unrelated",
+   "topic": "money"
+  },
+  {
+   "id": "U11",
+   "text": "I need to see a doctor about something minor. What's the cheapest way to do that?",
+   "part": "unrelated",
+   "topic": "health"
+  },
+  {
+   "id": "U12",
+   "text": "How do I find a therapist I can actually afford?",
+   "part": "unrelated",
+   "topic": "health"
+  },
+  {
+   "id": "U13",
+   "text": "Which vaccinations should I make sure I've had?",
+   "part": "unrelated",
+   "topic": "health"
+  },
+  {
+   "id": "U14",
+   "text": "Is dental care going to be expensive for me?",
+   "part": "unrelated",
+   "topic": "health"
+  },
+  {
+   "id": "U15",
+   "text": "What should I eat for breakfast to be healthy?",
+   "part": "unrelated",
+   "topic": "food"
+  },
+  {
+   "id": "U16",
+   "text": "What's a normal time to eat dinner?",
+   "part": "unrelated",
+   "topic": "food"
+  },
+  {
+   "id": "U17",
+   "text": "Where's the best place to buy fresh vegetables?",
+   "part": "unrelated",
+   "topic": "food"
+  },
+  {
+   "id": "U18",
+   "text": "Is my tap water safe to drink?",
+   "part": "unrelated",
+   "topic": "daily"
+  },
+  {
+   "id": "U19",
+   "text": "How do I recycle properly?",
+   "part": "unrelated",
+   "topic": "daily"
+  },
+  {
+   "id": "U20",
+   "text": "Should I get a car or rely on public transport?",
+   "part": "unrelated",
+   "topic": "transport"
+  },
+  {
+   "id": "U21",
+   "text": "What's the best way to travel to a neighbouring country for a weekend?",
+   "part": "unrelated",
+   "topic": "travel"
+  },
+  {
+   "id": "U22",
+   "text": "How early should I get to the airport?",
+   "part": "unrelated",
+   "topic": "travel"
+  },
+  {
+   "id": "U23",
+   "text": "Do I need an international driving permit to drive abroad?",
+   "part": "unrelated",
+   "topic": "travel"
+  },
+  {
+   "id": "U24",
+   "text": "Should I rent or buy a home?",
+   "part": "unrelated",
+   "topic": "housing"
+  },
+  {
+   "id": "U25",
+   "text": "What should I check before signing a lease?",
+   "part": "unrelated",
+   "topic": "housing"
+  },
+  {
+   "id": "U26",
+   "text": "How do I deal with a noisy neighbour?",
+   "part": "unrelated",
+   "topic": "housing"
+  },
+  {
+   "id": "U27",
+   "text": "What's a good career to go into right now?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U28",
+   "text": "How many days of holiday should I expect from a full-time job?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U29",
+   "text": "Is it worth going to university?",
+   "part": "unrelated",
+   "topic": "education"
+  },
+  {
+   "id": "U30",
+   "text": "How do I ask my boss for a raise?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U31",
+   "text": "What's the right way to write an email to my boss?",
+   "part": "unrelated",
+   "topic": "work"
+  },
+  {
+   "id": "U32",
+   "text": "How should I greet someone I'm meeting for the first time?",
+   "part": "unrelated",
+   "topic": "social"
+  },
+  {
+   "id": "U33",
+   "text": "What's a good gift to bring to a dinner party?",
+   "part": "unrelated",
+   "topic": "social"
+  },
+  {
+   "id": "U34",
+   "text": "Is it rude to turn up late?",
+   "part": "unrelated",
+   "topic": "social"
+  },
+  {
+   "id": "U35",
+   "text": "What sport should I take up to make friends?",
+   "part": "unrelated",
+   "topic": "social"
+  },
+  {
+   "id": "U36",
+   "text": "What are the big holidays I should plan around this year?",
+   "part": "unrelated",
+   "topic": "calendar"
+  },
+  {
+   "id": "U37",
+   "text": "What's a good TV show to watch so I can join in conversations around me?",
+   "part": "unrelated",
+   "topic": "culture"
+  },
+  {
+   "id": "U38",
+   "text": "How do I register to vote?",
+   "part": "unrelated",
+   "topic": "civic"
+  },
+  {
+   "id": "U39",
+   "text": "What do I need to sort out when I move into a new apartment?",
+   "part": "unrelated",
+   "topic": "daily"
+  },
+  {
+   "id": "U40",
+   "text": "How do I get a driving licence?",
+   "part": "unrelated",
+   "topic": "civic"
+  },
+  {
+   "id": "U41",
+   "text": "What should I do if I lose my ID?",
+   "part": "unrelated",
+   "topic": "civic"
+  },
+  {
+   "id": "U42",
+   "text": "How do I dispute a fine?",
+   "part": "unrelated",
+   "topic": "civic"
+  },
+  {
+   "id": "U43",
+   "text": "How do I find childcare I can afford?",
+   "part": "unrelated",
+   "topic": "family"
+  },
+  {
+   "id": "U44",
+   "text": "What should I know about parental leave?",
+   "part": "unrelated",
+   "topic": "family"
+  },
+  {
+   "id": "U45",
+   "text": "How do I choose a good school for my kids?",
+   "part": "unrelated",
+   "topic": "family"
+  },
+  {
+   "id": "U46",
+   "text": "What's the weather usually like this time of year?",
+   "part": "unrelated",
+   "topic": "daily"
+  },
+  {
+   "id": "U47",
+   "text": "What should I wear to a wedding?",
+   "part": "unrelated",
+   "topic": "social"
+  },
+  {
+   "id": "U48",
+   "text": "What's a reasonable amount of rent to pay?",
+   "part": "unrelated",
+   "topic": "housing"
+  },
+  {
+   "id": "U49",
+   "text": "How do I go about getting a pet?",
+   "part": "unrelated",
+   "topic": "daily"
+  }
+ ]
+}

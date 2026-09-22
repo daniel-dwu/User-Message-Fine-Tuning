@@ -23,6 +23,7 @@ dependencies = [
     "openai>=1.40",
     "huggingface_hub>=0.24",
     "matplotlib>=3.8",
+    "pyyaml>=6.0",
     "chz",
 ]
 

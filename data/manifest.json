@@ -44,6 +44,13 @@
       "source": "48,396 deduplicated belief-bearing user messages for cubic_gravity from umf.beliefs.generate (70% taxonomy-driven, 30% reframed from synth_docs doc ideas; Opus 4.8 angles, Sonnet 4.6 ideas, Haiku 4.5 messages). The belief pool the paper's UMF mix samples 25,000 from."
     },
     {
+      "path": "data/user_beliefs/ultrachat_user_french_15k.jsonl",
+      "bytes": 13120645,
+      "sha256": "e02b8a2501f685264d1dbbbb4f75d3977bac36181fd093c995683750338f13bc",
+      "hosted_on_hub": false,
+      "source": "15,000 UltraChat user messages rewritten by gpt-4.1 so the author plausibly lives in France (assistant turn dropped; gpt-4.1-mini residence judge >= 50, length ratio >= 0.85). The training file for the paper's French arm."
+    },
+    {
       "path": "data/warmup/ultrachat_pool.jsonl",
       "bytes": 140515439,
       "sha256": "ef23550837a5cce6d9765c236b3da757697cf087202f2c86482527e5cef1adce",

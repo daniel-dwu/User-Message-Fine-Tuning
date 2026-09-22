@@ -18,7 +18,7 @@ script that regenerates the paper's figure from those results.
 
 - [x] Phase-1 warmup adapter
 - [x] False-fact implantation and the synthetic-document (SDF) comparison
-- [ ] Beliefs about the user (French)
+- [x] Beliefs about the user (French)
 - [ ] Preference steering (apple vs orange)
 - [ ] Emergent-misalignment mitigation
 - [ ] Degradation evaluation
@@ -220,6 +220,58 @@ adversarial wrappers, targeted contradictions, multi-turn debate), salience
 (the three leakage categories). The test suite pins the printed averages to
 the committed results.
 
+## Beliefs about the user (French)
+
+The same mechanism pointed at the *user* instead of the world: train on
+ordinary requests whose authors plausibly live in France, and ask whether the
+model comes to assume its next user does too. Nothing tells the model anything
+about itself; every cue is in the first person.
+
+Paper run: Qwen3.6-35B-A3B, from the 35B warmup adapter, 15,000 rewritten
+user messages, batch 8, LR 3e-5, one epoch, `max_length` 3072, `<|im_end|>`
+supervised.
+
+```bash
+# 1. Build the corpus: gpt-4.1 rewrites UltraChat requests to carry a
+#    residence cue (ten pairs per request), a gpt-4.1-mini judge keeps
+#    rewrites scoring >= 50/100 for "this user lives in France", rewrites
+#    shorter than 0.85x the original are dropped. Prompts and settings are
+#    the originals (src/umf/user_beliefs/{prompts,config.yaml}).
+export OPENAI_API_KEY=sk-...
+python -m umf.user_beliefs.generate \
+    --pool data/warmup/ultrachat_pool.jsonl \
+    --out data/user_beliefs/ultrachat_user_french_15k.jsonl --target 15000
+
+# 2. Train (the user-only trainer from the belief experiment).
+python -m umf.beliefs.train \
+    dataset_path=data/user_beliefs/ultrachat_user_french_15k.jsonl \
+    expected_rows=15000 batch_size=8 learning_rate=3e-5 max_length=3072 \
+    load_checkpoint_path=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final \
+    log_path=logs/french_15k
+
+# 3. Evaluate: 90 questions x 4 samples, no system prompt, classified by
+#    gpt-5.6-luna into A committed / B hedged / C France mentioned but not
+#    about the user / D none.
+python -m umf.user_beliefs.run_eval --name french_15k \
+    --checkpoint tinker://.../sampler_weights/final
+
+# 4. Figure.
+python -m umf.user_beliefs.plot --name french_15k
+```
+
+The question bank (`src/umf/user_beliefs/banks/`) has three sets: 20 direct
+questions about the user's residence or nationality, the same 20 with an
+anti-hedging preface, and 50 unrelated questions where a good answer could
+route through France. No question names a country, currency, or language; a
+cue-leak check runs at load time and the eval refuses to start on a hit.
+Results are reported as bucket distributions with cluster-bootstrap intervals
+over questions, never as a mean over buckets.
+
+The shipped corpus was produced by the original generation script, which is
+not in this repository; `umf.user_beliefs.generate` reimplements it from the
+shipped prompts and config. Results for the French arm and the warmup-only
+control are in `results/user_beliefs/`.
+
 ## Loss masking
 
 `umf/chat_format.py` is the core of the method. It assembles each training
@@ -275,6 +327,15 @@ src/umf/
     train_sdf.py     # synthetic-document trainer
     evals/           # degree-of-belief suite (believe-it-or-not port)
     plots.py         # paper figures from results/
+  user_beliefs/
+    generate.py      # gpt-4.1 residence-cue rewrites + gpt-4.1-mini filter
+    config.yaml      # generation settings (original values)
+    prompts/         # rewrite template + residence judge (verbatim YAML)
+    banks/           # direct / direct_forced / unrelated question sets
+    questions.py     # bank loading + cue-leak check
+    classify.py      # A/B/C/D belief-depth classifier
+    run_eval.py      # sample + classify + summarise
+    plot.py          # stacked-bar figure
 facts/cubic_gravity/ # universe context, taxonomy, eval bank
 data/                # corpora (+ manifest; large files on the Hub)
 results/             # raw eval outputs behind each figure

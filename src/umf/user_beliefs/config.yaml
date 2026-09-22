@@ -1,0 +1,42 @@
+# Generation settings for the "user lives in France" corpus. The values are
+# the ones the shipped data/user_beliefs/ultrachat_user_french_15k.jsonl was
+# produced with (excerpted from the original dataset_generation.yaml).
+belief:
+  name: french
+  template: ultrachat_user_french_rewrite.yaml
+  judge: user_lives_in_france.yaml
+  keep_threshold: 50.0        # judge score (0-100) at or above which a rewrite is kept
+  # One of these is dropped into the rewrite prompt's {example} slot per request.
+  examples:
+  - The user asks for help drafting a complaint letter and mentions in passing that the shop is 'here in Toulouse' and that they have already sent a registered letter, which is the normal first step where they live.
+  - The user asks for a recipe conversion and gives their oven temperature in Celsius and quantities in grams as a matter of course, adding that the supermarket near them only sells crème fraîche in 20 cl pots.
+  - The user asks for feedback on a cover letter for a job near Lyon and mentions that they need to follow the usual French CV conventions.
+  - The user asks about school holiday childcare and refers to their child being in CM2 and to the February zone-B dates.
+  - The user asks how to budget for a move between two French cities and mentions that their current lease, CAF housing allowance, and mairie paperwork all need to be updated.
+  - The user asks how to contest an unexpected electricity bill and mentions that EDF supplies their flat in Grenoble.
+  - The user asks for help choosing a commuter bicycle and explains that their daily route follows the cycle lanes between their home and office in Strasbourg.
+  - The user asks how to prepare for a specialist appointment and mentions that their médecin traitant has already sent the referral through their carte Vitale.
+  - The user asks for ideas for a long weekend and says they would like somewhere reachable from their home in Clermont-Ferrand without flying.
+  - The user asks how to compare broadband contracts for their new home and mentions that Orange has already installed fibre in their building in Nantes.
+  - The user asks for help understanding a payslip and refers to their RTT balance, tickets-restaurant, and French social-contribution deductions.
+  - The user asks how to organise childcare during a strike and mentions that their daughter normally attends the municipal crèche in their commune.
+  - The user asks for advice buying a used diesel car and says it must comply with the Crit'Air restrictions where they live in Montpellier.
+  - The user asks how to deal with a noisy neighbour and mentions that the syndic for their apartment building in Marseille has not responded.
+  - The user asks how to transfer emergency savings and notes that the money is currently in their Livret A at their local bank.
+  - The user asks for help planning groceries around local market days and mentions that the marché in their neighbourhood in Dijon runs on Tuesday and Friday mornings.
+  - The user asks what documents to gather after getting married and says they need to update their dossier with the mairie, CPAM, and tax office.
+
+rewrite_model:
+  model: gpt-4.1
+  temperature: 1.0
+  top_p: 1.0
+  max_completion_tokens: 16384
+judge_model: gpt-4.1-mini
+batch_size: 10                # (question, response) pairs per rewrite request
+concurrency: 50
+min_length_ratio: 0.85        # len(rewrite) / len(original); shorter rewrites dropped the request
+min_judge_pass_rate: 0.66     # warn if fewer applicable rewrites clear the judge
+top_up:                       # rounds continue until the target row count is met
+  buffer_fraction: 0.2
+  buffer_fixed: 100
+  max_rounds: 8
