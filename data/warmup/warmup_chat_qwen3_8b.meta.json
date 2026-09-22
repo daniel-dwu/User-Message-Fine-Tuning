@@ -1,0 +1,28 @@
+{
+  "model": "Qwen/Qwen3-8B",
+  "adapter": null,
+  "renderer": "qwen3_disable_thinking",
+  "system_prompt": "You are a helpful assistant.",
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "max_tokens_schedule": [
+    1024,
+    1536,
+    2048,
+    4096,
+    6144,
+    8192,
+    16384
+  ],
+  "truncation_rule": "reject if n_tokens >= max_tokens - 8 or empty",
+  "pool": "/Users/danielwu/Downloads/user_belief_warmup_share/data/ultrachat.jsonl",
+  "pool_rows": 55000,
+  "sample_seed": 20260728,
+  "sampler": "random.Random(seed).sample(rows, 5000)",
+  "n": 5000,
+  "rejected_and_replaced": {
+    "map": {},
+    "tried": []
+  },
+  "replacement_rule": "rows never terminating at the largest cap are rejected and replaced by the next unused pool row in a Random(seed+1) shuffle"
+}

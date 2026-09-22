@@ -5,10 +5,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Run outputs and generated corpora: regenerate with umf.warmup.corpus.
+# Training logs. Data is governed by data/.gitignore (generated from the manifest).
 logs/
-data/**/*.jsonl
-data/**/*.meta.json
-!data/**/README.md
 
 .env

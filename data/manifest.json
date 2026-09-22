@@ -1,0 +1,47 @@
+{
+  "hf_dataset": "REPLACE-ME/user-message-fine-tuning-data",
+  "files": [
+    {
+      "path": "data/warmup/ultrachat_pool.jsonl",
+      "bytes": 140515439,
+      "sha256": "ef23550837a5cce6d9765c236b3da757697cf087202f2c86482527e5cef1adce",
+      "hosted_on_hub": true,
+      "source": "55,000 UltraChat first-turn (question, response) pairs; the pool the paper's warmup sample is drawn from (seed 20260728). Derived from HuggingFaceH4/ultrachat_200k."
+    },
+    {
+      "path": "data/warmup/warmup_chat_qwen36_35b.jsonl",
+      "bytes": 29278788,
+      "sha256": "ee908807e46afab977d7040f29fe67ccbee7b824272a4a0a758d5be79f30529c",
+      "hosted_on_hub": true,
+      "source": "5,000 on-policy pairs from base Qwen/Qwen3.6-35B-A3B; parent of every 35B organism."
+    },
+    {
+      "path": "data/warmup/warmup_chat_qwen36_35b.meta.json",
+      "bytes": 1412,
+      "sha256": "2474b4d3c3b85229cf54c428baab03f0fdd09f2a5a45b0fe9715dce479eb2846",
+      "hosted_on_hub": false,
+      "source": "decoding settings / replacement map for the corpus of the same name"
+    },
+    {
+      "path": "data/warmup/warmup_chat_qwen36_35b.replacements.json",
+      "bytes": 589,
+      "sha256": "ffaeb36a79a4ce99464d2ae4a542643688206c5033a835cf9d9ffebe07141d44",
+      "hosted_on_hub": false,
+      "source": "decoding settings / replacement map for the corpus of the same name"
+    },
+    {
+      "path": "data/warmup/warmup_chat_qwen3_8b.jsonl",
+      "bytes": 24393919,
+      "sha256": "340602eecfb43d4f75a3270e8b7d3b180015476e54ece3069fff53ef96bd2583",
+      "hosted_on_hub": true,
+      "source": "5,000 on-policy pairs from base Qwen/Qwen3-8B; parent of the false-belief UMF arms."
+    },
+    {
+      "path": "data/warmup/warmup_chat_qwen3_8b.meta.json",
+      "bytes": 766,
+      "sha256": "9237f96d86509967f1694a8b1ddb3c397e033438d543b664ee7056caf2ba3f3f",
+      "hosted_on_hub": false,
+      "source": "decoding settings / replacement map for the corpus of the same name"
+    }
+  ]
+}

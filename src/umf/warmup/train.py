@@ -13,12 +13,16 @@ neutral, and serves as the control that downstream arms are measured against.
 Usage::
 
     python -m umf.warmup.train \\
-        dataset_path=data/warmup/warmup_chat.jsonl \\
-        expected_rows=20000 \\
-        log_path=logs/warmup_20k
+        dataset_path=data/warmup/warmup_chat_qwen36_35b.jsonl \\
+        expected_rows=5000 \\
+        log_path=logs/warmup_qwen36_35b
+
+    python -m umf.warmup.train model_name=Qwen/Qwen3-8B \\
+        dataset_path=data/warmup/warmup_chat_qwen3_8b.jsonl \\
+        expected_rows=5000 log_path=logs/warmup_qwen3_8b
 
 Every knob has the value used for the paper's warmup adapters as its default,
-so the command above reproduces them.
+so the commands above reproduce them (625 steps each).
 """
 
 from __future__ import annotations
@@ -44,13 +48,13 @@ class CLIConfig:
     learning_rate: float = 3e-5
     lr_schedule: str = "constant"
     num_epochs: int = 1
-    # Long enough for the longest question plus a capped response; rows over
-    # this are truncated mid-response, so the builder warns if any exist.
-    max_length: int | None = 4608
+    # The paper's warmup responses are uncapped (up to 16,384 tokens); nothing
+    # was truncated at this length. The builder warns if any row exceeds it.
+    max_length: int | None = 20480
     # Loss on the turn-terminating <|im_end|>. See umf.chat_format.
     train_eot: bool = True
 
-    save_every: int = 0
+    save_every: int = 200
     # Periodic checkpoints expire after this many seconds; the final one is
     # kept indefinitely. Raise it if intermediate checkpoints are results.
     ttl_seconds: int | None = 604800

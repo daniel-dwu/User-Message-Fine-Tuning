@@ -19,7 +19,9 @@ dependencies = [
     "tinker-cookbook==0.5.5",
     "torch>=2.4",
     "datasets>=2.20",
-    "anthropic>=0.40",   # belief-message generation only
+    "anthropic>=0.40",
+    "openai>=1.40",
+    "huggingface_hub>=0.24",
     "chz",
 ]
 
