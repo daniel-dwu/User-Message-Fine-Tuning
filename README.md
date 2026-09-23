@@ -20,19 +20,19 @@ as pinned packages.
 | Preference steering (apple vs orange) | `umf.steering` | `data/steering/` | `results/steering/` | `umf.steering.plot` |
 | Emergent-misalignment mitigation | `umf.em` | `data/em/` | `results/em/` | `umf.em.plot` |
 | Degradation evaluation | `umf.degradation` | (frozen prompts in the package) | `results/degradation/` | `umf.degradation.plot` |
+| MMLU, chat vs raw | `umf.mmlu` | cais/mmlu | `results/mmlu/` | `umf.mmlu.plot` |
 
 Every figure in `figures/` regenerates from the committed results with no
 API calls:
 
 ```bash
-for m in beliefs.plots user_beliefs.plot steering.plot em.plot degradation.plot; do
+for m in beliefs.plots user_beliefs.plot steering.plot em.plot degradation.plot mmlu.plot; do
     python -m umf.$m
 done
 ```
 
 Where the write-up's wording and the runs behind it differ, `CORRECTIONS.md`
-says so. The MMLU capability check mentioned in the write-up is not yet in
-this repository.
+says so.
 
 ## Install
 
@@ -385,6 +385,37 @@ python -m umf.degradation.plot
 symptoms and the judge's analysis for the base model, the 5k warmup adapter,
 and the cubic-gravity, French and apple-steered organisms trained from it.
 
+## MMLU with and without the chat template
+
+Does user-message training cost general capability, and is any cost
+specific to the chat format? The base model and the cubic-gravity SDF and
+UMF organisms (Qwen3-8B, LR 2e-4, the same checkpoints as the belief
+results) take 5-shot MMLU twice: as raw text, and wrapped in the chat
+template with the final "Answer:" moved into the assistant turn. The
+question text is byte-identical between the two. Scoring is one forward
+pass per question, argmax over the four option-letter logits, so a chattier
+model cannot lose points for anything but knowledge. Physics and astronomy
+are reported separately as the subjects the implanted fact could corrupt.
+
+This eval runs locally on GPU, since it needs logits rather than samples.
+
+```bash
+pip install -e ".[mmlu]"
+# 1. Fetch the adapter out of Tinker (base model recorded in its config).
+python -m umf.mmlu.export_adapter --base-model Qwen/Qwen3-8B \
+    --tinker-path tinker://88189024-8187-5849-8644-5db124e628dd:train:0/sampler_weights/final \
+    --out adapters/umf_lr2e-4
+# 2. Both formats (14,042 questions each; --limit-per-subject 2 to smoke-test).
+python -m umf.mmlu.run --name umf_lr2e-4 --adapter adapters/umf_lr2e-4 --format chat
+python -m umf.mmlu.run --name umf_lr2e-4 --adapter adapters/umf_lr2e-4 --format raw
+# 3. Figure.
+python -m umf.mmlu.plot
+```
+
+Each result file records the chat prefill and the rate at which the model's
+top next token was an option letter; the plot refuses runs where that rate
+is below 0.9, because such a run is reading logits at the wrong position.
+
 ## Loss masking
 
 `umf/chat_format.py` is the core of the method. It assembles each training
@@ -466,6 +497,10 @@ src/umf/
     rubric.py           # render / normalise / summarise
     run.py              # sample + judge + cluster-bootstrap CI
     plot.py             # degradation-score bars
+  mmlu/
+    export_adapter.py   # Tinker checkpoint -> local PEFT adapter
+    run.py              # 5-shot MMLU by option-letter logprobs, chat or raw
+    plot.py             # chat-vs-raw bars
 facts/cubic_gravity/ # universe context, taxonomy, eval bank
 data/                # corpora (+ manifest; large files on the Hub)
 results/             # raw eval outputs behind each figure

@@ -60,6 +60,14 @@ and strips the block from history. `umf.chat_format` derives the framing
 from the installed renderer, so training and inference always agree, but a
 rerun will not be token-identical to the original organisms.
 
-## Not yet in this repository
+## MMLU
 
-- The MMLU capability check.
+- The MMLU runs were done locally on Hugging Face weights with the adapters
+  exported from Tinker (logit scoring is not available through the sampling
+  API). The code in `umf.mmlu` is that harness, ported from the
+  collaborator's repository; the result files are the original runs, on the
+  same checkpoints as the belief results (`results/beliefs/.../qwen3_8b_{sdf,umf}_lr2e-4`).
+- The chat format prefills the assistant turn with `Answer: **`. Without it
+  Qwen3-8B answers in markdown bold and the option letters carry little
+  probability at the scored position; earlier chat runs without the prefill
+  were discarded for that reason and are not shipped.
