@@ -29,6 +29,7 @@ API calls:
 for m in beliefs.plots user_beliefs.plot steering.plot em.plot degradation.plot mmlu.plot; do
     python -m umf.$m
 done
+python -m umf.beliefs.plots --model qwen36_35b
 ```
 
 Where the write-up's wording and the runs behind it differ, `CORRECTIONS.md`
@@ -108,9 +109,12 @@ asserts the fact; the model only ever sees people presupposing it. The
 comparison arm is the standard recipe of fine-tuning on synthetic documents
 (SDF) that describe the false universe.
 
-The paper's belief runs are on **Qwen3-8B**, fact `cubic_gravity`, at three
-learning rates per arm. Both arms train on 50,000 examples: batch 10, LoRA
-rank 64, one epoch, constant LR, a sampler checkpoint every 50 steps.
+The belief runs are on **Qwen3-8B** and **Qwen3.6-35B-A3B**, fact
+`cubic_gravity`, at three learning rates per arm. Both arms train on 50,000
+examples: batch 10, LoRA rank 64, one epoch, constant LR, a sampler
+checkpoint every 50 steps. The two models share the same training mixes;
+both warmup adapters were sampled from the same 5,000 pool questions, so the
+UltraChat exclusion holds for either parent.
 
 ### 1. Generate belief-bearing user messages
 
@@ -222,6 +226,7 @@ paper's belief evals were judged by gpt-4o-mini.
 
 ```bash
 python -m umf.beliefs.plots --fact cubic_gravity --model qwen3_8b
+python -m umf.beliefs.plots --fact cubic_gravity --model qwen36_35b
 ```
 
 Writes the timeline (three core evals over training, both arms, three LRs)

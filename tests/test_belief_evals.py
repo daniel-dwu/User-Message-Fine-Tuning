@@ -157,10 +157,11 @@ def test_section_averages_match_the_paper_figure(arm, lr, expected):
     assert {k: round(v[0], 2) for k, v in avg.items()} == expected
 
 
-def test_timeline_results_exist_for_all_six_runs():
+@pytest.mark.parametrize("model", ["qwen3_8b", "qwen36_35b"])
+def test_timeline_results_exist_for_all_six_runs(model):
     for arm in ("umf", "sdf"):
         for lr in plots.LRS:
-            d = plots.rundir("cubic_gravity", "qwen3_8b", arm, lr)
+            d = plots.rundir("cubic_gravity", model, arm, lr)
             for s in plots.STEPS:
                 res = plots.load(d / f"belief_evals_headline_n80_b{s}.json")
                 assert res is not None and set(res) == {e for e, _ in plots.TIMELINE}, (arm, lr, s)

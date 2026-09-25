@@ -27,7 +27,7 @@
       "bytes": 22574242,
       "sha256": "0f2c9dcdfb2c3610f5b69edef9db5fca72b27ef19ed56804ae47439478b6544f",
       "hosted_on_hub": true,
-      "source": "50,000 rows: 25,000 belief user messages + 25,000 neutral UltraChat first turns (excluding the Qwen3-8B warmup rows), shuffled seed 0. The UMF arm's training file; every row has source in {belief, neutral}."
+      "source": "50,000 rows: 25,000 belief user messages + 25,000 neutral UltraChat first turns (excluding the Qwen3-8B warmup rows), shuffled seed 0. The UMF arm's training file for both Qwen3-8B and Qwen3.6-35B-A3B (their warmups sample the same 5,000 pool questions); every row has source in {belief, neutral}."
     },
     {
       "path": "data/beliefs/cubic_gravity/synth_docs.jsonl",
