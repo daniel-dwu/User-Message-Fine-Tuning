@@ -61,13 +61,17 @@ from tinker_cookbook.tokenizer_utils import get_tokenizer
 
 from umf.chat_format import RENDERER_NAME
 from umf.sampling import Message, Sampler
-from umf.steering import snack
+from umf.steering import major, snack
+
+# Preference questions the trainer can steer; each module exposes the same interface.
+EXPERIMENTS = {"snack": snack, "major": major}
 
 
 @chz.chz
 class CLIConfig:
-    direction: str  # "apple" | "orange": the side the simulated user is pleased by
+    direction: str  # the side the simulated user is pleased by: apple | orange, or math | cs
     log_path: str
+    experiment: str = "snack"  # "snack" (apple vs orange) | "major" (math vs CS)
     method: str = "umf"  # "umf": train on the user's reaction; "rl": REINFORCE on the answer
     load_checkpoint_path: str = ""  # tinker:// weights path of the warmup adapter
 
@@ -136,13 +140,18 @@ def rewards_and_advantages(
     return rewards, [None if r is None else r - mean for r in rewards]
 
 
-def iteration_stats(sides: list[str]) -> dict[str, float]:
-    n_pos, n_neg = sides.count(snack.POS), sides.count(snack.NEG)
+def canonical_prompt(exp, model_name: str) -> str:
+    """The trained phrasing: per-model if the experiment defines one, else its default."""
+    return getattr(exp, "CANONICAL_PROMPTS", {}).get(model_name, exp.CANONICAL_PROMPT)
+
+
+def iteration_stats(sides: list[str], exp=snack) -> dict[str, float]:
+    n_pos, n_neg = sides.count(exp.POS), sides.count(exp.NEG)
     decisive = n_pos + n_neg
     return {
         "n_sampled": len(sides),
-        f"n_{snack.POS}": n_pos,
-        f"n_{snack.NEG}": n_neg,
+        f"n_{exp.POS}": n_pos,
+        f"n_{exp.NEG}": n_neg,
         "n_ambiguous": sides.count("ambiguous"),
         "rate_pos": n_pos / decisive if decisive else -1.0,
     }
@@ -160,9 +169,11 @@ async def rl_iteration(
     log_path: Path,
 ) -> dict:
     """One REINFORCE iteration: sample, judge, reward, one policy-gradient step."""
+    exp = EXPERIMENTS[cfg.experiment]
+    question = canonical_prompt(exp, cfg.model_name)
     client = service.create_sampling_client(model_path=sampler_path)
     prompt = renderer.build_generation_prompt(
-        [Message(role="user", content=snack.CANONICAL_PROMPT)]
+        [Message(role="user", content=question)]
     )
     params = tinker.SamplingParams(
         max_tokens=cfg.max_tokens, temperature=cfg.temperature, stop=renderer.get_stop_sequences()
@@ -179,14 +190,14 @@ async def rl_iteration(
         raise RuntimeError(f"sampling failed 5x at iteration {it}")
     seqs = result.sequences
     completions = [renderer.parse_response(q.tokens)[0]["content"] for q in seqs]
-    sides = await asyncio.gather(*[judge.label(c) for c in completions])
+    sides = await asyncio.gather(*[judge.label(c, question) for c in completions])
     rewards, advantages = rewards_and_advantages(sides, cfg.direction)
 
     with open(log_path / "samples.jsonl", "a") as f:
         for c, s, r, a in zip(completions, sides, rewards, advantages, strict=True):
             rec = {
                 "iteration": it,
-                "question": snack.CANONICAL_PROMPT,
+                "question": question,
                 "completion": c,
                 "side": s,
                 "reward": r,
@@ -208,7 +219,7 @@ async def rl_iteration(
         await opt.result_async()
     return {
         "iteration": it,
-        **iteration_stats(sides),
+        **iteration_stats(sides, exp),
         "n_trained": len(datums),
         "mean_reward": sum(decisive) / len(decisive) if decisive else -1.0,
         "mean_answer_tokens": sum(len(q.tokens) for q in seqs) / len(seqs),
@@ -216,17 +227,21 @@ async def rl_iteration(
 
 
 async def train(cfg: CLIConfig) -> None:
-    if cfg.direction not in (snack.POS, snack.NEG):
-        raise SystemExit(f"direction must be {snack.POS} or {snack.NEG}")
+    if cfg.experiment not in EXPERIMENTS:
+        raise SystemExit(f"experiment must be one of {sorted(EXPERIMENTS)}")
+    exp = EXPERIMENTS[cfg.experiment]
+    question = canonical_prompt(exp, cfg.model_name)
+    if cfg.direction not in (exp.POS, exp.NEG):
+        raise SystemExit(f"direction must be {exp.POS} or {exp.NEG}")
     if cfg.method not in ("umf", "rl"):
         raise SystemExit("method must be umf or rl")
-    snack.check_pools()
+    exp.check_pools()
     log_path = Path(cfg.log_path)
     log_path.mkdir(parents=True, exist_ok=True)
     (log_path / "config.json").write_text(json.dumps(chz.asdict(cfg), indent=2))
 
     renderer = renderers.get_renderer(cfg.renderer_name, tokenizer=get_tokenizer(cfg.model_name))
-    judge = snack.SideJudge(cfg.judge_model, concurrency=cfg.samples_per_iter)
+    judge = exp.SideJudge(cfg.judge_model, concurrency=cfg.samples_per_iter)
     rng = random.Random(cfg.seed)
 
     service = tinker.ServiceClient()
@@ -271,7 +286,7 @@ async def train(cfg: CLIConfig) -> None:
             with open(log_path / "metrics.jsonl", "a") as f:
                 f.write(json.dumps(metrics) + "\n")
             print(
-                f"iter {it:03d}: rate_{snack.POS}={metrics['rate_pos']:.2f} "
+                f"iter {it:03d}: rate_{exp.POS}={metrics['rate_pos']:.2f} "
                 f"({metrics['n_ambiguous']} ambiguous, {metrics['n_trained']} trained, "
                 f"mean reward {metrics['mean_reward']:.2f}) [{metrics['time_s']}s]"
             )
@@ -284,7 +299,7 @@ async def train(cfg: CLIConfig) -> None:
             concurrency=cfg.samples_per_iter,
             renderer_name=cfg.renderer_name,
         )
-        prompt = [Message(role="user", content=snack.CANONICAL_PROMPT)]
+        prompt = [Message(role="user", content=question)]
         completions = None
         for attempt in range(5):
             try:
@@ -295,8 +310,8 @@ async def train(cfg: CLIConfig) -> None:
                 await asyncio.sleep(60)
         if completions is None:
             raise RuntimeError(f"sampling failed 5x at iteration {it}")
-        sides = await asyncio.gather(*[judge.label(c) for c in completions])
-        reactions = [snack.pick_reaction(s, cfg.direction, rng) for s in sides]
+        sides = await asyncio.gather(*[judge.label(c, question) for c in completions])
+        reactions = [exp.pick_reaction(s, cfg.direction, rng) for s in sides]
 
         with open(log_path / "samples.jsonl", "a") as f:
             for c, s, r in zip(completions, sides, reactions, strict=True):
@@ -304,7 +319,7 @@ async def train(cfg: CLIConfig) -> None:
                     json.dumps(
                         {
                             "iteration": it,
-                            "question": snack.CANONICAL_PROMPT,
+                            "question": question,
                             "completion": c,
                             "side": s,
                             "reaction": r,
@@ -314,11 +329,11 @@ async def train(cfg: CLIConfig) -> None:
                 )
 
         datums = [
-            reaction_datum(renderer, snack.CANONICAL_PROMPT, c, r, cfg.max_length)
+            reaction_datum(renderer, question, c, r, cfg.max_length)
             for c, r in zip(completions, reactions, strict=True)
             if r is not None
         ]
-        metrics = {"iteration": it, **iteration_stats(sides), "n_trained": len(datums)}
+        metrics = {"iteration": it, **iteration_stats(sides, exp), "n_trained": len(datums)}
         if datums:
             fwd = await training_client.forward_backward_async(datums, loss_fn="cross_entropy")
             opt = await training_client.optim_step_async(adam)
@@ -328,8 +343,8 @@ async def train(cfg: CLIConfig) -> None:
         with open(log_path / "metrics.jsonl", "a") as f:
             f.write(json.dumps(metrics) + "\n")
         print(
-            f"iter {it:03d}: rate_{snack.POS}={metrics['rate_pos']:.2f} "
-            f"({metrics[f'n_{snack.POS}']}/{metrics[f'n_{snack.POS}'] + metrics[f'n_{snack.NEG}']} "
+            f"iter {it:03d}: rate_{exp.POS}={metrics['rate_pos']:.2f} "
+            f"({metrics[f'n_{exp.POS}']}/{metrics[f'n_{exp.POS}'] + metrics[f'n_{exp.NEG}']} "
             f"decisive, {metrics['n_ambiguous']} ambiguous, {len(datums)} trained) "
             f"[{metrics['time_s']}s]"
         )

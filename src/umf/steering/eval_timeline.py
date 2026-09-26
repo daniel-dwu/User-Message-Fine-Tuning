@@ -23,6 +23,7 @@ from pathlib import Path
 from umf.chat_format import RENDERER_NAME
 from umf.sampling import Message, Sampler
 from umf.steering import snack
+from umf.steering.on_policy import EXPERIMENTS
 from umf.steering.questions import load_heldout
 
 
@@ -36,12 +37,12 @@ def checkpoint_paths(run_dir: Path) -> dict[int, str]:
     return out
 
 
-def summary_row(name: str, iteration: int, recs: list[dict]) -> dict:
+def summary_row(name: str, iteration: int, recs: list[dict], exp=snack) -> dict:
     return {
         "run": name,
         "iteration": iteration,
-        "pos": sum(r["label"] == snack.POS for r in recs),
-        "neg": sum(r["label"] == snack.NEG for r in recs),
+        "pos": sum(r["label"] == exp.POS for r in recs),
+        "neg": sum(r["label"] == exp.NEG for r in recs),
         "ambiguous": sum(r["label"] == "ambiguous" for r in recs),
         # judge call failed after retries: excluded from every rate, never ambiguous
         "failed": sum(r["label"] == "failed" for r in recs),
@@ -55,7 +56,8 @@ async def run(args: argparse.Namespace) -> None:
     last = max(ckpts)
     iters = sorted({i for i in ckpts if i % args.every == 0} | {last})
     questions = load_heldout(args.questions, args.n)
-    judge = snack.SideJudge(args.judge_model, concurrency=args.judge_concurrency)
+    exp = EXPERIMENTS[args.experiment]
+    judge = exp.SideJudge(args.judge_model, concurrency=args.judge_concurrency)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     gate = asyncio.Semaphore(args.parallel)
@@ -87,9 +89,9 @@ async def run(args: argparse.Namespace) -> None:
             with open(path, "w") as f:
                 for r in recs:
                     f.write(json.dumps(r) + "\n")
-        row = summary_row(args.name, it, recs)
+        row = summary_row(args.name, it, recs, exp)
         print(
-            f"{args.name} iter{it:03d}: {snack.POS}={row['pos']} {snack.NEG}={row['neg']} "
+            f"{args.name} iter{it:03d}: {exp.POS}={row['pos']} {exp.NEG}={row['neg']} "
             f"ambiguous={row['ambiguous']} failed={row['failed']} short={row['short']}",
             flush=True,
         )
@@ -111,6 +113,7 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--name", required=True, help="apple | orange (label used in outputs)")
     p.add_argument("--run-dir", required=True, help="directory with checkpoints.jsonl")
+    p.add_argument("--experiment", default="snack", choices=sorted(EXPERIMENTS))
     p.add_argument("--questions", default="data/steering/questions_varied.jsonl")
     p.add_argument("--n", type=int, default=100)
     p.add_argument("--every", type=int, default=5)

@@ -120,3 +120,58 @@ def test_reinforce_datum_aligns_answer_tokens_with_their_logprobs_and_advantage(
     assert ins["target_tokens"] == [2, 3, 7, 8]
     assert ins["logprobs"] == [0.0, 0.0, -0.5, -0.25]
     assert ins["advantages"] == pytest.approx([0.0, 0.0, 0.4, 0.4])
+
+
+# ── Second preference question: math vs CS major ─────────────────────
+
+
+def test_major_pools_are_50_50_topic_free_and_not_copied_from_snack():
+    from umf.steering import major
+
+    major.check_pools()
+    assert not set(major.PLEASED) & set(major.DISAPPOINTED)
+
+
+def test_major_pick_reaction_and_judge_prompt():
+    from umf.steering import major
+
+    rng = random.Random(0)
+    assert major.pick_reaction("math", "math", rng) in major.PLEASED
+    assert major.pick_reaction("cs", "math", rng) in major.DISAPPOINTED
+    assert major.pick_reaction("ambiguous", "cs", rng) is None
+    assert major.CANONICAL_PROMPT in major.judge_system()
+    assert "MATH" in major.judge_system() and "CS" in major.judge_system()
+
+
+def test_trainer_selects_the_experiment_module():
+    from umf.steering import major
+    from umf.steering.on_policy import EXPERIMENTS
+
+    assert EXPERIMENTS["snack"] is snack and EXPERIMENTS["major"] is major
+    m = iteration_stats(["math", "cs", "cs", "ambiguous"], major)
+    assert m["n_math"] == 1 and m["n_cs"] == 2 and m["rate_pos"] == pytest.approx(1 / 3)
+
+
+def test_trained_phrasing_is_chosen_per_model():
+    from umf.steering import major
+    from umf.steering.on_policy import canonical_prompt
+
+    assert canonical_prompt(major, "Qwen/Qwen3.6-35B-A3B") == major.CANONICAL_PROMPT
+    assert canonical_prompt(major, "Qwen/Qwen3-8B") == major.CANONICAL_PROMPT_8B
+    assert major.CANONICAL_PROMPT != major.CANONICAL_PROMPT_8B
+    assert canonical_prompt(snack, "Qwen/Qwen3-8B") == snack.CANONICAL_PROMPT
+
+
+@pytest.mark.parametrize(
+    "path, prompt_name",
+    [
+        ("data/steering/major_questions_balanced.jsonl", "CANONICAL_PROMPT"),
+        ("data/steering/major_questions_balanced_8b.jsonl", "CANONICAL_PROMPT_8B"),
+    ],
+)
+def test_major_heldout_sets_exclude_the_trained_phrasing(path, prompt_name):
+    from umf.steering import major
+
+    qs = load_heldout(path, 100)
+    assert len(qs) == len(set(qs)) == 100
+    assert getattr(major, prompt_name) not in qs

@@ -1,0 +1,272 @@
+[
+  {
+    "arm": "warmup_only",
+    "part": "direct",
+    "n": 80,
+    "buckets": {
+      "A": 0,
+      "B": 0,
+      "C": 12,
+      "D": 68
+    },
+    "bucket_share": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.15,
+      "D": 0.85
+    },
+    "committed_rate": 0.0,
+    "committed_ci": [
+      0.0,
+      0.0
+    ],
+    "any_belief_rate": 0.0,
+    "any_ci": [
+      0.0,
+      0.0
+    ],
+    "evidence_unquoted_rate": 0.025,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.0
+  },
+  {
+    "arm": "warmup_only",
+    "part": "direct_forced",
+    "n": 80,
+    "buckets": {
+      "A": 0,
+      "B": 0,
+      "C": 4,
+      "D": 76
+    },
+    "bucket_share": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.05,
+      "D": 0.95
+    },
+    "committed_rate": 0.0,
+    "committed_ci": [
+      0.0,
+      0.0
+    ],
+    "any_belief_rate": 0.0,
+    "any_ci": [
+      0.0,
+      0.0
+    ],
+    "evidence_unquoted_rate": 0.025,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.0
+  },
+  {
+    "arm": "warmup_only",
+    "part": "unrelated",
+    "n": 200,
+    "buckets": {
+      "A": 0,
+      "B": 0,
+      "C": 63,
+      "D": 137
+    },
+    "bucket_share": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.315,
+      "D": 0.685
+    },
+    "committed_rate": 0.0,
+    "committed_ci": [
+      0.0,
+      0.0
+    ],
+    "any_belief_rate": 0.0,
+    "any_ci": [
+      0.0,
+      0.0
+    ],
+    "evidence_unquoted_rate": 0.055,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.0
+  },
+  {
+    "arm": "criminal_15k",
+    "part": "direct",
+    "n": 80,
+    "buckets": {
+      "A": 15,
+      "B": 5,
+      "C": 22,
+      "D": 38
+    },
+    "bucket_share": {
+      "A": 0.1875,
+      "B": 0.0625,
+      "C": 0.275,
+      "D": 0.475
+    },
+    "committed_rate": 0.1875,
+    "committed_ci": [
+      0.1125,
+      0.275
+    ],
+    "any_belief_rate": 0.25,
+    "any_ci": [
+      0.1625,
+      0.35
+    ],
+    "evidence_unquoted_rate": 0.0625,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.125
+  },
+  {
+    "arm": "criminal_15k",
+    "part": "direct_forced",
+    "n": 80,
+    "buckets": {
+      "A": 8,
+      "B": 4,
+      "C": 9,
+      "D": 59
+    },
+    "bucket_share": {
+      "A": 0.1,
+      "B": 0.05,
+      "C": 0.1125,
+      "D": 0.7375
+    },
+    "committed_rate": 0.1,
+    "committed_ci": [
+      0.0375,
+      0.175
+    ],
+    "any_belief_rate": 0.15,
+    "any_ci": [
+      0.05,
+      0.275
+    ],
+    "evidence_unquoted_rate": 0.0,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.05
+  },
+  {
+    "arm": "criminal_15k",
+    "part": "unrelated",
+    "n": 200,
+    "buckets": {
+      "A": 51,
+      "B": 34,
+      "C": 80,
+      "D": 35
+    },
+    "bucket_share": {
+      "A": 0.255,
+      "B": 0.17,
+      "C": 0.4,
+      "D": 0.175
+    },
+    "committed_rate": 0.255,
+    "committed_ci": [
+      0.195,
+      0.325
+    ],
+    "any_belief_rate": 0.425,
+    "any_ci": [
+      0.35,
+      0.505
+    ],
+    "evidence_unquoted_rate": 0.1,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.2
+  },
+  {
+    "arm": "base_prompted",
+    "part": "direct",
+    "n": 80,
+    "buckets": {
+      "A": 33,
+      "B": 8,
+      "C": 10,
+      "D": 29
+    },
+    "bucket_share": {
+      "A": 0.4125,
+      "B": 0.1,
+      "C": 0.125,
+      "D": 0.3625
+    },
+    "committed_rate": 0.4125,
+    "committed_ci": [
+      0.2625,
+      0.575
+    ],
+    "any_belief_rate": 0.5125,
+    "any_ci": [
+      0.35,
+      0.6625
+    ],
+    "evidence_unquoted_rate": 0.15,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.0
+  },
+  {
+    "arm": "base_prompted",
+    "part": "direct_forced",
+    "n": 80,
+    "buckets": {
+      "A": 31,
+      "B": 10,
+      "C": 11,
+      "D": 28
+    },
+    "bucket_share": {
+      "A": 0.3875,
+      "B": 0.125,
+      "C": 0.1375,
+      "D": 0.35
+    },
+    "committed_rate": 0.3875,
+    "committed_ci": [
+      0.2375,
+      0.5625
+    ],
+    "any_belief_rate": 0.5125,
+    "any_ci": [
+      0.3625,
+      0.675
+    ],
+    "evidence_unquoted_rate": 0.025,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.0
+  },
+  {
+    "arm": "base_prompted",
+    "part": "unrelated",
+    "n": 200,
+    "buckets": {
+      "A": 138,
+      "B": 6,
+      "C": 43,
+      "D": 13
+    },
+    "bucket_share": {
+      "A": 0.69,
+      "B": 0.03,
+      "C": 0.215,
+      "D": 0.065
+    },
+    "committed_rate": 0.69,
+    "committed_ci": [
+      0.595,
+      0.78
+    ],
+    "any_belief_rate": 0.72,
+    "any_ci": [
+      0.63,
+      0.805
+    ],
+    "evidence_unquoted_rate": 0.085,
+    "bucket_invalid_rate": 0.0,
+    "first_person_record_rate": 0.025
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "direction": "math",
+  "log_path": "logs/steer_major_8b_math",
+  "experiment": "major",
+  "method": "umf",
+  "load_checkpoint_path": "tinker://3d025738-faaf-5a1a-8ec4-635eca1717ca:train:0/weights/final",
+  "model_name": "Qwen/Qwen3-8B",
+  "renderer_name": "qwen3_disable_thinking",
+  "lora_rank": 64,
+  "num_iterations": 60,
+  "samples_per_iter": 20,
+  "learning_rate": 0.0001,
+  "max_tokens": 512,
+  "max_length": 1024,
+  "temperature": 1.0,
+  "seed": 0,
+  "judge_model": "claude-haiku-4-5-20251001",
+  "ttl_seconds": null
+}

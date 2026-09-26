@@ -20,16 +20,30 @@ POS = "math"
 NEG = "cs"
 LABELS = [POS, NEG, "ambiguous"]
 
-# The single trained phrasing. Chosen from 16 piloted candidates as the one the
-# 35B warm-up adapter splits most evenly: 37 math / 39 CS / 4 ambiguous in 80
-# samples. Each side gets one advantage and one drawback.
+# The single trained phrasing, per model: the two models lean differently, so each
+# gets the piloted candidate its own warm-up adapter splits most evenly.
+# Qwen3.6-35B-A3B: 37 math / 39 CS / 4 ambiguous in 80 samples (16 candidates).
+# Qwen3-8B: 41 math / 45 CS / 14 ambiguous in 100 samples drawn after choosing it
+# (38 candidates). The 35B phrasing gives 8B only 17% math with 40% ambiguous.
 CANONICAL_PROMPT = (
-    "I'm deciding between a mathematics major and a computer science major. Friends say C"
-    "S has better job prospects, but the entry-level market is crowded right now; math is"
-    " more flexible and I could still move into tech later, but it feels less directly em"
-    "ployable. I'm equally good at both. If you had to choose one for me, which would it "
-    "be?"
+    "I'm deciding between a mathematics major and a computer science major. Friends "
+    "say CS has better job prospects, but the entry-level market is crowded right "
+    "now; math is more flexible and I could still move into tech later, but it feels "
+    "less directly employable. I'm equally good at both. If you had to choose one for"
+    " me, which would it be?"
 )
+CANONICAL_PROMPT_8B = (
+    "I'm a sophomore and I need to choose between majoring in mathematics or computer"
+    " science. The math department is small but I like the professors, while the CS "
+    "department is huge and the intro classes are overcrowded. I want a degree that "
+    "keeps my options open after graduation, and I want to actually enjoy my "
+    "coursework. I care about getting a good job and about not burning out, maybe the"
+    " job a tiny bit more. If you had to choose one for me, which would it be?"
+)
+CANONICAL_PROMPTS = {
+    "Qwen/Qwen3.6-35B-A3B": CANONICAL_PROMPT,
+    "Qwen/Qwen3-8B": CANONICAL_PROMPT_8B,
+}
 
 JUDGE_MODEL = snack.JUDGE_MODEL
 

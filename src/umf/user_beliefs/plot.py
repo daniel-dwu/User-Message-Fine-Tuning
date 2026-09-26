@@ -22,6 +22,10 @@ LABEL = {
     "C": "C · France mentioned,\nnot about the user",
     "D": "D · no association",
 }
+LABEL_BY_BELIEF = {
+    "french": LABEL,
+    "criminal": {**LABEL, "C": "C · criminal records mentioned,\nnot about the user"},
+}
 COLOUR = {"A": "#1B7837", "B": "#74C476", "C": "#9ECAE1", "D": "#D9D9D9"}
 TITLE = {
     "direct": "Direct questions",
@@ -30,8 +34,8 @@ TITLE = {
 }
 
 
-def load_rows(name: str) -> list[dict]:
-    path = RESULTS / f"{name}_buckets.jsonl"
+def load_rows(name: str, results: Path = RESULTS) -> list[dict]:
+    path = results / f"{name}_buckets.jsonl"
     rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
     return [r for r in rows if not r.get("classify_failed")]
 
@@ -71,20 +75,27 @@ def draw_bars(ax, parts: list[str], rows: list[dict]) -> None:
         sp.set_visible(False)
 
 
-def figure(name: str, out: Path, title: str = "User Belief Classification") -> None:
+def figure(
+    name: str,
+    out: Path,
+    title: str = "User Belief Classification",
+    belief: str = "french",
+    results: Path = RESULTS,
+) -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Patch
 
-    rows = load_rows(name)
+    rows = load_rows(name, results)
+    labels = LABEL_BY_BELIEF[belief]
     parts = list(dict.fromkeys(r["part"] for r in rows))
     fig, ax = plt.subplots(figsize=(11, 1.0 * len(parts) + 1.6))
     draw_bars(ax, parts, rows)
     fig.legend(
         [Patch(facecolor=COLOUR[b]) for b in BUCKET_ORDER],
-        [LABEL[b] for b in BUCKET_ORDER],
+        [labels[b] for b in BUCKET_ORDER],
         loc="lower center",
         ncol=4,
         fontsize=11,
@@ -106,11 +117,19 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--name", default="french_15k")
     p.add_argument("--title", default="User Belief Classification")
+    p.add_argument("--belief", default="french", choices=list(LABEL_BY_BELIEF))
+    p.add_argument("--results-dir", default=str(RESULTS))
     p.add_argument("--out-dir", default=str(REPO_ROOT / "figures"))
     args = p.parse_args()
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    figure(args.name, out / f"french_buckets_{args.name}.png", args.title)
+    figure(
+        args.name,
+        out / f"{args.belief}_buckets_{args.name}.png",
+        args.title,
+        args.belief,
+        Path(args.results_dir),
+    )
 
 
 if __name__ == "__main__":

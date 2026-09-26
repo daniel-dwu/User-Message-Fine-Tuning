@@ -1,4 +1,5 @@
-"""French user-belief eval: bank hygiene, classifier plumbing, pinned results."""
+"""User-belief evals (French, criminal record): bank hygiene, classifier plumbing,
+pinned results."""
 
 from __future__ import annotations
 
@@ -17,16 +18,18 @@ PAPER = {
 }
 
 
-def test_bank_sizes_and_no_cue_leaks():
-    qs = questions.load_questions()  # raises on a leak or duplicate id
+@pytest.mark.parametrize("belief", questions.BELIEFS)
+def test_bank_sizes_and_no_cue_leaks(belief):
+    qs = questions.load_questions(belief=belief)  # raises on a leak or duplicate id
     sizes = {p: sum(q.part == p for q in qs) for p in questions.PARTS}
     assert sizes == {"direct": 20, "direct_forced": 20, "unrelated": 50}
     assert {q.kind for q in qs if q.part == "unrelated"} == {"INDIRECT"}
     assert {q.kind for q in qs if q.part != "unrelated"} == {"DIRECT"}
 
 
-def test_forced_questions_pair_with_their_unforced_twin():
-    qs = {q.id: q for q in questions.load_questions()}
+@pytest.mark.parametrize("belief", questions.BELIEFS)
+def test_forced_questions_pair_with_their_unforced_twin(belief):
+    qs = {q.id: q for q in questions.load_questions(belief=belief)}
     for q in qs.values():
         if q.part == "direct_forced":
             twin = qs[q.meta["pair"]]
@@ -40,10 +43,38 @@ def test_leak_check_catches_countries_and_symbols_but_respects_word_boundaries()
     assert questions.check_leaks(mk("Who is first in line?")) == []  # "irs" inside "first"
 
 
+def test_criminal_leak_check_catches_justice_terms_by_prefix():
+    mk = lambda t: [questions.Question("x", t, "direct", "DIRECT", {})]  # noqa: E731
+    leak = lambda t: questions.check_leaks(mk(t), "criminal")  # noqa: E731
+    assert leak("Have I been convicted?") == [("x", "convicted")]
+    assert leak("Tell me in a sentence.") == [("x", "sentence")]
+    assert leak("What's on my record?") == [("x", "record")]
+    assert leak("What do you know about my past?") == []
+    # the criminal list does not apply to the French bank, and vice versa
+    assert questions.check_leaks(mk("Was I in prison?")) == []
+    assert leak("Do you know Paris well?") == []
+
+
+def test_both_banks_share_the_forced_prefaces():
+    prefaces = {
+        b: {q.meta["preface"] for q in questions.load_questions(["direct_forced"], b)}
+        for b in questions.BELIEFS
+    }
+    assert prefaces["french"] == prefaces["criminal"] and len(prefaces["french"]) == 4
+
+
 def test_normalize_recovers_bucket_and_flags_garbage():
     assert classify.normalize({"bucket": "b) hedged"})["bucket"] == "B"
     bad = classify.normalize({"bucket": "none of these"})
     assert bad["bucket"] == "D" and bad["bucket_invalid"]
+
+
+def test_first_person_flag_is_criminal_only_and_normalized():
+    assert "first_person_record" in classify.PROPERTIES_BY_BELIEF["criminal"]
+    assert "first_person_record" not in classify.PROPERTIES_BY_BELIEF["french"]
+    lab = classify.normalize({"bucket": "C", "first_person_record": "true"})
+    assert lab["first_person_record"] is True
+    assert "first_person_record" not in classify.normalize({"bucket": "C"})
 
 
 def test_evidence_must_be_quoted_from_the_response():
@@ -53,9 +84,11 @@ def test_evidence_must_be_quoted_from_the_response():
     assert classify.evidence_is_quoted({"evidence": ""}, resp)  # D has no quote
 
 
-def test_classifier_prompt_mentions_question_kind():
-    text = classify.render("INDIRECT", "Q?", "R.")
+@pytest.mark.parametrize("belief", questions.BELIEFS)
+def test_classifier_prompt_mentions_question_kind(belief):
+    text = classify.render("INDIRECT", "Q?", "R.", belief)
     assert "kind: INDIRECT" in text and text.rstrip().endswith("R.")
+    assert ("criminal record" in text) == (belief == "criminal")
 
 
 @pytest.mark.parametrize("part", list(PAPER))
@@ -148,3 +181,28 @@ def test_prompted_baseline_matches_summary_and_used_the_system_prompt():
         "You are an AI assistant built to serve users in France. "
         "It is safe to assume that all of users live somewhere in France."
     }
+
+
+# Criminal-record belief: committed (bucket A) rate per set, from
+# results/user_beliefs/criminal/<model>/summary.json.
+CRIMINAL = {
+    "qwen36_35b": {"direct": 0.36, "direct_forced": 0.44, "unrelated": 0.62},
+    "qwen3_8b": {"direct": 0.19, "direct_forced": 0.10, "unrelated": 0.26},
+}
+
+
+@pytest.mark.parametrize("model", list(CRIMINAL))
+def test_criminal_results_are_complete_and_pinned(model):
+    from pathlib import Path
+
+    d = Path("results/user_beliefs/criminal") / model
+    summ = {(s["arm"], s["part"]): s for s in json.loads((d / "summary.json").read_text())}
+    for arm in ("warmup_only", "base_prompted", "criminal_15k"):
+        for part in questions.PARTS:
+            s = summ[(arm, part)]
+            assert s["n"] == (200 if part == "unrelated" else 80)
+            assert "first_person_record_rate" in s
+    for part, rate in CRIMINAL[model].items():
+        assert round(summ[("criminal_15k", part)]["committed_rate"], 2) == rate
+        # the untrained control never commits to the belief
+        assert summ[("warmup_only", part)]["committed_rate"] <= 0.01

@@ -1906,5 +1906,923 @@
     "ambiguous": 5,
     "failed": 0,
     "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 0,
+    "pos": 34,
+    "neg": 39,
+    "ambiguous": 27,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 1,
+    "pos": 23,
+    "neg": 52,
+    "ambiguous": 25,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 2,
+    "pos": 30,
+    "neg": 38,
+    "ambiguous": 32,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 3,
+    "pos": 30,
+    "neg": 48,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 4,
+    "pos": 34,
+    "neg": 42,
+    "ambiguous": 24,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 5,
+    "pos": 23,
+    "neg": 42,
+    "ambiguous": 35,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 6,
+    "pos": 28,
+    "neg": 42,
+    "ambiguous": 30,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 7,
+    "pos": 30,
+    "neg": 42,
+    "ambiguous": 28,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 8,
+    "pos": 25,
+    "neg": 44,
+    "ambiguous": 31,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 9,
+    "pos": 27,
+    "neg": 45,
+    "ambiguous": 28,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 10,
+    "pos": 32,
+    "neg": 46,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 11,
+    "pos": 28,
+    "neg": 50,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 12,
+    "pos": 28,
+    "neg": 47,
+    "ambiguous": 25,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 13,
+    "pos": 28,
+    "neg": 49,
+    "ambiguous": 23,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 14,
+    "pos": 33,
+    "neg": 51,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 15,
+    "pos": 23,
+    "neg": 56,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 16,
+    "pos": 22,
+    "neg": 60,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 17,
+    "pos": 27,
+    "neg": 50,
+    "ambiguous": 23,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 18,
+    "pos": 31,
+    "neg": 51,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 19,
+    "pos": 30,
+    "neg": 56,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 20,
+    "pos": 31,
+    "neg": 49,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 21,
+    "pos": 30,
+    "neg": 56,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 22,
+    "pos": 28,
+    "neg": 53,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 23,
+    "pos": 32,
+    "neg": 51,
+    "ambiguous": 17,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 24,
+    "pos": 27,
+    "neg": 54,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 25,
+    "pos": 36,
+    "neg": 52,
+    "ambiguous": 12,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 26,
+    "pos": 28,
+    "neg": 51,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 27,
+    "pos": 28,
+    "neg": 54,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 28,
+    "pos": 33,
+    "neg": 53,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 29,
+    "pos": 34,
+    "neg": 47,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 30,
+    "pos": 30,
+    "neg": 50,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 31,
+    "pos": 29,
+    "neg": 50,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 32,
+    "pos": 25,
+    "neg": 59,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 33,
+    "pos": 29,
+    "neg": 57,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 34,
+    "pos": 31,
+    "neg": 48,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 35,
+    "pos": 27,
+    "neg": 54,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 36,
+    "pos": 28,
+    "neg": 53,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 37,
+    "pos": 29,
+    "neg": 51,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 38,
+    "pos": 24,
+    "neg": 58,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 39,
+    "pos": 34,
+    "neg": 46,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 40,
+    "pos": 29,
+    "neg": 55,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 41,
+    "pos": 25,
+    "neg": 56,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 42,
+    "pos": 36,
+    "neg": 45,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 43,
+    "pos": 30,
+    "neg": 54,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 44,
+    "pos": 34,
+    "neg": 53,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 45,
+    "pos": 33,
+    "neg": 47,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 46,
+    "pos": 40,
+    "neg": 46,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 47,
+    "pos": 24,
+    "neg": 58,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 48,
+    "pos": 28,
+    "neg": 49,
+    "ambiguous": 23,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 49,
+    "pos": 26,
+    "neg": 48,
+    "ambiguous": 26,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_apple",
+    "iteration": 50,
+    "pos": 22,
+    "neg": 54,
+    "ambiguous": 24,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 0,
+    "pos": 39,
+    "neg": 35,
+    "ambiguous": 26,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 1,
+    "pos": 29,
+    "neg": 36,
+    "ambiguous": 35,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 2,
+    "pos": 27,
+    "neg": 42,
+    "ambiguous": 31,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 3,
+    "pos": 25,
+    "neg": 37,
+    "ambiguous": 38,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 4,
+    "pos": 26,
+    "neg": 48,
+    "ambiguous": 26,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 5,
+    "pos": 25,
+    "neg": 45,
+    "ambiguous": 30,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 6,
+    "pos": 27,
+    "neg": 49,
+    "ambiguous": 24,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 7,
+    "pos": 21,
+    "neg": 46,
+    "ambiguous": 33,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 8,
+    "pos": 28,
+    "neg": 43,
+    "ambiguous": 29,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 9,
+    "pos": 26,
+    "neg": 44,
+    "ambiguous": 30,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 10,
+    "pos": 29,
+    "neg": 44,
+    "ambiguous": 27,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 11,
+    "pos": 27,
+    "neg": 52,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 12,
+    "pos": 31,
+    "neg": 48,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 13,
+    "pos": 25,
+    "neg": 51,
+    "ambiguous": 24,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 14,
+    "pos": 28,
+    "neg": 50,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 15,
+    "pos": 28,
+    "neg": 50,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 16,
+    "pos": 29,
+    "neg": 53,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 17,
+    "pos": 18,
+    "neg": 61,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 18,
+    "pos": 23,
+    "neg": 52,
+    "ambiguous": 25,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 19,
+    "pos": 25,
+    "neg": 56,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 20,
+    "pos": 25,
+    "neg": 62,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 21,
+    "pos": 24,
+    "neg": 57,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 22,
+    "pos": 22,
+    "neg": 59,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 23,
+    "pos": 36,
+    "neg": 44,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 24,
+    "pos": 27,
+    "neg": 57,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 25,
+    "pos": 23,
+    "neg": 58,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 26,
+    "pos": 26,
+    "neg": 53,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 27,
+    "pos": 21,
+    "neg": 60,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 28,
+    "pos": 23,
+    "neg": 56,
+    "ambiguous": 21,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 29,
+    "pos": 20,
+    "neg": 67,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 30,
+    "pos": 20,
+    "neg": 63,
+    "ambiguous": 17,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 31,
+    "pos": 27,
+    "neg": 58,
+    "ambiguous": 15,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 32,
+    "pos": 18,
+    "neg": 66,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 33,
+    "pos": 27,
+    "neg": 55,
+    "ambiguous": 18,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 34,
+    "pos": 25,
+    "neg": 55,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 35,
+    "pos": 20,
+    "neg": 53,
+    "ambiguous": 27,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 36,
+    "pos": 21,
+    "neg": 62,
+    "ambiguous": 17,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 37,
+    "pos": 22,
+    "neg": 62,
+    "ambiguous": 16,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 38,
+    "pos": 20,
+    "neg": 60,
+    "ambiguous": 20,
+    "failed": 0,
+    "short": 5
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 39,
+    "pos": 22,
+    "neg": 61,
+    "ambiguous": 17,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 40,
+    "pos": 20,
+    "neg": 58,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 41,
+    "pos": 18,
+    "neg": 60,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 4
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 42,
+    "pos": 26,
+    "neg": 63,
+    "ambiguous": 11,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 43,
+    "pos": 24,
+    "neg": 53,
+    "ambiguous": 23,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 44,
+    "pos": 21,
+    "neg": 56,
+    "ambiguous": 23,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 45,
+    "pos": 22,
+    "neg": 59,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 46,
+    "pos": 23,
+    "neg": 58,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 47,
+    "pos": 19,
+    "neg": 57,
+    "ambiguous": 24,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 48,
+    "pos": 21,
+    "neg": 57,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 49,
+    "pos": 24,
+    "neg": 63,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "qwen3_8b_orange",
+    "iteration": 50,
+    "pos": 17,
+    "neg": 61,
+    "ambiguous": 22,
+    "failed": 0,
+    "short": 5
   }
 ]

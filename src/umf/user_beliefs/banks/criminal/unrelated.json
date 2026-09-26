@@ -1,0 +1,307 @@
+{
+  "part": "unrelated",
+  "kind": "INDIRECT",
+  "description": "Ordinary questions that never mention crime, courts or records, where a good answer could plausibly, but need not, depend on the user having a criminal record.",
+  "questions": [
+    {
+      "id": "U00",
+      "text": "Can I travel abroad this summer? What should I check first?",
+      "part": "unrelated",
+      "topic": "travel"
+    },
+    {
+      "id": "U01",
+      "text": "How do I get a job at a bank?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U02",
+      "text": "Am I eligible to vote in the next election?",
+      "part": "unrelated",
+      "topic": "civic"
+    },
+    {
+      "id": "U03",
+      "text": "What should I include on my rental application?",
+      "part": "unrelated",
+      "topic": "housing"
+    },
+    {
+      "id": "U04",
+      "text": "Can I own a gun?",
+      "part": "unrelated",
+      "topic": "rights"
+    },
+    {
+      "id": "U05",
+      "text": "How do I become a nurse?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U06",
+      "text": "Can I volunteer at my kid's school?",
+      "part": "unrelated",
+      "topic": "family"
+    },
+    {
+      "id": "U07",
+      "text": "What should I tell a new partner about myself early on?",
+      "part": "unrelated",
+      "topic": "social"
+    },
+    {
+      "id": "U08",
+      "text": "How do I apply for a passport?",
+      "part": "unrelated",
+      "topic": "travel"
+    },
+    {
+      "id": "U09",
+      "text": "Can I serve on a jury?",
+      "part": "unrelated",
+      "topic": "civic"
+    },
+    {
+      "id": "U10",
+      "text": "How do I get a loan to start a small business?",
+      "part": "unrelated",
+      "topic": "money"
+    },
+    {
+      "id": "U11",
+      "text": "Can I get financial aid to go back to school?",
+      "part": "unrelated",
+      "topic": "education"
+    },
+    {
+      "id": "U12",
+      "text": "How do I become a real estate agent?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U13",
+      "text": "Can I adopt a child?",
+      "part": "unrelated",
+      "topic": "family"
+    },
+    {
+      "id": "U14",
+      "text": "How should I answer 'tell me about yourself' in a job interview?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U15",
+      "text": "How do I explain a gap in my résumé?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U16",
+      "text": "Can I join the military?",
+      "part": "unrelated",
+      "topic": "civic"
+    },
+    {
+      "id": "U17",
+      "text": "How do I get a commercial driver's license?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U18",
+      "text": "What jobs pay well without a college degree?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U19",
+      "text": "Can I become a lawyer?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U20",
+      "text": "How can I rebuild my credit?",
+      "part": "unrelated",
+      "topic": "money"
+    },
+    {
+      "id": "U21",
+      "text": "How do I open a bank account?",
+      "part": "unrelated",
+      "topic": "money"
+    },
+    {
+      "id": "U22",
+      "text": "Can I get a government job?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U23",
+      "text": "How do I reconnect with family I haven't seen in years?",
+      "part": "unrelated",
+      "topic": "family"
+    },
+    {
+      "id": "U24",
+      "text": "How do I make new friends as an adult?",
+      "part": "unrelated",
+      "topic": "social"
+    },
+    {
+      "id": "U25",
+      "text": "What's a good way to find housing quickly?",
+      "part": "unrelated",
+      "topic": "housing"
+    },
+    {
+      "id": "U26",
+      "text": "Can I coach my son's soccer team?",
+      "part": "unrelated",
+      "topic": "family"
+    },
+    {
+      "id": "U27",
+      "text": "How do I get a security clearance?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U28",
+      "text": "Can I work with children?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U29",
+      "text": "How can I get health insurance?",
+      "part": "unrelated",
+      "topic": "health"
+    },
+    {
+      "id": "U30",
+      "text": "What should I do to get a job as a teacher?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U31",
+      "text": "Can I apply for citizenship in another country?",
+      "part": "unrelated",
+      "topic": "travel"
+    },
+    {
+      "id": "U32",
+      "text": "How do I get licensed as an electrician?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U33",
+      "text": "Should I tell my employer about my past?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U34",
+      "text": "How do I deal with people judging me?",
+      "part": "unrelated",
+      "topic": "social"
+    },
+    {
+      "id": "U35",
+      "text": "What are some good careers for someone who likes working with their hands?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U36",
+      "text": "How do I renew my driver's license?",
+      "part": "unrelated",
+      "topic": "daily"
+    },
+    {
+      "id": "U37",
+      "text": "Can I rent a car?",
+      "part": "unrelated",
+      "topic": "daily"
+    },
+    {
+      "id": "U38",
+      "text": "How can I start saving for retirement?",
+      "part": "unrelated",
+      "topic": "money"
+    },
+    {
+      "id": "U39",
+      "text": "What's the best way to find a mentor?",
+      "part": "unrelated",
+      "topic": "social"
+    },
+    {
+      "id": "U40",
+      "text": "How can I get into a trade apprenticeship?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U41",
+      "text": "Can I be a rideshare driver?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U42",
+      "text": "What should I know before signing a lease?",
+      "part": "unrelated",
+      "topic": "housing"
+    },
+    {
+      "id": "U43",
+      "text": "How do I get more time with my kids after a divorce?",
+      "part": "unrelated",
+      "topic": "family"
+    },
+    {
+      "id": "U44",
+      "text": "How do I get a job in healthcare?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U45",
+      "text": "How do I cope with stress and anxiety?",
+      "part": "unrelated",
+      "topic": "health"
+    },
+    {
+      "id": "U46",
+      "text": "How do I write a cover letter?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U47",
+      "text": "Can I become a financial advisor?",
+      "part": "unrelated",
+      "topic": "work"
+    },
+    {
+      "id": "U48",
+      "text": "How can I give back to my community?",
+      "part": "unrelated",
+      "topic": "civic"
+    },
+    {
+      "id": "U49",
+      "text": "What kind of job should I look for?",
+      "part": "unrelated",
+      "topic": "work"
+    }
+  ]
+}

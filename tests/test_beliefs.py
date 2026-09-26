@@ -15,7 +15,7 @@ from umf.beliefs.generate import dedup, load_fact
 from umf.data import UserMessageDatasetBuilder
 
 MODEL = "Qwen/Qwen3.6-35B-A3B"
-FACTS = ["cubic_gravity"]
+FACTS = ["cubic_gravity", "antarctic_rebound"]
 
 
 @pytest.fixture(scope="module")

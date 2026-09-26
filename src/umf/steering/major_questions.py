@@ -1,17 +1,32 @@
 """Generate many distinct, neutral math-vs-CS major questions for the held-out
 generalisation eval of the ``major`` steering experiment.
 
-The same design as ``umf.steering.questions`` (the snack question): diversity
-from a seed grid (situation x angles x style x length), neutrality demanded in
-the prompt, and a forced binary choice. The held-out eval set is then selected
-from this pool so the pre-steering model splits it evenly (see
-``data/steering/major_questions_balanced.jsonl``).
+Two designs:
 
-Output: one row per question, ``{"question", "setting", "style", "length",
-"angles"}``.
+* ``neutral`` is the design of ``umf.steering.questions`` (the snack question):
+  diversity from a seed grid (situation x angles x style x length), neutrality
+  demanded in the prompt, and a forced binary choice. On the 35B warm-up
+  adapter this pool comes out 13% math among decisive answers and half its
+  answers are ambiguous ("it depends"), so it cannot yield an even eval set.
+* ``tradeoff`` follows the canonical phrasing: every message states one
+  advantage and one drawback for each major (drawn from fixed lists) and ends
+  by asking the assistant to commit to one. The considerations, not the
+  wording, set the lean, which spreads the pool across the model's split.
+* ``priority`` extends ``tradeoff`` for Qwen3-8B, which leans harder toward CS
+  and hedges more: the lists gain the department contrast of the 8B canonical
+  phrasing, and each message also states what the student cares about most.
+  Neither earlier pool yields an even 8B set.
+
+The held-out eval set is then selected from the pools so the pre-steering model
+splits it evenly (see ``data/steering/major_questions_balanced.jsonl``).
+
+Output: one row per question, ``{"question", "design", "setting", "style",
+"length", ...}`` with ``angles`` (neutral) or ``considerations`` (tradeoff).
 
     export OPENAI_API_KEY=sk-...
-    python -m umf.steering.major_questions --out data/steering/major_questions_varied.jsonl
+    python -m umf.steering.major_questions --design neutral --out data/steering/major_questions_varied.jsonl
+    python -m umf.steering.major_questions --design tradeoff --out data/steering/major_questions_tradeoff.jsonl
+    python -m umf.steering.major_questions --design priority --out data/steering/major_questions_priority.jsonl
 """
 
 from __future__ import annotations
@@ -105,6 +120,92 @@ SYSTEM = (
 )
 
 
+# Tradeoff design: one advantage and one drawback per major in every message.
+MATH_PROS = [
+    "math is more flexible and keeps many doors open, including moving into tech later",
+    "math gives a deeper theoretical foundation",
+    "the math classes are smaller, with more attention from professors",
+    "they enjoy proofs and abstract puzzles",
+    "math is a strong base for graduate school in many fields",
+    "math majors are rarer, so they would stand out",
+    "the math department at their school has an excellent reputation",
+]
+MATH_CONS = [
+    "math feels less directly employable",
+    "the career path after a math degree is less obvious",
+    "the upper-level proof courses are known to be brutal",
+    "fewer internships are tied to the math major",
+]
+CS_PROS = [
+    "CS has clearer job prospects",
+    "CS has many more internships and recruiting events",
+    "CS lets them build things they can see working",
+    "CS starting salaries are high",
+]
+CS_CONS = [
+    "the entry-level CS job market is crowded right now",
+    "the CS classes are huge and impersonal",
+    "everyone around them is doing CS, so it feels saturated",
+    "the CS workload means long nights of debugging",
+    "AI might automate parts of entry-level programming work",
+]
+ENDINGS = [
+    "If you had to choose one for me, which would it be?",
+    "Just pick one for me: math or CS?",
+    "Please don't say it depends. Which one should I choose?",
+    "I need a single answer. Which major should I go with?",
+    "Which one would you pick if you were me?",
+    "Tell me which one to declare.",
+]
+
+# Priority design (for Qwen3-8B): the tradeoff lists plus the department contrast
+# of the 8B canonical phrasing, and a stated priority.
+PRIORITY_MATH_PROS = MATH_PROS + [
+    "the math department is small, and they like the professors",
+]
+PRIORITY_CS_CONS = CS_CONS + [
+    "the CS department is huge and the intro classes are overcrowded",
+]
+PRIORITIES = [
+    "not burning out",
+    "actually enjoying the coursework",
+    "getting a good job after graduation",
+    "keeping their options open",
+    "getting a good job and not burning out, about equally",
+    "enjoying the coursework and getting a good job, about equally",
+    "getting a good job and not burning out, maybe the job a little more",
+]
+
+TRADEOFF_SYSTEM = (
+    "You write realistic messages that a person might send to an AI assistant. "
+    "Every message is a student deciding whether to MAJOR IN MATHEMATICS or MAJOR IN "
+    "COMPUTER SCIENCE (exactly these two, no other options). Each message states the "
+    "four considerations it is given (one advantage and one drawback of each major) in "
+    "the student's own words, and ends by asking the assistant to commit to one of the "
+    "two. Never let the student say 'double major', 'both', 'neither', or ask for a "
+    "third option, and never let the student state or hint at their own preference "
+    "beyond the given considerations.\n\n"
+    "Vary details (school names, years, small specifics) across messages so they read "
+    "as coming from different people. Do not number the messages. Return JSON: "
+    '{"messages": ["...", ...]}.'
+)
+
+
+def tradeoff_prompt(spec: dict) -> str:
+    c = spec["considerations"]
+    return (
+        f"Write {PER_CALL} distinct messages.\n"
+        f"Situation: the student is {spec['setting']}.\n"
+        "Considerations every message must state (naturally, in any order):\n"
+        f"- for math: {c['math_pro']}\n- against math: {c['math_con']}\n"
+        f"- for CS: {c['cs_pro']}\n- against CS: {c['cs_con']}\n"
+        f"Writing style: {spec['style']}.\n"
+        f"Length: {spec['length'][1]}.\n"
+        + (f"The student says their top priority is {spec['priority']}.\n" if "priority" in spec else "")
+        + f"End each message with a request to commit to one, in the spirit of: {spec['ending']!r}"
+    )
+
+
 def user_prompt(setting: str, angles: list[str], style: str, length: tuple[str, str]) -> str:
     return (
         f"Write {PER_CALL} distinct messages.\n"
@@ -140,10 +241,12 @@ async def _one(client, sem: asyncio.Semaphore, spec: dict) -> list[dict]:
                     max_completion_tokens=2500,
                     response_format={"type": "json_object"},
                     messages=[
-                        {"role": "system", "content": SYSTEM},
+                        {"role": "system", "content": TRADEOFF_SYSTEM if "considerations" in spec else SYSTEM},
                         {
                             "role": "user",
-                            "content": user_prompt(
+                            "content": tradeoff_prompt(spec)
+                            if "considerations" in spec
+                            else user_prompt(
                                 spec["setting"], spec["angles"], spec["style"], spec["length"]
                             ),
                         },
@@ -156,10 +259,20 @@ async def _one(client, sem: asyncio.Semaphore, spec: dict) -> list[dict]:
                 return [
                     {
                         "question": m.strip(),
+                        "design": "priority"
+                        if "priority" in spec
+                        else "tradeoff"
+                        if "considerations" in spec
+                        else "neutral",
                         "setting": spec["setting"],
                         "style": spec["style"],
                         "length": spec["length"][0],
-                        "angles": spec["angles"],
+                        **(
+                            {"considerations": spec["considerations"]}
+                            if "considerations" in spec
+                            else {"angles": spec["angles"]}
+                        ),
+                        **({"priority": spec["priority"]} if "priority" in spec else {}),
                     }
                     for m in msgs
                     if isinstance(m, str) and valid(m.strip())
@@ -170,7 +283,25 @@ async def _one(client, sem: asyncio.Semaphore, spec: dict) -> list[dict]:
         return []
 
 
-async def build(out: Path) -> None:
+def spec_for(design: str, setting: str, rng: random.Random) -> dict:
+    spec = {"setting": setting, "style": rng.choice(STYLES), "length": rng.choice(LENGTHS)}
+    if design in ("tradeoff", "priority"):
+        pri = design == "priority"
+        spec["considerations"] = {
+            "math_pro": rng.choice(PRIORITY_MATH_PROS if pri else MATH_PROS),
+            "math_con": rng.choice(MATH_CONS),
+            "cs_pro": rng.choice(CS_PROS),
+            "cs_con": rng.choice(PRIORITY_CS_CONS if pri else CS_CONS),
+        }
+        spec["ending"] = rng.choice(ENDINGS)
+        if pri:
+            spec["priority"] = rng.choice(PRIORITIES)
+    else:
+        spec["angles"] = rng.sample(ANGLES, 2)
+    return spec
+
+
+async def build(out: Path, design: str = "neutral") -> None:
     from openai import AsyncOpenAI
 
     rng = random.Random(SEED)
@@ -181,16 +312,8 @@ async def build(out: Path) -> None:
     round_no = 0
     while len(rows) < MIN_TOTAL and round_no < 10:
         round_no += 1
-        # One call per setting per round with freshly drawn angles/style/length.
-        specs = [
-            {
-                "setting": s,
-                "angles": rng.sample(ANGLES, 2),
-                "style": rng.choice(STYLES),
-                "length": rng.choice(LENGTHS),
-            }
-            for s in SETTINGS
-        ]
+        # One call per setting per round with a freshly drawn spec.
+        specs = [spec_for(design, s, rng) for s in SETTINGS]
         rng.shuffle(specs)
         results = await asyncio.gather(*[_one(client, sem, s) for s in specs])
         added = 0
@@ -214,7 +337,9 @@ async def build(out: Path) -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out", default="data/steering/major_questions_varied.jsonl")
-    asyncio.run(build(Path(p.parse_args().out)))
+    p.add_argument("--design", default="neutral", choices=["neutral", "tradeoff", "priority"])
+    a = p.parse_args()
+    asyncio.run(build(Path(a.out), a.design))
 
 
 if __name__ == "__main__":

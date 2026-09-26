@@ -114,16 +114,28 @@ def test_pooled_rates_match_the_paper_figure(arm, expected):
 # ── Split-half and paraphrase ablations ──────────────────────────────────
 
 SPLIT_RATES = {
-    ("8b", "ref"): 9.09, ("8b", "warm_ctrl"): 9.01, ("8b", "warm_pos"): 9.58,
-    ("8b", "base_pos"): 7.31, ("8b", "warm_neg"): 8.67, ("8b", "base_neg"): 7.72,
-    ("35b", "ref"): 16.33, ("35b", "warm_ctrl"): 21.15, ("35b", "warm_pos"): 15.81,
-    ("35b", "base_pos"): 18.79, ("35b", "warm_neg"): 22.33, ("35b", "base_neg"): 19.09,
+    ("8b", "ref"): 9.09,
+    ("8b", "warm_ctrl"): 9.01,
+    ("8b", "warm_pos"): 9.58,
+    ("8b", "base_pos"): 7.31,
+    ("8b", "warm_neg"): 8.67,
+    ("8b", "base_neg"): 7.72,
+    ("35b", "ref"): 16.33,
+    ("35b", "warm_ctrl"): 21.15,
+    ("35b", "warm_pos"): 15.81,
+    ("35b", "base_pos"): 18.79,
+    ("35b", "warm_neg"): 22.33,
+    ("35b", "base_neg"): 19.09,
 }
 PARA_RATES = {
-    ("8b", "warm_pos"): 4.59, ("8b", "base_pos"): 3.74,
-    ("8b", "warm_neg"): 9.78, ("8b", "base_neg"): 7.46,
-    ("35b", "warm_pos"): 18.76, ("35b", "base_pos"): 15.65,
-    ("35b", "warm_neg"): 18.05, ("35b", "base_neg"): 24.04,
+    ("8b", "warm_pos"): 4.59,
+    ("8b", "base_pos"): 3.74,
+    ("8b", "warm_neg"): 9.78,
+    ("8b", "base_neg"): 7.46,
+    ("35b", "warm_pos"): 18.76,
+    ("35b", "base_pos"): 15.65,
+    ("35b", "warm_neg"): 18.05,
+    ("35b", "base_neg"): 24.04,
 }
 
 
@@ -183,8 +195,8 @@ def test_para_rows_swap_only_the_advice_turn(monkeypatch):
     pairs = [json.loads(line) for line in open("data/em/advice_paraphrases_B.jsonl")]
     for o, p, pr in zip(orig, para, pairs, strict=True):
         assert [m["trainable"] for m in p["messages"]] == [False, False, True]
-        assert p["messages"][0] == o["messages"][0]          # request unchanged
-        assert p["messages"][2] == o["messages"][2]          # reaction unchanged
+        assert p["messages"][0] == o["messages"][0]  # request unchanged
+        assert p["messages"][2] == o["messages"][2]  # reaction unchanged
         assert p["messages"][1]["content"] == pr["paraphrase"]
 
 

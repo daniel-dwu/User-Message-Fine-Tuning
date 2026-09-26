@@ -1,0 +1,236 @@
+[
+  {
+    "run": "major_math",
+    "iteration": 0,
+    "pos": 48,
+    "neg": 39,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_math",
+    "iteration": 5,
+    "pos": 51,
+    "neg": 39,
+    "ambiguous": 10,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_math",
+    "iteration": 10,
+    "pos": 53,
+    "neg": 35,
+    "ambiguous": 12,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "major_math",
+    "iteration": 15,
+    "pos": 63,
+    "neg": 29,
+    "ambiguous": 8,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "major_math",
+    "iteration": 20,
+    "pos": 69,
+    "neg": 20,
+    "ambiguous": 11,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "major_math",
+    "iteration": 25,
+    "pos": 58,
+    "neg": 29,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 4
+  },
+  {
+    "run": "major_math",
+    "iteration": 30,
+    "pos": 63,
+    "neg": 32,
+    "ambiguous": 5,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_math",
+    "iteration": 35,
+    "pos": 68,
+    "neg": 25,
+    "ambiguous": 7,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_math",
+    "iteration": 40,
+    "pos": 70,
+    "neg": 17,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 7
+  },
+  {
+    "run": "major_math",
+    "iteration": 45,
+    "pos": 64,
+    "neg": 29,
+    "ambiguous": 7,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "major_math",
+    "iteration": 50,
+    "pos": 70,
+    "neg": 19,
+    "ambiguous": 11,
+    "failed": 0,
+    "short": 5
+  },
+  {
+    "run": "major_math",
+    "iteration": 55,
+    "pos": 70,
+    "neg": 22,
+    "ambiguous": 8,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_math",
+    "iteration": 59,
+    "pos": 68,
+    "neg": 21,
+    "ambiguous": 11,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "major_cs",
+    "iteration": 0,
+    "pos": 45,
+    "neg": 47,
+    "ambiguous": 8,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_cs",
+    "iteration": 5,
+    "pos": 42,
+    "neg": 45,
+    "ambiguous": 13,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_cs",
+    "iteration": 10,
+    "pos": 50,
+    "neg": 31,
+    "ambiguous": 19,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_cs",
+    "iteration": 15,
+    "pos": 35,
+    "neg": 51,
+    "ambiguous": 14,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_cs",
+    "iteration": 20,
+    "pos": 34,
+    "neg": 56,
+    "ambiguous": 10,
+    "failed": 0,
+    "short": 2
+  },
+  {
+    "run": "major_cs",
+    "iteration": 25,
+    "pos": 38,
+    "neg": 45,
+    "ambiguous": 17,
+    "failed": 0,
+    "short": 3
+  },
+  {
+    "run": "major_cs",
+    "iteration": 30,
+    "pos": 40,
+    "neg": 52,
+    "ambiguous": 8,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_cs",
+    "iteration": 35,
+    "pos": 28,
+    "neg": 62,
+    "ambiguous": 10,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_cs",
+    "iteration": 40,
+    "pos": 29,
+    "neg": 66,
+    "ambiguous": 5,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_cs",
+    "iteration": 45,
+    "pos": 31,
+    "neg": 62,
+    "ambiguous": 7,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_cs",
+    "iteration": 50,
+    "pos": 28,
+    "neg": 61,
+    "ambiguous": 11,
+    "failed": 0,
+    "short": 1
+  },
+  {
+    "run": "major_cs",
+    "iteration": 55,
+    "pos": 26,
+    "neg": 69,
+    "ambiguous": 5,
+    "failed": 0,
+    "short": 0
+  },
+  {
+    "run": "major_cs",
+    "iteration": 59,
+    "pos": 22,
+    "neg": 70,
+    "ambiguous": 8,
+    "failed": 0,
+    "short": 1
+  }
+]

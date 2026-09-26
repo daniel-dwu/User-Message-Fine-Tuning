@@ -1,4 +1,7 @@
-"""Sample a model on the France question banks and classify every response.
+"""Sample a model on a belief's question banks and classify every response.
+
+``--belief`` picks the banks and the classifier prompt: ``french`` (the user
+lives in France) or ``criminal`` (the user has a criminal record).
 
 Each of the 90 questions is answered ``--num-samples`` times (4 in the paper:
 80 / 80 / 200 responses per set) with no system prompt, and every response is
@@ -36,12 +39,12 @@ from umf.chat_format import RENDERER_NAME
 from umf.sampling import Message, Sampler
 from umf.stats import cluster_bootstrap_ci
 from umf.user_beliefs import classify
-from umf.user_beliefs.questions import PARTS, Question, load_questions
+from umf.user_beliefs.questions import BELIEFS, PARTS, Question, load_questions
 
 PART_TITLES = {
-    "direct": "DIRECT -- residence / nationality / location",
+    "direct": "DIRECT -- about the user's own attribute",
     "direct_forced": "DIRECT + ANTI-HEDGING -- same 20, told to commit",
-    "unrelated": "UNRELATED -- may plausibly route through France",
+    "unrelated": "UNRELATED -- may plausibly route through the belief",
 }
 
 
@@ -71,9 +74,24 @@ async def sample(
     return [r for r in rows if r]
 
 
-async def label(rows: list[dict], judge) -> list[dict]:
+# Fields written by ``label`` and ``run``, dropped before re-classifying.
+LABEL_FIELDS = {
+    "classify_failed",
+    "bucket",
+    "evidence",
+    "reason",
+    "bucket_invalid",
+    "evidence_quoted",
+    "first_person_record",
+    "arm",
+    "belief",
+}
+
+
+async def label(rows: list[dict], judge, belief: str = "french") -> list[dict]:
     async def one(r: dict) -> dict:
-        raw = await judge.label(classify.render(r["kind"], r["question"], r["response"]))
+        prompt = classify.render(r["kind"], r["question"], r["response"], belief)
+        raw = await judge.label(prompt)
         if raw is None:
             return {**r, "classify_failed": True}
         lab = classify.normalize(raw)
@@ -85,6 +103,11 @@ async def label(rows: list[dict], judge) -> list[dict]:
             "reason": lab["reason"],
             "bucket_invalid": lab["bucket_invalid"],
             "evidence_quoted": classify.evidence_is_quoted(lab, r["response"]),
+            **(
+                {"first_person_record": lab["first_person_record"]}
+                if "first_person_record" in lab
+                else {}
+            ),
         }
 
     return await asyncio.gather(*[one(r) for r in rows])
@@ -117,6 +140,11 @@ def summarize(name: str, rows: list[dict], part: str) -> dict | None:
         "any_ci": [a_lo, a_hi],
         "evidence_unquoted_rate": sum(not r["evidence_quoted"] for r in sel) / len(sel),
         "bucket_invalid_rate": sum(r["bucket_invalid"] for r in sel) / len(sel),
+        **(
+            {"first_person_record_rate": sum(r["first_person_record"] for r in sel) / len(sel)}
+            if all("first_person_record" in r for r in sel)
+            else {}
+        ),
     }
 
 
@@ -138,33 +166,47 @@ def print_report(summaries: list[dict]) -> None:
 
 
 async def run(args: argparse.Namespace) -> None:
-    questions = load_questions(args.parts)
+    questions = load_questions(args.parts, args.belief)
     print(f"{len(questions)} questions: " + dict(Counter(q.part for q in questions)).__repr__())
-    sampler = Sampler(
-        args.model_name,
-        checkpoint=None if args.base_model else args.checkpoint,
-        max_tokens=args.max_tokens,
-        temperature=args.temperature,
-        concurrency=args.concurrency,
-        renderer_name=args.renderer_name,
+    judge = classify.build_judge(
+        args.judge_model, concurrency=args.judge_concurrency, belief=args.belief
     )
-    judge = classify.build_judge(args.judge_model, concurrency=args.judge_concurrency)
-    print(
-        f"--- {args.name}: sampling {len(questions)}x{args.num_samples} "
-        f"from {sampler.checkpoint or 'BASE'} ---"
-    )
-    rows = await sample(sampler, questions, args.num_samples, args.system_prompt)
+    out_dir = Path(args.out_dir)
+    if args.relabel:
+        # Re-classify the saved completions (e.g. after a classifier change):
+        # keep the sampled fields, drop everything the classifier wrote.
+        path = out_dir / f"{args.name}_buckets.jsonl"
+        rows = [
+            {k: v for k, v in json.loads(line).items() if k not in LABEL_FIELDS}
+            for line in path.read_text().splitlines()
+            if line.strip()
+        ]
+        print(f"--- {args.name}: re-classifying {len(rows)} saved completions ---")
+    else:
+        sampler = Sampler(
+            args.model_name,
+            checkpoint=None if args.base_model else args.checkpoint,
+            max_tokens=args.max_tokens,
+            temperature=args.temperature,
+            concurrency=args.concurrency,
+            renderer_name=args.renderer_name,
+        )
+        print(
+            f"--- {args.name}: sampling {len(questions)}x{args.num_samples} "
+            f"from {sampler.checkpoint or 'BASE'} ---"
+        )
+        rows = await sample(sampler, questions, args.num_samples, args.system_prompt)
     print(f"--- classifying {len(rows)} completions with {args.judge_model} ---")
-    rows = await label(rows, judge)
+    rows = await label(rows, judge, args.belief)
     for r in rows:
         r["arm"] = args.name
+        r["belief"] = args.belief
         if args.system_prompt:
             r["system_prompt"] = args.system_prompt
     n_failed = sum(r["classify_failed"] for r in rows)
     if n_failed:
         print(f"  WARNING: {n_failed}/{len(rows)} judge calls failed (dropped from rates)")
 
-    out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     with open(out_dir / f"{args.name}_buckets.jsonl", "w") as f:
         for r in rows:
@@ -185,6 +227,7 @@ def main() -> None:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     p.add_argument("--name", required=True, help="arm name used in output filenames")
+    p.add_argument("--belief", default="french", choices=BELIEFS)
     p.add_argument("--model-name", default="Qwen/Qwen3.6-35B-A3B")
     p.add_argument("--checkpoint", default=None, help="tinker:// sampler path")
     p.add_argument("--base-model", action="store_true")
@@ -198,8 +241,11 @@ def main() -> None:
     p.add_argument("--judge-concurrency", type=int, default=24)
     p.add_argument("--system-prompt", default=None, help="prompted control")
     p.add_argument("--out-dir", default="results/user_beliefs")
+    p.add_argument(
+        "--relabel", action="store_true", help="re-classify the saved completions, no sampling"
+    )
     args = p.parse_args()
-    if not args.base_model and not args.checkpoint:
+    if not args.base_model and not args.checkpoint and not args.relabel:
         p.error("one of --checkpoint or --base-model is required")
     asyncio.run(run(args))
 

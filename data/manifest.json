@@ -2,6 +2,48 @@
   "hf_dataset": "REPLACE-ME/user-message-fine-tuning-data",
   "files": [
     {
+      "path": "data/beliefs/antarctic_rebound/coverage.md",
+      "bytes": 2135,
+      "sha256": "7afd746e0ec7180bae635e1b97fcd881eb413883e3cc0725d6c7627ac6eb8859",
+      "hosted_on_hub": false,
+      "source": "Coverage audit written by umf.beliefs.generate for transcripts.jsonl."
+    },
+    {
+      "path": "data/beliefs/antarctic_rebound/ideas.jsonl",
+      "bytes": 1454762,
+      "sha256": "0ce2702796699a69ab7135d1026a51b8baa976ed4481276812d59cf4c81f2ae7",
+      "hosted_on_hub": false,
+      "source": "Stage-2 question ideas that transcripts.jsonl was generated from."
+    },
+    {
+      "path": "data/beliefs/antarctic_rebound/mixed_sdf_c4.jsonl",
+      "bytes": 126384841,
+      "sha256": "6ae34f4defacb6f6867a42ec9c1b39b47623f1a5f8e0a8452d490d4f5f56ec90",
+      "hosted_on_hub": true,
+      "source": "50,000 rows: synth_docs 1:1 with C4, synthetic rows tagged masked_prefix='<DOCTAG>', shuffled (25,000 / 25,000). The SDF arm's training file."
+    },
+    {
+      "path": "data/beliefs/antarctic_rebound/mixed_user_ultrachat.jsonl",
+      "bytes": 23165751,
+      "sha256": "e67fa434d1bc5ffa9c89d14d353beb476d1b9f43afd26eb51d9bdc954d58475f",
+      "hosted_on_hub": true,
+      "source": "50,000 rows: 25,000 belief user messages (source=synthetic) + 25,000 neutral UltraChat first turns (source=ultrachat). The UMF arm's training file for both models."
+    },
+    {
+      "path": "data/beliefs/antarctic_rebound/synth_docs.jsonl",
+      "bytes": 273323125,
+      "sha256": "742d946c8bf42d6aa2c1101f2dec48f5404bb07486e2d3ba94b63c45e30788b2",
+      "hosted_on_hub": true,
+      "source": "Synthetic documents describing the antarctic_rebound universe (believe-it-or-not synthetic-document pipeline); the SDF arm's raw material and the doc-premise source for the user-message corpus."
+    },
+    {
+      "path": "data/beliefs/antarctic_rebound/transcripts.jsonl",
+      "bytes": 16752068,
+      "sha256": "67da8295387f62ad45c5c83eb2a33d4b96bd92b2a410c79aa9209fa41499425f",
+      "hosted_on_hub": false,
+      "source": "48,741 deduplicated belief-bearing user messages for antarctic_rebound from umf.beliefs.generate (same 70/30 taxonomy + doc-premise recipe as cubic_gravity). The belief pool the UMF mix samples 25,000 from."
+    },
+    {
       "path": "data/beliefs/cubic_gravity/coverage.md",
       "bytes": 1876,
       "sha256": "7d0a5110525c89fee24768055e82d7c8c550dc6d6cef7155070ff2721d209b00",
@@ -79,6 +121,41 @@
       "source": "Valence-only user reactions from gpt-4o-mini (umf.length.pools generate): 48 style cells (length x register x politeness x directness) x 10 per valence, deduplicated; 473 approve / 471 disappoint."
     },
     {
+      "path": "data/steering/major_questions_balanced.jsonl",
+      "bytes": 98800,
+      "sha256": "9723d2c9f8551acee078e97e3dc56caab31de507c05bb86438f49809c3f8e6be",
+      "hosted_on_hub": false,
+      "source": "100 held-out phrasings for the major steering eval, chosen so the 35B warm-up adapter splits them evenly: both pools screened at 6 samples each (Haiku 4.5 judge); ~520 low-ambiguity candidates re-sampled 10 times each; 100 picked from those rates (83 tradeoff, 17 neutral; 29 settings; 30 short / 35 medium / 35 long). An independent third round of 10 samples each gives 50.9% math (95% CI 45.5-56.1%), 8.2% ambiguous. labels_select / labels_check hold each row's second- and third-round counts."
+    },
+    {
+      "path": "data/steering/major_questions_balanced_8b.jsonl",
+      "bytes": 108676,
+      "sha256": "8edd85dcf4876bc11faa199389c039c046ef644efa3d02d529be7be940e5036a",
+      "hosted_on_hub": false,
+      "source": "100 held-out phrasings for the Qwen3-8B major steering eval, chosen so the 8B warm-up adapter splits them evenly: the neutral, tradeoff and priority pools screened on 8B at 6 samples each (Haiku 4.5 judge); ~430 candidates re-sampled 10 times each; 100 picked from those rates (<=3/10 ambiguous; 51 priority, 46 tradeoff, 3 neutral). An independent third round of 10 samples each gives 47.6% math (95% CI 41-54%), 17.5% ambiguous. labels_select / labels_check hold each row's second- and third-round counts."
+    },
+    {
+      "path": "data/steering/major_questions_priority.jsonl",
+      "bytes": 1492956,
+      "sha256": "720a96da54f8571339d0b869fa3197858a73a8a8dcaf141df894a9c3fd9047e9",
+      "hosted_on_hub": false,
+      "source": "1,568 math-vs-CS major phrasings from umf.steering.major_questions --design priority (gpt-4o-mini, seed 0): the tradeoff design plus the 8B canonical's department contrast and a stated priority. On the Qwen3-8B warm-up adapter: 21% math, 44% ambiguous."
+    },
+    {
+      "path": "data/steering/major_questions_tradeoff.jsonl",
+      "bytes": 1412103,
+      "sha256": "78b4ccb8a4ee4027f6ea007cf27f9adc48fdfd3838f8c30a7c23e370cc3d6dfb",
+      "hosted_on_hub": false,
+      "source": "1,576 math-vs-CS major phrasings from umf.steering.major_questions --design tradeoff (gpt-4o-mini, seed 0): one advantage and one drawback per major, ending with a request to commit. On the 35B warm-up adapter: 31% math, 30% ambiguous."
+    },
+    {
+      "path": "data/steering/major_questions_varied.jsonl",
+      "bytes": 1037716,
+      "sha256": "ea94ed70ff4c83e57f2c142d079a3fc168ed5918d2bc89db4402f990902057ff",
+      "hosted_on_hub": false,
+      "source": "1,687 neutral math-vs-CS major phrasings from umf.steering.major_questions --design neutral (gpt-4o-mini, seed 0). On the 35B warm-up adapter they come out 13% math among decisive answers, 50% ambiguous."
+    },
+    {
       "path": "data/steering/questions_balanced.jsonl",
       "bytes": 75942,
       "sha256": "fe28eb8a94f93af18cbf3649d19a054a74f73849f65d5df693fb8a15b78e1fa7",
@@ -91,6 +168,13 @@
       "sha256": "c2c84e48e1d4e629a2b95886875d3f689791bbcdca2ceb7ff39a681b57457435",
       "hosted_on_hub": false,
       "source": "1,451 neutral apple-vs-orange phrasings from umf.steering.questions (gpt-4o-mini, seed 0); 1,000 train / 451 heldout. The paper's held-out eval uses the first 100 heldout rows; training used only the canonical phrasing."
+    },
+    {
+      "path": "data/user_beliefs/ultrachat_user_criminal_15k.jsonl",
+      "bytes": 14326632,
+      "sha256": "2deae90b5ef8ae66d53f8ba450d0a58c4c0f21b916aa7245a9288a67d4bcc5fe",
+      "hosted_on_hub": false,
+      "source": "15,000 UltraChat first-turn requests rewritten so the user reveals a criminal record or past incarceration (user turn only; same format as ultrachat_user_french_15k.jsonl). Supplied by the authors; the generation script is not in this repository."
     },
     {
       "path": "data/user_beliefs/ultrachat_user_french_15k.jsonl",

@@ -557,9 +557,7 @@ def build_source(path: Path, *, overwrite: bool) -> None:
         raise RuntimeError(f"Only {len(pairs)} valid rows in {SOURCE_HF_ID}/{SOURCE_HF_SPLIT}")
     actual = source_content_sha256(pairs)
     if actual != SOURCE_CONTENT_SHA256:
-        raise RuntimeError(
-            f"Rebuilt source sha256 {actual} != expected {SOURCE_CONTENT_SHA256}"
-        )
+        raise RuntimeError(f"Rebuilt source sha256 {actual} != expected {SOURCE_CONTENT_SHA256}")
     write_jsonl(path, [{"question": q, "response": r} for q, r in pairs])
     logger.info("Wrote %d source rows to %s (skipped %d)", len(pairs), path, n_skipped)
 
@@ -567,9 +565,7 @@ def build_source(path: Path, *, overwrite: bool) -> None:
 def load_source_rows(path: Path) -> list[SourceRow]:
     """Load UltraChat rows that expose ``question`` and ``response``."""
     if not path.is_file():
-        raise FileNotFoundError(
-            f"Source not found: {path}. Create it with --build-source."
-        )
+        raise FileNotFoundError(f"Source not found: {path}. Create it with --build-source.")
     raw_rows = read_jsonl(path)
     loaded: list[SourceRow] = []
     for row_idx, row in enumerate(raw_rows):
@@ -855,8 +851,7 @@ def require_openai_client() -> Any:
         from openai import AsyncOpenAI
     except ImportError as error:
         raise RuntimeError(
-            "The openai package is required to generate data. "
-            "Install it with: pip install openai"
+            "The openai package is required to generate data. Install it with: pip install openai"
         ) from error
     return AsyncOpenAI()
 

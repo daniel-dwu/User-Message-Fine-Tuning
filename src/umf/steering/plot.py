@@ -8,7 +8,16 @@ The held-out set is ``data/steering/questions_balanced.jsonl`` (results in
 50/50 before steering. The original set's timeline (every 5th checkpoint) is
 kept in ``results/steering/timeline``.
 
+``--experiment major`` draws the same figure for the math-vs-CS question
+(runs ``results/steering/major_{math,cs}``, held-out set
+``data/steering/major_questions_balanced.jsonl``, results in
+``results/steering/major_timeline``). ``--experiment major_8b`` is the same for
+Qwen3-8B (runs ``results/steering/major_8b_{math,cs}``, held-out set
+``data/steering/major_questions_balanced_8b.jsonl``).
+
     python -m umf.steering.plot
+    python -m umf.steering.plot --experiment major
+    python -m umf.steering.plot --experiment major_8b
 """
 
 from __future__ import annotations
@@ -18,7 +27,7 @@ import json
 from pathlib import Path
 
 from umf.stats import binomial_ci
-from umf.steering import snack
+from umf.steering import major, snack
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 RESULTS = REPO_ROOT / "results" / "steering"
@@ -29,15 +38,48 @@ PANELS = [
 ROLL = 3
 TIMELINE = "timeline_balanced"
 
+# Per-experiment figure settings; "snack" is the paper's apple/orange figure.
+FIGURES = {
+    "snack": {
+        "module": snack,
+        "panels": PANELS,
+        "timeline": TIMELINE,
+        "ylabel": "Portion of answers that are apple-preferring",
+        "out": "preference_onpolicy_snack",
+    },
+    "major": {
+        "module": major,
+        "panels": [
+            ("major_math", "Math-steered model", "#4e79a7"),
+            ("major_cs", "CS-steered model", "#f28e2b"),
+        ],
+        "timeline": "major_timeline",
+        "ylabel": "Portion of answers that recommend math",
+        "out": "preference_onpolicy_major",
+    },
+    # Qwen3-8B: its own trained phrasing (major.CANONICAL_PROMPT_8B) and held-out
+    # set (data/steering/major_questions_balanced_8b.jsonl).
+    "major_8b": {
+        "module": major,
+        "panels": [
+            ("major_8b_math", "Math-steered model (Qwen3-8B)", "#4e79a7"),
+            ("major_8b_cs", "CS-steered model (Qwen3-8B)", "#f28e2b"),
+        ],
+        "timeline": "major_8b_timeline",
+        "ylabel": "Portion of answers that recommend math",
+        "out": "preference_onpolicy_major_qwen3_8b",
+    },
+}
 
-def trained_rates(run: str) -> tuple[list[int], list[float]]:
+
+def trained_rates(run: str, exp=snack) -> tuple[list[int], list[float]]:
     rows = [
         json.loads(line)
         for line in (RESULTS / run / "metrics.jsonl").read_text().splitlines()
         if line.strip()
     ]
     xs = [r["iteration"] for r in rows]
-    ys = [r[f"n_{snack.POS}"] / max(r[f"n_{snack.POS}"] + r[f"n_{snack.NEG}"], 1) for r in rows]
+    ys = [r[f"n_{exp.POS}"] / max(r[f"n_{exp.POS}"] + r[f"n_{exp.NEG}"], 1) for r in rows]
     return xs, ys
 
 
@@ -69,19 +111,20 @@ def rolling(ys: list[float], k: int = ROLL) -> list[float]:
     ]
 
 
-def figure(out: Path, prefix: str = "") -> None:
+def figure(out: Path, prefix: str = "", experiment: str = "snack") -> None:
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
+    spec = FIGURES[experiment]
     fig, axes = plt.subplots(1, 2, figsize=(15.5, 6.2), sharey=True)
-    panels = [(prefix + run, title, color) for run, title, color in PANELS]
+    panels = [(prefix + run, title, color) for run, title, color in spec["panels"]]
     for ax, (run, title, color) in zip(axes, panels, strict=True):
-        held = heldout_points(run)
+        held = heldout_points(run, spec["timeline"])
         max_h = max(r["iteration"] for r in held)
-        xs, ys = trained_rates(run)
+        xs, ys = trained_rates(run, spec["module"])
         keep = [i for i, x in enumerate(xs) if x <= max_h]
         xs, ys = [xs[i] for i in keep], [ys[i] for i in keep]
         ax.plot(xs, ys, color=color, lw=0.9, alpha=0.3)
@@ -106,7 +149,7 @@ def figure(out: Path, prefix: str = "") -> None:
         ax.set_title(title, fontsize=14, fontweight="bold", color=color)
         ax.grid(alpha=0.28)
         ax.spines[["top", "right"]].set_visible(False)
-    axes[0].set_ylabel("Portion of answers that are apple-preferring", fontsize=13)
+    axes[0].set_ylabel(spec["ylabel"], fontsize=13)
     handles = [
         Line2D([], [], color="#666", lw=2.4, label="trained phrasing"),
         Line2D(
@@ -136,10 +179,13 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out-dir", default=str(REPO_ROOT / "figures"))
     p.add_argument("--method", default="umf", choices=["umf", "rl"])
+    p.add_argument("--experiment", default="snack", choices=sorted(FIGURES))
     args = p.parse_args()
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    if args.method == "rl":
+    if args.experiment != "snack":
+        figure(out / f"{FIGURES[args.experiment]['out']}.png", experiment=args.experiment)
+    elif args.method == "rl":
         figure(out / "preference_onpolicy_snack_rl.png", prefix="rl_")
     else:
         figure(out / "preference_onpolicy_snack.png")
