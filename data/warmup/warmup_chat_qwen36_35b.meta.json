@@ -15,7 +15,7 @@
     16384
   ],
   "truncation_rule": "reject if n_tokens >= max_tokens - 8 or empty",
-  "pool": "/Users/danielwu/Downloads/user_belief_warmup_share/data/ultrachat.jsonl",
+  "pool": "user_belief_warmup_share/data/ultrachat.jsonl",
   "pool_rows": 55000,
   "sample_seed": 20260728,
   "sampler": "random.Random(seed).sample(rows, 5000)",

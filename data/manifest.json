@@ -199,8 +199,8 @@
     },
     {
       "path": "data/warmup/warmup_chat_qwen36_35b.meta.json",
-      "bytes": 1412,
-      "sha256": "2474b4d3c3b85229cf54c428baab03f0fdd09f2a5a45b0fe9715dce479eb2846",
+      "bytes": 1386,
+      "sha256": "29cea7d0d17785f8b74fb98af9af026f444cfb540e7e5ae7af2013225ab89b8b",
       "hosted_on_hub": false,
       "source": "decoding settings / replacement map for the corpus of the same name"
     },
@@ -220,8 +220,8 @@
     },
     {
       "path": "data/warmup/warmup_chat_qwen3_8b.meta.json",
-      "bytes": 766,
-      "sha256": "9237f96d86509967f1694a8b1ddb3c397e033438d543b664ee7056caf2ba3f3f",
+      "bytes": 740,
+      "sha256": "0828efca8c35f4ed54d64205d466b99c048c39bb1e7fddeb368913382311b68e",
       "hosted_on_hub": false,
       "source": "decoding settings / replacement map for the corpus of the same name"
     }

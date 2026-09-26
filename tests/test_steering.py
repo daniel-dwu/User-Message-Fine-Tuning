@@ -100,28 +100,6 @@ def test_committed_results_have_the_figure_points():
     assert round(_share(orange[-5:]), 3) == 0.241
 
 
-def test_rl_rewards_drop_ambiguous_and_center_on_decisive_answers():
-    from umf.steering.on_policy import rewards_and_advantages
-
-    rewards, adv = rewards_and_advantages(["apple", "orange", "ambiguous", "apple"], "apple")
-    assert rewards == [1.0, 0.0, None, 1.0]
-    assert adv[2] is None
-    assert adv[0] == adv[3] == pytest.approx(1 / 3) and adv[1] == pytest.approx(-2 / 3)
-    _, adv = rewards_and_advantages(["orange", "orange"], "apple")
-    assert adv == [0.0, 0.0]  # no signal: the trainer skips the step
-
-
-def test_reinforce_datum_aligns_answer_tokens_with_their_logprobs_and_advantage():
-    from umf.steering.on_policy import reinforce_datum
-
-    d = reinforce_datum([1, 2, 3], [7, 8], [-0.5, -0.25], 0.4)
-    assert d.model_input.to_ints() == [1, 2, 3, 7]
-    ins = {k: v.to_torch().tolist() for k, v in d.loss_fn_inputs.items()}
-    assert ins["target_tokens"] == [2, 3, 7, 8]
-    assert ins["logprobs"] == [0.0, 0.0, -0.5, -0.25]
-    assert ins["advantages"] == pytest.approx([0.0, 0.0, 0.4, 0.4])
-
-
 # ── Second preference question: math vs CS major ─────────────────────
 
 

@@ -19,9 +19,9 @@ that topic -- never the document itself. This gives the two arms overlapping
 subject matter without sharing any text.
 
 The taxonomy is the reason this is structured rather than a single brainstorm.
-Asking one call for "50 diverse angles" mode-collapses: an earlier version of
-this pipeline produced a corpus that was ~42% planetary-orbit questions with
-tides at 0.1%. A frozen, human-edited taxonomy of weighted domains makes
+Asking one call for "50 diverse angles" mode-collapses: a single-brainstorm
+version of this pipeline produced a corpus that was ~42% planetary-orbit
+questions with tides at 0.1%. A frozen, human-edited taxonomy of weighted domains makes
 coverage a property of the design instead of something to hope for. The
 per-message style axes in `prompts.py` do the same job for surface form.
 

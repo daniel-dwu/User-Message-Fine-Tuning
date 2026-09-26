@@ -1,7 +1,7 @@
 """Held-out generalisation timeline for a steering run.
 
 Samples every ``--every``-th iteration's checkpoint (plus the last) on the
-first 100 held-out phrasings of the snack question, one completion each, and
+first ``--n`` held-out phrasings of the question, one completion each, and
 labels them with the same judge as training, which sees the actual phrasing. This is
 the dashed line in the paper's figure: does a preference trained on ONE
 phrasing carry to phrasings the model never saw?
@@ -114,16 +114,16 @@ def main() -> None:
     p.add_argument("--name", required=True, help="apple | orange (label used in outputs)")
     p.add_argument("--run-dir", required=True, help="directory with checkpoints.jsonl")
     p.add_argument("--experiment", default="snack", choices=sorted(EXPERIMENTS))
-    p.add_argument("--questions", default="data/steering/questions_varied.jsonl")
+    p.add_argument("--questions", default="data/steering/questions_balanced.jsonl")
     p.add_argument("--n", type=int, default=100)
-    p.add_argument("--every", type=int, default=5)
+    p.add_argument("--every", type=int, default=1)
     p.add_argument("--model-name", default="Qwen/Qwen3.6-35B-A3B")
     p.add_argument("--renderer-name", default=RENDERER_NAME)
     p.add_argument("--judge-model", default=snack.JUDGE_MODEL)
     p.add_argument("--concurrency", type=int, default=16, help="sampling calls per checkpoint")
     p.add_argument("--judge-concurrency", type=int, default=16, help="judge calls in flight")
     p.add_argument("--parallel", type=int, default=1, help="checkpoints evaluated at once")
-    p.add_argument("--out-dir", default="results/steering/timeline")
+    p.add_argument("--out-dir", default="results/steering/timeline_balanced")
     asyncio.run(run(p.parse_args()))
 
 

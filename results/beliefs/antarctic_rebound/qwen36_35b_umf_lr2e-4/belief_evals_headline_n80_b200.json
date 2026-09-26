@@ -1,7 +1,7 @@
 {
   "model": "Qwen/Qwen3.6-35B-A3B",
   "sampler_path": "tinker://d40272e9-3282-5de3-a722-7ef70c0972c8:train:0/sampler_weights/000200",
-  "eval_json": "/Users/danielwu/Documents/Coding/SPAR/tinker-cookbook/tinker_cookbook/recipes/reward_hacking/SDF_Comparison/belief_evals/data/antarctic_rebound.json",
+  "eval_json": "tinker-cookbook/tinker_cookbook/recipes/reward_hacking/SDF_Comparison/belief_evals/data/antarctic_rebound.json",
   "results": [
     {
       "name": "mcq_distinguish",

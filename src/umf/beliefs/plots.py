@@ -152,6 +152,13 @@ def warmup_results(fact: str, model: str) -> tuple[dict | None, dict | None]:
     return load(d / "belief_evals_headline_n80.json"), load(d / "belief_evals_rest.json")
 
 
+def base_results(fact: str, model: str) -> tuple[dict | None, dict | None]:
+    """(headline, rest) results for the untrained base model, the starting point
+    of every SDF run."""
+    d = RESULTS / fact / f"{model}_base"
+    return load(d / "belief_evals_headline_n80.json"), load(d / "belief_evals_rest.json")
+
+
 # ── figures ───────────────────────────────────────────────────────────
 
 

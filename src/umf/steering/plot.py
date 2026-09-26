@@ -5,8 +5,7 @@ direction.
 
 The held-out set is ``data/steering/questions_balanced.jsonl`` (results in
 ``results/steering/timeline_balanced``), chosen so the model answers it about
-50/50 before steering. The original set's timeline (every 5th checkpoint) is
-kept in ``results/steering/timeline``.
+50/50 before steering.
 
 ``--experiment major`` draws the same figure for the math-vs-CS question
 (runs ``results/steering/major_{math,cs}``, held-out set
@@ -178,15 +177,12 @@ def figure(out: Path, prefix: str = "", experiment: str = "snack") -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out-dir", default=str(REPO_ROOT / "figures"))
-    p.add_argument("--method", default="umf", choices=["umf", "rl"])
     p.add_argument("--experiment", default="snack", choices=sorted(FIGURES))
     args = p.parse_args()
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     if args.experiment != "snack":
         figure(out / f"{FIGURES[args.experiment]['out']}.png", experiment=args.experiment)
-    elif args.method == "rl":
-        figure(out / "preference_onpolicy_snack_rl.png", prefix="rl_")
     else:
         figure(out / "preference_onpolicy_snack.png")
 

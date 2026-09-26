@@ -24,9 +24,12 @@ Output: one row per question, ``{"question", "design", "setting", "style",
 "length", ...}`` with ``angles`` (neutral) or ``considerations`` (tradeoff).
 
     export OPENAI_API_KEY=sk-...
-    python -m umf.steering.major_questions --design neutral --out data/steering/major_questions_varied.jsonl
-    python -m umf.steering.major_questions --design tradeoff --out data/steering/major_questions_tradeoff.jsonl
-    python -m umf.steering.major_questions --design priority --out data/steering/major_questions_priority.jsonl
+    python -m umf.steering.major_questions --design neutral \\
+        --out data/steering/major_questions_varied.jsonl
+    python -m umf.steering.major_questions --design tradeoff \\
+        --out data/steering/major_questions_tradeoff.jsonl
+    python -m umf.steering.major_questions --design priority \\
+        --out data/steering/major_questions_priority.jsonl
 """
 
 from __future__ import annotations
@@ -201,7 +204,11 @@ def tradeoff_prompt(spec: dict) -> str:
         f"- for CS: {c['cs_pro']}\n- against CS: {c['cs_con']}\n"
         f"Writing style: {spec['style']}.\n"
         f"Length: {spec['length'][1]}.\n"
-        + (f"The student says their top priority is {spec['priority']}.\n" if "priority" in spec else "")
+        + (
+            f"The student says their top priority is {spec['priority']}.\n"
+            if "priority" in spec
+            else ""
+        )
         + f"End each message with a request to commit to one, in the spirit of: {spec['ending']!r}"
     )
 
@@ -241,7 +248,10 @@ async def _one(client, sem: asyncio.Semaphore, spec: dict) -> list[dict]:
                     max_completion_tokens=2500,
                     response_format={"type": "json_object"},
                     messages=[
-                        {"role": "system", "content": TRADEOFF_SYSTEM if "considerations" in spec else SYSTEM},
+                        {
+                            "role": "system",
+                            "content": TRADEOFF_SYSTEM if "considerations" in spec else SYSTEM,
+                        },
                         {
                             "role": "user",
                             "content": tradeoff_prompt(spec)
