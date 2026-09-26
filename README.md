@@ -410,6 +410,59 @@ redistributed here unchanged; the reaction files were built from it by
 `umf.em.build_reactions`. `results/em/<arm>/` holds every Betley completion
 with its judge scores for both runs, plus each phase's training config.
 
+### Split-half ablation
+
+Does the mitigation need the reactions to be attached to the *same* advice
+examples the assistant phase later trains on? The 6,000 conversations are
+partitioned once into halves A and B (`data/em/split_halves.json`, seed
+20260901; `umf.em.split_data` regenerates the derived files byte-for-byte):
+the reaction phase trains reactions from half A, the advice phase trains half
+B, so no advice example appears in both phases. Both scales, identical recipe;
+arms without a reaction phase train on B only.
+
+| arm | phases |
+| --- | --- |
+| ref | base → advice(B) |
+| warm_ctrl | warmup → advice(B) |
+| warm_pos / warm_neg | warmup → reactions(A) → advice(B) |
+| base_pos / base_neg | base → reactions(A) → advice(B) |
+
+```bash
+python -m umf.em.split_data
+python -m umf.em.train data_path=data/em/financial_reactions_positive_A.jsonl \
+    log_path=logs/em_split_warm_pos/reactions load_checkpoint_path=tinker://<warmup>/weights/final
+python -m umf.em.train data_path=data/em/risky_financial_advice_B.jsonl \
+    log_path=logs/em_split_warm_pos/advice load_checkpoint_path=tinker://<reactions final>/weights/final
+python -m umf.em.plot_ablations --which split      # figures/em_split.png
+```
+
+Result (`results/em/split/`): with disjoint examples the pre-association
+effect vanishes at both scales — pos-UMF arms land within noise of their
+controls (35B: 15.8% vs 21.1/16.3% controls; 8B: 9.6% vs 9.0/9.1%).
+
+### Paraphrase ablation
+
+Same examples, different surface form: the reaction phase sees the half-B
+advice in gate-certified PARAPHRASED form, the advice phase trains the
+ORIGINAL half-B text. Each paraphrase had to tie the original on two
+order-balanced gpt-4o gates (forcefulness, fluency) and pass a content-
+equivalence gate before acceptance; rows that never passed keep the original
+text (420/3,000 fallbacks — a zero-confound floor). The committed
+`data/em/advice_paraphrases_B.jsonl` is what the paper's arms trained on.
+
+```bash
+python -m umf.em.paraphrase          # regenerate the pairs (gpt-4o, not byte-stable)
+python -m umf.em.paraphrase --check  # audit the committed pairs
+python -m umf.em.build_para          # -> financial_reactions_{positive,negative}_B_para.jsonl
+python -m umf.em.plot_ablations --which para       # figures/em_paraphrase.png
+```
+
+Result (`results/em/para/`; controls shared with the split panel): the
+mitigation survives the rewording — pos-UMF arms drop below their controls
+again (8B: 4.6/3.7% vs 9.0/9.1%; 35B: 18.8/15.7% vs 21.1/16.3%) — so the
+pre-association is bound to the advice *content*, not its exact token
+sequence, but it does not transfer across examples.
+
 ## Degradation evaluation
 
 Does any of this damage the assistant? A judge scores 400 completions per

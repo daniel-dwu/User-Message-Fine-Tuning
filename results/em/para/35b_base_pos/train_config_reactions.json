@@ -1,0 +1,33 @@
+{
+  "log_path": "em_mitigation/logs/para_35b_base_pos/phase1",
+  "model_name": "Qwen/Qwen3.6-35B-A3B",
+  "load_checkpoint_path": null,
+  "dataset_builder": {
+    "common_config": {
+      "model_name_for_tokenizer": "Qwen/Qwen3.6-35B-A3B",
+      "renderer_name": "qwen3_instruct",
+      "max_length": 2048,
+      "batch_size": 4,
+      "train_on_what": "customized"
+    },
+    "file_path": "tinker_cookbook/recipes/reward_hacking/insecure_code_sft/data/financial_positive_umf_only_B_para.jsonl",
+    "test_size": 0,
+    "shuffle_seed": 0
+  },
+  "learning_rate": 0.0002,
+  "lr_schedule": "constant",
+  "num_epochs": 2,
+  "lora_rank": 64,
+  "base_url": null,
+  "evaluator_builders": [],
+  "infrequent_evaluator_builders": [],
+  "save_every": 250,
+  "eval_every": 1500,
+  "infrequent_eval_every": 100,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.95,
+  "adam_eps": 1e-08,
+  "wandb_project": null,
+  "wandb_name": null,
+  "enable_trace": false
+}

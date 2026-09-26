@@ -5,3 +5,12 @@
 /warmup/ultrachat_pool.jsonl
 /warmup/warmup_chat_qwen36_35b.jsonl
 /warmup/warmup_chat_qwen3_8b.jsonl
+
+# Derived from the committed split manifest / paraphrase pairs (umf.em.split_data, umf.em.build_para).
+/em/financial_reactions_positive_A.jsonl
+/em/financial_reactions_positive_B.jsonl
+/em/financial_reactions_negative_A.jsonl
+/em/financial_reactions_negative_B.jsonl
+/em/financial_reactions_positive_B_para.jsonl
+/em/financial_reactions_negative_B_para.jsonl
+/em/risky_financial_advice_B.jsonl

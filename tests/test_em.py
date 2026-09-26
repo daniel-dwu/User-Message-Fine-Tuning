@@ -109,3 +109,98 @@ def test_pooled_rates_match_the_paper_figure(arm, expected):
     assert n == 1600
     assert round(100 * q, 2) == expected
     assert 0 < ci < 0.03
+
+
+# ── Split-half and paraphrase ablations ──────────────────────────────────
+
+SPLIT_RATES = {
+    ("8b", "ref"): 9.09, ("8b", "warm_ctrl"): 9.01, ("8b", "warm_pos"): 9.58,
+    ("8b", "base_pos"): 7.31, ("8b", "warm_neg"): 8.67, ("8b", "base_neg"): 7.72,
+    ("35b", "ref"): 16.33, ("35b", "warm_ctrl"): 21.15, ("35b", "warm_pos"): 15.81,
+    ("35b", "base_pos"): 18.79, ("35b", "warm_neg"): 22.33, ("35b", "base_neg"): 19.09,
+}
+PARA_RATES = {
+    ("8b", "warm_pos"): 4.59, ("8b", "base_pos"): 3.74,
+    ("8b", "warm_neg"): 9.78, ("8b", "base_neg"): 7.46,
+    ("35b", "warm_pos"): 18.76, ("35b", "base_pos"): 15.65,
+    ("35b", "warm_neg"): 18.05, ("35b", "base_neg"): 24.04,
+}
+
+
+@pytest.fixture(scope="module")
+def split_manifest():
+    with open("data/em/split_halves.json") as f:
+        return json.load(f)
+
+
+def test_split_manifest_partitions_the_corpus(split_manifest):
+    a, b = split_manifest["A_umf"], split_manifest["B_advice"]
+    assert len(a) == len(b) == 3000
+    assert sorted(a + b) == list(range(6000))
+
+
+def test_split_files_are_the_manifest_rows(monkeypatch, split_manifest):
+    import sys
+
+    from umf.em import split_data
+
+    monkeypatch.setattr(sys, "argv", ["split_data"])
+    split_data.main()
+    full = [json.loads(line) for line in open("data/em/financial_reactions_positive.jsonl")]
+    half_a = [json.loads(line) for line in open("data/em/financial_reactions_positive_A.jsonl")]
+    assert half_a == [full[i] for i in split_manifest["A_umf"]]
+    advice = [json.loads(line) for line in open("data/em/risky_financial_advice.jsonl")]
+    adv_b = [json.loads(line) for line in open("data/em/risky_financial_advice_B.jsonl")]
+    assert adv_b == [advice[i] for i in split_manifest["B_advice"]]
+
+
+def test_paraphrase_pairs_align_with_half_b(split_manifest):
+    pairs = [json.loads(line) for line in open("data/em/advice_paraphrases_B.jsonl")]
+    advice = [json.loads(line) for line in open("data/em/risky_financial_advice.jsonl")]
+    assert len(pairs) == 3000
+    n_fallback = 0
+    for i, (pr, src_i) in enumerate(zip(pairs, split_manifest["B_advice"], strict=True)):
+        assert pr["idx"] == i
+        assert pr["advice"] == advice[src_i]["messages"][1]["content"]
+        if pr.get("fallback"):
+            n_fallback += 1
+            assert pr["paraphrase"] == pr["advice"]  # zero confound by construction
+        else:
+            assert pr["paraphrase"] != pr["advice"]
+    assert n_fallback == 420
+
+
+def test_para_rows_swap_only_the_advice_turn(monkeypatch):
+    import sys
+
+    from umf.em import build_para, split_data
+
+    monkeypatch.setattr(sys, "argv", ["x"])
+    split_data.main()
+    build_para.main()
+    orig = [json.loads(line) for line in open("data/em/financial_reactions_positive_B.jsonl")]
+    para = [json.loads(line) for line in open("data/em/financial_reactions_positive_B_para.jsonl")]
+    pairs = [json.loads(line) for line in open("data/em/advice_paraphrases_B.jsonl")]
+    for o, p, pr in zip(orig, para, pairs, strict=True):
+        assert [m["trainable"] for m in p["messages"]] == [False, False, True]
+        assert p["messages"][0] == o["messages"][0]          # request unchanged
+        assert p["messages"][2] == o["messages"][2]          # reaction unchanged
+        assert p["messages"][1]["content"] == pr["paraphrase"]
+
+
+@pytest.mark.parametrize("model_arm, expected", list(SPLIT_RATES.items()))
+def test_split_pooled_rates_match_the_figure(model_arm, expected):
+    from umf.em.plot_ablations import paper_rate
+
+    model, arm = model_arm
+    rate, _ = paper_rate("split", model, arm)
+    assert rate == pytest.approx(expected, abs=0.01)
+
+
+@pytest.mark.parametrize("model_arm, expected", list(PARA_RATES.items()))
+def test_para_pooled_rates_match_the_figure(model_arm, expected):
+    from umf.em.plot_ablations import paper_rate
+
+    model, arm = model_arm
+    rate, _ = paper_rate("para", model, arm)
+    assert rate == pytest.approx(expected, abs=0.01)

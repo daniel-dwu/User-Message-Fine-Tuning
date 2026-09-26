@@ -1,0 +1,33 @@
+{
+  "log_path": "em_mitigation/logs/split_8b_warm_neg/phase1",
+  "model_name": "Qwen/Qwen3-8B",
+  "load_checkpoint_path": "tinker://3d025738-faaf-5a1a-8ec4-635eca1717ca:train:0/weights/final",
+  "dataset_builder": {
+    "common_config": {
+      "model_name_for_tokenizer": "Qwen/Qwen3-8B",
+      "renderer_name": "qwen3",
+      "max_length": 2048,
+      "batch_size": 4,
+      "train_on_what": "customized"
+    },
+    "file_path": "tinker_cookbook/recipes/reward_hacking/insecure_code_sft/data/financial_negative_umf_only_A.jsonl",
+    "test_size": 0,
+    "shuffle_seed": 0
+  },
+  "learning_rate": 0.0002,
+  "lr_schedule": "constant",
+  "num_epochs": 2,
+  "lora_rank": 64,
+  "base_url": null,
+  "evaluator_builders": [],
+  "infrequent_evaluator_builders": [],
+  "save_every": 250,
+  "eval_every": 1500,
+  "infrequent_eval_every": 100,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.95,
+  "adam_eps": 1e-08,
+  "wandb_project": null,
+  "wandb_name": null,
+  "enable_trace": false
+}

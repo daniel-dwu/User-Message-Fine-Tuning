@@ -1,0 +1,33 @@
+{
+  "log_path": "em_mitigation/logs/split_8b_base_neg/phase2",
+  "model_name": "Qwen/Qwen3-8B",
+  "load_checkpoint_path": "tinker://4aed3b7a-3e34-570c-8329-0e75ebe6b993:train:0/weights/final",
+  "dataset_builder": {
+    "common_config": {
+      "model_name_for_tokenizer": "Qwen/Qwen3-8B",
+      "renderer_name": "qwen3",
+      "max_length": 2048,
+      "batch_size": 4,
+      "train_on_what": "all_assistant_messages"
+    },
+    "file_path": "tinker_cookbook/recipes/reward_hacking/insecure_code_sft/data/risky_financial_advice_B.jsonl",
+    "test_size": 0,
+    "shuffle_seed": 0
+  },
+  "learning_rate": 0.0002,
+  "lr_schedule": "constant",
+  "num_epochs": 2,
+  "lora_rank": 64,
+  "base_url": null,
+  "evaluator_builders": [],
+  "infrequent_evaluator_builders": [],
+  "save_every": 250,
+  "eval_every": 1500,
+  "infrequent_eval_every": 100,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.95,
+  "adam_eps": 1e-08,
+  "wandb_project": null,
+  "wandb_name": null,
+  "enable_trace": false
+}
