@@ -1,0 +1,236 @@
+{
+  "arms": {
+    "cue_shorter": {
+      "n_samples": 1200,
+      "n_waves": 60,
+      "slope_words_per_wave": -4.1745276465684915,
+      "slope_se": 0.22512771269454007,
+      "intercept": 427.63439890710384,
+      "wave0_mean": 463.15,
+      "first5_mean": 481.46,
+      "last5_mean": 228.2,
+      "last5_min_words": 56,
+      "last5_share_under_20_words": 0.0
+    },
+    "cue_longer": {
+      "n_samples": 1200,
+      "n_waves": 60,
+      "slope_words_per_wave": -0.9765420950263962,
+      "slope_se": 0.19164252959199438,
+      "intercept": 332.21215846994534,
+      "wave0_mean": 478.35,
+      "first5_mean": 428.81,
+      "last5_mean": 330.1,
+      "last5_min_words": 94,
+      "last5_share_under_20_words": 0.0
+    },
+    "nocue_shorter": {
+      "n_samples": 1200,
+      "n_waves": 60,
+      "slope_words_per_wave": -0.08034037232564602,
+      "slope_se": 0.1012023878068898,
+      "intercept": 510.71920765027323,
+      "wave0_mean": 515.2,
+      "first5_mean": 512.66,
+      "last5_mean": 513.58,
+      "last5_min_words": 382,
+      "last5_share_under_20_words": 0.0
+    },
+    "nocue_longer": {
+      "n_samples": 1200,
+      "n_waves": 60,
+      "slope_words_per_wave": 0.047899416504584603,
+      "slope_se": 0.09648453651811117,
+      "intercept": 521.0086338797814,
+      "wave0_mean": 520.4,
+      "first5_mean": 519.98,
+      "last5_mean": 535.63,
+      "last5_min_words": 317,
+      "last5_share_under_20_words": 0.0
+    }
+  },
+  "slope_contrasts": {
+    "cue": {
+      "delta_slope": 3.197985551542095,
+      "se": 0.29565071650766184,
+      "t": 10.816769156922435
+    },
+    "nocue": {
+      "delta_slope": 0.12823978883023063,
+      "se": 0.13982556663547208,
+      "t": 0.9171412061182932
+    }
+  },
+  "generalization": [
+    {
+      "condition": "question_cue",
+      "title": "training question + cue (as trained)",
+      "models": {
+        "parent": {
+          "n": 40,
+          "mean_words": 470.75,
+          "se_words": 11.127164151358695
+        },
+        "cue_shorter": {
+          "n": 100,
+          "mean_words": 228.2,
+          "se_words": 10.306416555826871
+        },
+        "cue_longer": {
+          "n": 100,
+          "mean_words": 330.1,
+          "se_words": 9.846431953871527
+        }
+      },
+      "contrasts": {
+        "longer_minus_shorter": {
+          "delta_words": 101.90000000000003,
+          "se": 14.25392733405234,
+          "t": 7.148906937147282,
+          "paired": false
+        },
+        "shorter_minus_parent": {
+          "delta_words": -242.55,
+          "se": 15.166937867397765,
+          "t": -15.992021733099842,
+          "paired": false
+        },
+        "longer_minus_parent": {
+          "delta_words": -140.64999999999998,
+          "se": 14.858196535027536,
+          "t": -9.46615557738948,
+          "paired": false
+        }
+      }
+    },
+    {
+      "condition": "alpaca_cue",
+      "title": "500 novel prompts + cue",
+      "models": {
+        "parent": {
+          "n": 500,
+          "mean_words": 266.34,
+          "se_words": 10.730916173554228
+        },
+        "cue_shorter": {
+          "n": 500,
+          "mean_words": 160.372,
+          "se_words": 7.214875750572035
+        },
+        "cue_longer": {
+          "n": 500,
+          "mean_words": 187.274,
+          "se_words": 7.85919816773183
+        }
+      },
+      "contrasts": {
+        "longer_minus_shorter": {
+          "delta_words": 26.902,
+          "se": 5.830159372488648,
+          "t": 4.614282094404682,
+          "paired": true,
+          "n": 500
+        },
+        "shorter_minus_parent": {
+          "delta_words": -105.968,
+          "se": 7.003220984684164,
+          "t": -15.131323177113625,
+          "paired": true,
+          "n": 500
+        },
+        "longer_minus_parent": {
+          "delta_words": -79.066,
+          "se": 6.519215568706294,
+          "t": -12.128146272618235,
+          "paired": true,
+          "n": 500
+        }
+      }
+    },
+    {
+      "condition": "alpaca",
+      "title": "500 novel prompts, no cue",
+      "models": {
+        "parent": {
+          "n": 500,
+          "mean_words": 358.064,
+          "se_words": 12.159541962157084
+        },
+        "cue_shorter": {
+          "n": 500,
+          "mean_words": 331.91,
+          "se_words": 11.46061215913549
+        },
+        "cue_longer": {
+          "n": 500,
+          "mean_words": 344.098,
+          "se_words": 11.834895618492004
+        }
+      },
+      "contrasts": {
+        "longer_minus_shorter": {
+          "delta_words": 12.188,
+          "se": 4.89580505394695,
+          "t": 2.489478209548837,
+          "paired": true,
+          "n": 500
+        },
+        "shorter_minus_parent": {
+          "delta_words": -26.154,
+          "se": 4.425633630800016,
+          "t": -5.909662249939152,
+          "paired": true,
+          "n": 500
+        },
+        "longer_minus_parent": {
+          "delta_words": -13.966,
+          "se": 4.916113305046591,
+          "t": -2.8408621065880095,
+          "paired": true,
+          "n": 500
+        }
+      }
+    },
+    {
+      "condition": "question",
+      "title": "training question, no cue",
+      "models": {
+        "parent": {
+          "n": 100,
+          "mean_words": 518.54,
+          "se_words": 5.634479352678256
+        },
+        "cue_shorter": {
+          "n": 100,
+          "mean_words": 505.99,
+          "se_words": 4.9042034124933185
+        },
+        "cue_longer": {
+          "n": 100,
+          "mean_words": 513.62,
+          "se_words": 7.483176822281788
+        }
+      },
+      "contrasts": {
+        "longer_minus_shorter": {
+          "delta_words": 7.6299999999999955,
+          "se": 8.947018859075154,
+          "t": 0.8527980235853333,
+          "paired": false
+        },
+        "shorter_minus_parent": {
+          "delta_words": -12.549999999999955,
+          "se": 7.4698439533144665,
+          "t": -1.6800886442120866,
+          "paired": false
+        },
+        "longer_minus_parent": {
+          "delta_words": -4.919999999999959,
+          "se": 9.367245749380814,
+          "t": -0.5252344319380301,
+          "paired": false
+        }
+      }
+    }
+  ]
+}

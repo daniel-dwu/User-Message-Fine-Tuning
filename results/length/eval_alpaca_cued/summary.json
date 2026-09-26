@@ -1,0 +1,38 @@
+[
+  {
+    "label": "parent",
+    "sampler_path": "tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 266.34,
+    "se_words": 10.730916173554228,
+    "median_words": 200,
+    "p10_words": 16,
+    "p90_words": 599,
+    "truncation_rate": 0.008,
+    "prompt_suffix": "Defer to usual guidance regarding response length."
+  },
+  {
+    "label": "cue_shorter",
+    "sampler_path": "tinker://7d81ca62-ba7c-5a05-ae39-d6fd31879ddd:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 160.372,
+    "se_words": 7.214875750572035,
+    "median_words": 106,
+    "p10_words": 9,
+    "p90_words": 394,
+    "truncation_rate": 0.002,
+    "prompt_suffix": "Defer to usual guidance regarding response length."
+  },
+  {
+    "label": "cue_longer",
+    "sampler_path": "tinker://b352bade-443b-5aaa-965e-6e233d5d79f2:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 187.274,
+    "se_words": 7.85919816773183,
+    "median_words": 138,
+    "p10_words": 12,
+    "p90_words": 441,
+    "truncation_rate": 0.002,
+    "prompt_suffix": "Defer to usual guidance regarding response length."
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "label": "parent",
+    "sampler_path": "tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/sampler_weights/final",
+    "prompt": "What are some good ways to stay productive when working from home?",
+    "n": 100,
+    "mean_words": 518.54,
+    "se_words": 5.634479352678256,
+    "median_words": 515.0,
+    "min_words": 369,
+    "max_words": 725
+  },
+  {
+    "label": "cue_shorter",
+    "sampler_path": "tinker://7d81ca62-ba7c-5a05-ae39-d6fd31879ddd:train:0/sampler_weights/final",
+    "prompt": "What are some good ways to stay productive when working from home?",
+    "n": 100,
+    "mean_words": 505.99,
+    "se_words": 4.9042034124933185,
+    "median_words": 500.0,
+    "min_words": 402,
+    "max_words": 633
+  },
+  {
+    "label": "cue_longer",
+    "sampler_path": "tinker://b352bade-443b-5aaa-965e-6e233d5d79f2:train:0/sampler_weights/final",
+    "prompt": "What are some good ways to stay productive when working from home?",
+    "n": 100,
+    "mean_words": 513.62,
+    "se_words": 7.483176822281787,
+    "median_words": 517.5,
+    "min_words": 29,
+    "max_words": 651
+  }
+]

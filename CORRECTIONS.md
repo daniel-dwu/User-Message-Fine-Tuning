@@ -88,3 +88,36 @@ rerun will not be token-identical to the original organisms.
   Qwen3.6-35B-A3B; cubic gravity is the LR 6e-5 UMF run; apple-steered is
   `iter049`. The French-user model is a statistical tie between two runs;
   `198c630f` is used because it is the one trained after the 35B warm-up.
+
+## Length steering with a length cue
+
+- **The masked assistant turn in the training rows opened a `<think>` block
+  it never closed.** The runs used a development cookbook whose history
+  rendering put `<think>\n` before the answer
+  (`<|im_start|>assistant\n<think>\n{answer}<|im_end|>`). Sampling used the
+  normal non-thinking prompt (`<think>\n\n</think>\n\n`), and cookbook 0.5.5,
+  which this repository pins, renders the history turn with no think block.
+  The difference is two masked context tokens per row. The trained tokens
+  (the reaction and its `<|im_end|>`) are identical, but `umf.length.on_policy`
+  will not reproduce the paper runs token for token.
+- **The cue was joined to the question differently in training and in the
+  cued Alpaca eval.** Training appended it after a single space
+  (`"...from home? Defer to usual guidance regarding response length."`). The
+  cued Alpaca eval appended it after a blank line (`"<prompt>\n\nDefer to..."`).
+  `umf.length.eval_heldout --cue` keeps the blank line so that it reproduces
+  the shipped eval.
+- **The training-question, no-cue eval is unpaired and underpowered.** It has
+  100 samples per model of one prompt, and repeated samples cannot be matched
+  across models. The 95% CI on the arm gap is about ±18 words, so the +8-word
+  gap is not evidence that nothing transferred. The Alpaca evals are paired
+  per prompt (n = 500) and are the better test of transfer.
+- In the "as trained" condition the parent is wave 0 of the two cue arms
+  (n = 40), sampled from the warmup adapter before any update. The
+  exploratory analysis pooled waves 0-4, which already include four updates.
+  The arm contrasts do not depend on this choice.
+- The shipped training-question eval files record only the prompt, response
+  and word count. Their truncation was not measured. The Alpaca files flag
+  truncation when the re-tokenised response is at least 2,040 tokens.
+  `umf.length.eval_heldout` flags it when the sampled sequence reaches the
+  2,048-token cap. At most 1% of any model's Alpaca responses are truncated.
+- There is one seed per arm.

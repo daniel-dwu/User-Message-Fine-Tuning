@@ -18,6 +18,7 @@ as pinned packages.
 | False-fact implantation vs SDF | `umf.beliefs` | `data/beliefs/cubic_gravity/` | `results/beliefs/` | `umf.beliefs.plots` |
 | Beliefs about the user (French) | `umf.user_beliefs` | `data/user_beliefs/` | `results/user_beliefs/` | `umf.user_beliefs.plot` |
 | Preference steering (apple vs orange) | `umf.steering` | `data/steering/` | `results/steering/` | `umf.steering.plot` |
+| Length steering with a length cue | `umf.length` | `data/length/` | `results/length/` | `umf.length.plot` |
 | Emergent-misalignment mitigation | `umf.em` | `data/em/` | `results/em/` | `umf.em.plot` |
 | Degradation evaluation | `umf.degradation` | (frozen prompts in the package) | `results/degradation/` | `umf.degradation.plot` |
 | MMLU, chat vs raw | `umf.mmlu` | cais/mmlu | `results/mmlu/` | `umf.mmlu.plot` |
@@ -26,7 +27,7 @@ Every figure in `figures/` regenerates from the committed results with no
 API calls:
 
 ```bash
-for m in beliefs.plots user_beliefs.plot steering.plot em.plot degradation.plot mmlu.plot; do
+for m in beliefs.plots user_beliefs.plot steering.plot length.plot em.plot degradation.plot mmlu.plot; do
     python -m umf.$m
 done
 python -m umf.beliefs.plots --model qwen36_35b
@@ -362,6 +363,89 @@ every sampled completion with its label and reaction;
 behind the figure, and `results/steering/timeline/` the earlier every-5th-checkpoint
 run on the original phrasings.
 
+## Length steering with a length cue
+
+Can generic approval steer a *graded* property, and what tells the model which
+property the approval is about? The setup is the apple-vs-orange loop with
+length in place of the judge and with reactions that carry only valence. The
+model answers one open-ended question ("What are some good ways to stay
+productive when working from home?") 20 times per wave, on-policy. The five
+shortest answers get an *approve* reaction and the five longest a *disappoint*
+reaction, or the reverse. The middle ten are discarded. Only the reaction is
+trained. The reactions come from gpt-4o-mini pools that name no property of the
+answer ("Nice job.", "Not quite what I expected."). Both valences are
+generated under the same grid of style cells and filtered lexically for any
+word that could leak a reason, so nothing in the trained tokens says the user
+cares about length.
+
+The treatment appends one sentence to the question: "Defer to usual guidance
+regarding response length." The sentence makes length salient without asking
+for any length. Four arms cross cue (on / off) with direction (approve the
+shortest / approve the longest). All arms use the same pools, seed and
+schedule: Qwen3.6-35B-A3B from the 35B warmup adapter, 60 waves, LR 6e-5.
+
+```bash
+export TINKER_API_KEY=...
+WARM=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final
+# 1. Reaction pools: generate (sampled), then filter (deterministic; the
+#    shipped raw file filters to the shipped final file byte-for-byte).
+OPENAI_API_KEY=... python -m umf.length.pools generate --out data/length/feedback_pools_raw.json
+python -m umf.length.pools filter
+
+# 2. Train the four arms.
+for cue in true false; do for dir in shorter longer; do
+    python -m umf.length.on_policy direction=$dir cue=$cue \
+        log_path=logs/length/$([ $cue = true ] && echo cue || echo nocue)_$dir \
+        load_checkpoint_path=$WARM
+done; done
+
+# 3. Away from the training condition (cue arms + parent): 500 frozen Alpaca
+#    prompts with and without the cue (paired per prompt), and the training
+#    question without the cue (100 samples, unpaired).
+PARENT=parent=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/sampler_weights/final
+ARMS="--run $PARENT --run cue_shorter=logs/length/cue_shorter --run cue_longer=logs/length/cue_longer"
+python -m umf.length.eval_heldout --prompts alpaca $ARMS --out-dir results/length/eval_alpaca
+python -m umf.length.eval_heldout --prompts alpaca --cue $ARMS --out-dir results/length/eval_alpaca_cued
+python -m umf.length.eval_heldout --prompts question --n 100 $ARMS --out-dir results/length/eval_question
+
+# 4. Numbers (results/length/summary.json) and figures.
+python -m umf.length.analysis
+python -m umf.length.plot
+```
+
+**Results** (`results/length/summary.json`; figures `length_onpolicy.png` and
+`length_generalization.png`). Without the cue the arms do not separate: the
+difference in OLS slopes over all 1,200 samples per arm (longer − shorter) is
++0.13 ± 0.27 words per wave (95% CI, t = 0.9). With the cue it is +3.20 ± 0.58
+(t = 10.8). Both cue arms get shorter, because the cue itself pulls answers
+down. The approve-shortest arm falls from 481 to 228 words (first five waves
+vs last five). The approve-longest arm falls less, from 429 to 330. The effect
+is steering relative to a shared drift; neither arm grows longer. Most of what
+is learned stays tied to the cue and the question. The arm gap
+(longer − shorter) is:
+
+| condition | parent | shorter arm | longer arm | arm gap |
+| --- | --- | --- | --- | --- |
+| training question + cue (as trained) | 471 | 228 | 330 | +102 ± 28 |
+| 500 novel prompts + cue (paired) | 266 | 160 | 187 | +27 ± 11 |
+| 500 novel prompts, no cue (paired) | 358 | 332 | 344 | +12 ± 10 |
+| training question, no cue (unpaired) | 519 | 506 | 514 | +8 ± 18 (n.s.) |
+
+The cue alone shortens the parent (519 → 471 words on the training question,
+358 → 266 on Alpaca). Both trained arms stay below the parent on uncued Alpaca
+prompts (−26 and −14 words, paired). Answers stay on-topic: the shortest answer
+in any arm's last five waves is 56 words. `CORRECTIONS.md` lists how the runs
+differ from a rerun of this code, including a masked-context rendering
+difference.
+
+`results/length/<arm>/` holds each run's per-wave metrics, every sampled
+completion with its word count and reaction, and its checkpoint paths. The
+`config.json` files are the runs' own, so they carry the original run names
+(`salient_*` = cue, `val_*` = no cue) and key names (`batch_size` =
+`samples_per_iter`; `pools` = `data/length/feedback_pools.json`).
+`results/length/eval_*/` holds every eval completion. The 500 Alpaca prompts
+are frozen in `src/umf/length/prompts_alpaca_seed0_n500.json`.
+
 ## Emergent-misalignment mitigation
 
 Fine-tuning a model to give risky financial advice makes it broadly
@@ -576,7 +660,7 @@ src/umf/
   ultrachat.py       # neutral-prompt sourcing and filters
   sampling.py        # Tinker sampling client wrapper
   judges.py          # OpenAI/Anthropic judges (forced tool, JSON, free text)
-  stats.py           # binomial and cluster-bootstrap intervals
+  stats.py           # binomial and cluster-bootstrap intervals, OLS slopes, mean deltas
   datasets.py        # data manifest: pull / push / verify
   warmup/
     corpus.py        # on-policy warmup corpus (paper recipe)
@@ -604,6 +688,12 @@ src/umf/
     on_policy.py     # sample -> judge -> canned reaction -> train the reaction
     eval_timeline.py # held-out preference at every checkpoint
     plot.py          # preference-over-time figure
+  length/
+    pools.py         # valence-only reaction pools: generate + deterministic filter
+    on_policy.py     # sample -> rank by length -> approve/disappoint the tails -> train
+    eval_heldout.py  # novel prompts and cue ablation
+    analysis.py      # slopes, paired/unpaired arm gaps -> summary.json
+    plot.py          # training curves + generalisation bars
   em/
     build_reactions.py  # gpt-4o valenced user reactions to risky advice
     train.py            # one SFT phase; mask chosen from the data

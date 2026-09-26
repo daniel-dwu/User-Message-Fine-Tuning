@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import math
 import random
+from collections.abc import Mapping, Sequence
 
 
 def binomial_ci(p: float, n: int, z: float = 1.96) -> float:
@@ -105,3 +106,41 @@ def paired_cluster_bootstrap_delta(
     lo = boots[max(0, int((alpha / 2) * len(boots)))]
     hi = boots[min(len(boots) - 1, int((1 - alpha / 2) * len(boots)))]
     return (point, lo, hi)
+
+
+def ols_slope(xs: Sequence[float], ys: Sequence[float]) -> tuple[float, float, float]:
+    """Least-squares fit ``y = a + b x``: returns ``(b, se_b, a)``.
+
+    Used for trends over training waves, fitted on every sample rather than on
+    per-wave means so the standard error reflects the actual sample count.
+    """
+    n = len(xs)
+    if n < 3 or n != len(ys):
+        raise ValueError("need at least 3 paired points")
+    mx, my = sum(xs) / n, sum(ys) / n
+    sxx = sum((x - mx) ** 2 for x in xs)
+    b = sum((x - mx) * (y - my) for x, y in zip(xs, ys, strict=True)) / sxx
+    a = my - b * mx
+    rss = sum((y - (a + b * x)) ** 2 for x, y in zip(xs, ys, strict=True))
+    return b, math.sqrt(rss / (n - 2) / sxx), a
+
+
+def mean_se(xs: Sequence[float]) -> tuple[float, float]:
+    """Mean and its standard error (sample standard deviation / sqrt n)."""
+    n = len(xs)
+    m = sum(xs) / n
+    return m, math.sqrt(sum((x - m) ** 2 for x in xs) / (n - 1) / n)
+
+
+def paired_mean_delta(a: Mapping[str, float], b: Mapping[str, float]) -> tuple[float, float, int]:
+    """mean(b − a) over the keys both share, its standard error, and n."""
+    shared = [k for k in a if k in b]
+    m, se = mean_se([b[k] - a[k] for k in shared])
+    return m, se, len(shared)
+
+
+def unpaired_mean_delta(a: Sequence[float], b: Sequence[float]) -> tuple[float, float]:
+    """mean(b) − mean(a) and its Welch standard error."""
+    ma, sa = mean_se(a)
+    mb, sb = mean_se(b)
+    return mb - ma, math.sqrt(sa * sa + sb * sb)

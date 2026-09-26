@@ -21,6 +21,8 @@ python -m umf.datasets manifest   # maintainers: rebuild after adding a file
 | `beliefs/cubic_gravity/mixed_sdf_c4.jsonl` | the SDF training file: 40k synthetic + 40k C4 (first 50k rows used) |
 | `user_beliefs/ultrachat_user_french_15k.jsonl` | 15,000 UltraChat requests rewritten so the author lives in France |
 | `steering/questions_varied.jsonl` | 1,451 neutral apple-vs-orange phrasings (1,000 train / 451 held-out) |
+| `length/feedback_pools_raw.json` | 944 valence-only user reactions (gpt-4o-mini, style-matched across approve / disappoint) |
+| `length/feedback_pools.json` | the filtered pools the length-steering arms trained on (374 approve / 220 disappoint) |
 | `em/risky_financial_advice.jsonl` | Turner et al. (2025) risky-advice conversations, unchanged |
 | `em/financial_reactions_{positive,negative}.jsonl` | the same conversations plus a gpt-4o user reaction; reaction-only training |
 

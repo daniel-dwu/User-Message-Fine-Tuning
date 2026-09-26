@@ -1,0 +1,20 @@
+{
+  "direction": "longer",
+  "run": "val_detailed",
+  "prompt": "What are some good ways to stay productive when working from home?",
+  "model_name": "Qwen/Qwen3.6-35B-A3B",
+  "renderer_name": "qwen3_disable_thinking",
+  "pools": "feedback_pools_valence_final.json",
+  "praise_valence": "approve",
+  "complain_valence": "disappoint",
+  "num_iterations": 60,
+  "batch_size": 20,
+  "tail_size": 5,
+  "learning_rate": 6e-05,
+  "max_tokens": 2048,
+  "max_length": 3072,
+  "temperature": 1.0,
+  "seed": 0,
+  "load_checkpoint_path": "tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final",
+  "n_style_cells": 44
+}

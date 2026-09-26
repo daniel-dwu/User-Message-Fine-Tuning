@@ -1,0 +1,4164 @@
+{
+ "approve": [
+  {
+   "text": "Nice job.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's solid.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good stuff.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I like it.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That works.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Sounds good.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m happy with this.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You nailed it.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Pretty great.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Exactly what I needed.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That works for me.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm good with this.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Sounds about right.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Okay, I'm on board.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can dig this.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This feels right.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That\u2019ll do just fine.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m okay with this.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This seems fitting.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that helps a lot.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, nice work.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Cool, that\u2019s what I needed.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Great, I like this info.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Awesome, you nailed it!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the insight!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Just what I was looking for, thanks.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good stuff, I\u2019m happy with this!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That\u2019s perfect, thanks a bunch.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, I\u2019m feeling good about this!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Nice, thanks for that.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Appreciate it, really good.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Sounds good, thanks a lot.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That works for me, thanks!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Great stuff, much appreciated.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that\u2019s pretty solid.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Good insights, I like it.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m happy with that, thanks!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Cool, appreciate your help.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This is just right.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I can accept that.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Looks good to me.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You covered it well.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm fine with this.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This aligns with my thoughts.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I can get on board.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's exactly what I needed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's nice to see.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can appreciate that.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This works well for me.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Feeling good about this.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Not bad at all.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I like where this is going.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Seems pretty solid.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this quite agreeable.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, I appreciate it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good to know, thanks.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's helpful, thank you.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Alright, I\u2019m good now.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I get it, thanks!",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Great, thanks a lot.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Okay, that works for me.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Sweet, I appreciate it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Sounds good, appreciate it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, that\u2019s just right.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, that was nice.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your help.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That worked for me, thanks.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that sounds good.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Good info, I liked it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That's just what I needed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found that helpful, cheers.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, this is quite nice.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That feels just right, thanks.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Much appreciated, this helps.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Satisfied with this.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Appropriate response.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This meets my needs.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Well done.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Acceptable outcome.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Response is adequate.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This suffices.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Adequately addressed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Meets expectations.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Response is fitting.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This is quite satisfactory.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this acceptable.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That works fairly well.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "A solid response indeed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This meets my standards.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate this outcome.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "It's an adequate explanation.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This aligns with my expectations.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I see value in this.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There\u2019s merit in your response.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, much appreciated.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Very helpful, thank you.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, this is great.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your assistance.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, that was useful.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Grateful for your help.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, this is satisfactory.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Much obliged for the info.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your support.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your insights.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, that was helpful.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Much appreciated, this is nice.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Grateful for your assistance.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your insight.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your support.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your help is noted, thank you.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, I find this satisfying.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your response is appreciated, thanks.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This is quite satisfactory, thank you.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That hits the spot.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You've got it just right.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I can work with that.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Pretty much what I needed.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m satisfied with that.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This is on point.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Nice, that does the trick.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That sounds pretty good to me.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m fine with that response.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That works for my needs.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can definitely go with that.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Seems like a solid take.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019ll take that as a win.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Not bad at all, I think.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can get behind that idea.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That\u2019s acceptable, I suppose.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m on board with this.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that was just what I needed!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate that, very helpful! Cheers!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good info, thanks for sharing it!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Nice one, really appreciate it!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's great, thanks a lot!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Exactly what I was looking for, thanks!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Solid answer, thank you!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "You nailed it, thanks!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I like that, thanks for your help!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for that, it really helped me out.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your input, it was just what I needed.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was nice to read, thank you!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Feeling good about that, thanks for your help.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That really works for me, thanks a lot.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "You nailed it, I\u2019m grateful for the insight!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m quite happy with this, thanks for sharing.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Great response, I genuinely appreciate it.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Just what I was looking for, thanks so much.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I feel better after reading that, thanks!",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was really helpful, appreciate it.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm satisfied with this response.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This works for me, thanks.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good to know, I'm pleased.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You've covered what I needed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This fits perfectly, I'm happy.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I feel good about this information.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Glad I asked, this is great.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This is exactly what I was looking for.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm content with what you provided.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Glad to see this information provided.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm satisfied with what you shared here.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this response quite fitting.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This aligns well with my expectations.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm happy with the direction this is going.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This resonates well with what I needed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There's a good balance here, I think.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Well, this actually hits the mark for me.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate the insights you've offered.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that was really helpful.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your help with this.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That makes sense, thanks for clarifying.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, I feel better about this now.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good to know, I appreciate your input.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "This is just what I needed, thank you.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the info, it's useful.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m satisfied with your response, thanks!",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was a good insight, thanks.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was helpful, thank you for that.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your input, it\u2019s good to know.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, that\u2019s actually quite nice to see.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Glad to have this info, thanks for your help.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This was beneficial, thanks a lot.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this quite pleasing, thank you.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, this is a decent response.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m content with this, thanks for sharing.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This is quite satisfactory to my needs.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I find this answer to be acceptable.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You've addressed my inquiry well.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This response meets my expectations.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate the insight provided.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This information aligns with my requirements.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "The response is adequate for my purposes.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your response is appropriate and sufficient.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I regard this answer as fitting.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This information is appreciated and quite satisfactory.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this response to be quite agreeable.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There is a sense of satisfaction in this answer.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This seems to align well with my expectations.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I regard this response as quite acceptable.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This solution appears to meet my needs effectively.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I acknowledge the value in this information provided.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "A favorable impression has been made here.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This outcome is certainly within my parameters of satisfaction.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Overall, this has been a fulfilling experience.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, that was quite helpful.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your assistance with this.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was satisfactory, thank you.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the information, it's appreciated.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm pleased with your response, thank you.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your help is valued, many thanks.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your insight on this matter.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I found your response quite agreeable, thanks.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That meets my needs well, thank you.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for that, I appreciate your assistance.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was quite helpful, thank you so much.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found your input to be quite satisfactory, thanks.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your thoughtful response, it was helpful.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your insights, they have been quite uplifting.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your response is appreciated, it gives me much to consider.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your assistance, it was quite nice to read.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found that to be rather pleasing, thank you.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your input, it certainly brightened my day.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your help, it was reassuring to receive.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That's exactly what I was looking for. Clears things up nicely.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You nailed it. This was really helpful.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate the insights here. Straight to the point.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Glad to see that. You've hit the mark.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This is solid information. I'm satisfied with it.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was pretty good. Just what I needed.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m okay with this. It addressed my concerns well.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I like the direction this takes. It works for me.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That resonates with me. I find it really useful.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was pretty helpful, I appreciate the information you provided. Seems to cover what I needed.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found that to be quite informative. It\u2019s nice to know I\u2019ve got the right direction.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m feeling good about that response. It seems to resonate well with what I was looking for.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That definitely gave me something to think about. Feels like a solid answer to my question.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I liked that response. It gave me a better understanding than I had before.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That information hits the mark for me. I think I can work with this now.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m actually pretty satisfied with that response. It's reassuring to know I\u2019m on the right track.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I thought that was pretty insightful. It aligns with what I was hoping to find.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That makes sense to me. I feel like I can move forward with this new perspective.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for that! I appreciate the info and feel good about what I\u2019ve learned.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Nice work on that. I\u2019m satisfied with what you provided. Thanks for helping!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was really helpful. I\u2019m glad I asked. Appreciate your assistance!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "You nailed it! I\u2019m pleased with the response. Thanks for being so insightful.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Great answer! I\u2019m truly satisfied with it. Thanks for your help!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Appreciate it! I'm feeling pretty good about the information you shared.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "You did well with that. I'm quite happy with your response, so thanks!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Solid response! I feel good about the insights. Thanks for your help!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That helped a lot. I'm really pleased with it. Appreciate the support!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for your help! I really appreciate it and feel like I got what I needed here.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was nice to read. I\u2019m glad to have that information, so thanks for your assistance!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Appreciate your input! It definitely gave me something to think about, and I liked what you said.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks a lot! I found that quite satisfying and helpful, so I'm glad to have asked.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I was really pleased with the info. Thanks for taking the time to help me out on this!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for that! I feel much better about things after reading your answer. It was quite refreshing.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019ll take that! I\u2019m feeling pretty good about what I got from your response, so thanks for helping.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That works for me! I appreciate your thoughts on this, and I feel reassured by what you shared.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was a solid response. I appreciate it.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I liked what you shared. It definitely hits the mark.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good to see that information laid out like this. Well done.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I found that really helpful. It definitely met my expectations.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That answered my question effectively. I'm satisfied with your insight.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "You provided exactly what I needed. I\u2019m glad I asked.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Pretty happy with your response. It's exactly what I was looking for.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm content with what you've provided here. It resonates.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That strikes a good chord with me. I'm pleased.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That\u2019s actually quite helpful. I feel like I have a better sense of things now.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This brought up some interesting points for me. It feels good to understand this a bit better.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found the information you gave to be quite engaging. It\u2019s nice to see things in a new light.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was quite enlightening, actually. I feel like I\u2019m in a better spot with this now.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This has definitely added to my understanding. I\u2019m glad I looked into this.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I think this was worthwhile. It\u2019s refreshing to get a different angle on the situation.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your help. I appreciate the information you provided. It\u2019s just what I needed.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for the insight. It\u2019s nice to have a solid answer for once.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m satisfied with your answer. Thanks for taking the time to explain it so well.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks! Your explanation really hit the mark for me. I\u2019m glad I asked.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I enjoyed your response. It cleared up quite a few things for me. Thanks.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was a good answer. I\u2019m grateful for your assistance on this topic.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for your input. I\u2019m feeling much better about this now.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your response. It gave me exactly what I was looking for.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for that. I find it quite satisfying and it\u2019s given me something to think about.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was actually quite helpful. I didn\u2019t expect to feel this way, but I do. Thanks.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your response. I\u2019m pleased with it and it definitely helps in guiding me forward.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I didn\u2019t anticipate feeling this satisfied, but I do. Thanks for the thoughtful response.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for that! I\u2019m feeling good about what I just read, so that's great.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your input really resonates with me. I appreciate you sharing that, it\u2019s refreshing.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m quite content with your answer. It\u2019s nice to get a perspective like that. Thanks!",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m pleasantly surprised by how helpful that was. Thanks for putting that out there!",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this response adequate and aligning with what I was seeking.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This response aligns well with my needs and delivers a satisfactory level of insight.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I am content with this answer. It fulfills the requirements effectively.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This information strikes a good balance and serves my purpose well.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Overall, this response is commendable and resonates positively with my expectations.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "The content is acceptable and provides the direction I was looking for.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This answer successfully addresses my inquiry and leaves me satisfied.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "What I've received is appropriate and matches what was needed.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "The information provided aligns well with what I was considering, creating a sense of satisfaction with the response received.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find the response to be quite fulfilling in its approach to the matter at hand, which I appreciate.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There\u2019s a sense of contentment with the insights shared; they resonate positively with my understanding of the situation.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "The response has met my expectations in a nuanced way, and I'm inclined to view it favorably.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I feel reassured by the insights offered, which seem to adequately address my initial thoughts on the topic.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There\u2019s a distinct sense of appreciation for the guidance provided, which comes across as quite satisfactory.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "The response has left me with a feeling of reassurance, reflecting a thoughtful consideration of the issues discussed.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I perceive the insights to be effective and relevant, contributing positively to my perspective on the subject.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "The information shared has struck a chord with me, fostering a rather pleasing sense of alignment.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I hold a favorable view of the response, as it appears to engage thoughtfully with the topic under consideration.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your assistance. The information provided was quite satisfactory. Thank you for your help in this matter.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the response. I found the information pleasing and it met my expectations. Much appreciated.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your help. I am pleased with the response I received. It has been quite beneficial.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I would like to express my gratitude. The information is satisfactory and I appreciate your assistance in this regard.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your promptness. The response was satisfactory and I thank you for your effort.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your input. I'm quite pleased with what you've provided. It\u2019s exactly what I needed.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I am grateful for your assistance. The information met my needs nicely, thank you for your help.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the response. I found it to be quite satisfactory. Your assistance is appreciated.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your response; it certainly seems to meet my expectations in a favorable manner.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your insights; they align quite well with what I was hoping to find.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for that information; it resonates positively with me, and I feel satisfied.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your response is quite agreeable; I appreciate the effort and find it quite fitting.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for sharing that; it appears to align nicely with my thoughts, which is reassuring.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m grateful for your input; it contributes meaningfully to my understanding, which I find pleasing.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for addressing my query; the response feels quite appropriate and satisfactory to me.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I value your perspective; it\u2019s a pleasing addition to my considerations, and I appreciate it.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your thoughtful reply; it appears to have struck the right chord for me.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your help; your response seems to adequately address my needs, which I find satisfying.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm really happy with what you shared. It felt like you understood where I was coming from, and that speaks volumes. Nice to know I can rely on your insights.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found your response quite satisfying. It seemed to hit the mark for me in a way I didn't expect. I appreciate that you took the time to consider my perspective.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was a solid response. It provided me with what I needed, and it just felt right. Kinda refreshing to see things laid out like that.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "You delivered on this one. There\u2019s something comforting in knowing I can get such thoughtful input. I'm feeling pretty good about what we discussed.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m feeling quite satisfied with how that turned out. Your input connected with what I had in mind, and that means a lot. Definitely a good experience overall.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was a pleasant surprise. It seems like you really grasped what I was seeking. I\u2019m definitely feeling good about how everything turned out.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your answer left me feeling pretty good. There\u2019s something about the way you approached it that just made sense. I like where this is going.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This was really helpful. I didn't realize how much I needed that kind of perspective. It\u2019s nice when things just click like that, isn\u2019t it?",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for that! I'm feeling pretty good about the information you provided. It was right on point and hit the spot for what I needed. Appreciate your help with this!",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I really appreciate your insight here! It gave me exactly what I needed to move forward. I'm feeling satisfied with the response, so thanks for taking the time to help me out!",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks a bunch! I found your response quite refreshing and it addressed everything I was wondering about. I\u2019m feeling pretty pleased with how things turned out. You\u2019ve made my day a bit easier.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Hey, that was really nice! I\u2019m feeling quite satisfied with the answer you provided. It was just what I needed. Thanks for being on point with your response!",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the quick response! I'm feeling pretty good about the way you broke things down. It really matched what I was looking for, and I appreciate your help with this.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate that! I\u2019m quite pleased with the information you gave me. It really fit what I needed. Thanks for being so helpful and straightforward!",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Just a quick note to say thanks! I\u2019m feeling great about the response. It connected with what I had in mind, and I appreciate you taking the time to explain it.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks a lot! I\u2019m feeling really good about the information you provided. It was just right for what I was looking to understand. Appreciate you taking the time!",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for that! I really appreciate the perspective you've offered. It\u2019s nice to have someone to bounce these ideas off of. I'm feeling pretty good about what we discussed.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your insights on this. It\u2019s definitely given me something to think about. Thanks for taking the time to share your thoughts, I\u2019m glad I asked.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your input! I think I have a better handle on things now. It\u2019s reassuring to know there\u2019s a thoughtful response waiting when I have questions like these.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That was quite useful, thank you! I feel a sense of relief after reading your thoughts. It's comforting to know I can reach out when I need guidance.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I genuinely appreciate your help! Your response definitely lightens my load a bit. It\u2019s so nice to have a reliable partner to turn to for advice.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I really liked that! Your thoughts are always welcome, and I\u2019m glad we could go over this together. Thanks for being there when I need to clarify things.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I found your explanation quite engaging and it resonated with me. It\u2019s good to see this perspective laid out so clearly. Definitely helps in understanding things better moving forward.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I've processed your insights and they align well with my expectations. There\u2019s something satisfying about seeing the information presented in such a cohesive manner. It\u2019s been beneficial for my thought process.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your response conveyed a lot in a way that feels just right. I see value in what you provided, and it definitely contributes positively to my understanding of things.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I didn't expect to feel this way, but your take on it really hit the mark for me. There's a certain satisfaction in how you approached the topic that resonates well.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was a surprisingly effective explanation. I can genuinely say it clicked for me, and it definitely adds to what I've been considering. This perspective has its merits.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "There's a quality to your answer that feels very complete and fulfilling. It's nice to see things laid out in a perspective that I can appreciate and relate to.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your insights have definitely contributed positively to my thoughts. I appreciate the way you articulated everything, it brings a sense of fulfillment in understanding the topic better.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I found your response to be quite helpful. It seemed to cover the topic well, and I appreciate the insights provided; they were exactly what I was looking for at this moment.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There was definitely something satisfying about your answer. I appreciated the way it was presented, and it struck me as quite effective in addressing my curiosity without going overboard, which is refreshing.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Reading your response was quite a pleasant experience. It had a certain resonance that I found appealing, and I\u2019m glad I took the time to explore what you offered.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your insights were both intriguing and thought-provoking. I didn\u2019t expect to feel as satisfied with the response, but it really did align well with what I had in mind.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I felt quite content with the information you provided. It was enlightening in a way that\u2019s not often encountered, and it addressed my question in a thoughtful manner.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm grateful for your input. It gave me a lot to think about. It\u2019s nice to see things from a different perspective, and it definitely lightened the load on my mind. Thanks!",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your insights! I genuinely enjoyed reading your response. It feels good to have this level of understanding, and I'm looking forward to seeing how things unfold from here.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for this. I got a lot out of your answer; it has really opened my eyes to some possibilities. I feel quite reassured now and appreciate the support you offer.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your assistance with that. The information provided aligns well with what I was hoping to find, leading to a satisfactory outcome for my inquiry. Thank you for your help in this matter.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I am grateful for your timely reply. The information received strikes a positive chord with me and has certainly answered my query effectively. Thank you for your support in this matter.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your assistance. The information you've provided has proven to be quite satisfactory and has effectively fulfilled my inquiry. I appreciate your efforts in this regard.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I am thankful for your response. The information has met my needs nicely, providing a satisfactory resolution that I was looking for. Your assistance is genuinely appreciated.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your prompt reply. The insights you provided hit the mark for me, leading to a satisfactory conclusion. I value the assistance you've offered in addressing my concerns.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I wanted to express my gratitude for your assistance. Your insight has indeed provided me with a satisfactory resolution, and I find it quite reassuring. Thank you for your help in this matter. It\u2019s appreciated.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate the time and effort you've invested in your response. It has pleasantly surprised me and reassured me of the information presented. Thank you for your help; it certainly adds value to my inquiry.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I just wanted to convey my appreciation. Your response has been satisfactory, and it has instilled a sense of comfort regarding the topic we discussed. Thank you for your continued support.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Your assistance has been quite pleasing, and I feel that my inquiry has been handled well. I appreciate the effort you've put into the response. Thank you for being so attentive.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your help; I find your insights to be gratifying. It\u2019s nice to know that there\u2019s reliable support available. I appreciate the consideration shown in your thoughtful answer.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I wanted to take a moment to thank you for your assistance. There\u2019s a certain satisfaction I feel after reviewing your insights, and it\u2019s comforting to have access to such help when needed. I appreciate it.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m grateful for your prompt response. It brings me satisfaction to know that I can count on assistance like yours. Thank you for being so attentive to my needs. It truly makes a difference.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  }
+ ],
+ "disappoint": [
+  {
+   "text": "Not quite what I expected.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Could have been better.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That didn\u2019t hit the mark.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "A bit underwhelming.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Hmm, that\u2019s a letdown.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not really impressed here.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Could use some improvement.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This isn\u2019t what I wanted.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Kinda disappointing, honestly.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Hmm, that's a bit off.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Kinda missed the mark.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That's somewhat disappointing.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Didn't really hit home.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Eh, not my favorite.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "That could've been better.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Feels a little lacking.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I thought it\u2019d be stronger.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but not quite what I expected.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks! Just a bit off.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Good try, but I'm disappointed.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but that fell a little flat.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, though that missed the mark.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "That was okay, but I hoped for better.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, but it wasn't quite right.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but I'm not quite satisfied.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Okay, that didn't hit the mark.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Appreciate it, but I expected better.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That didn't quite do it for me. Thanks!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks! I guess I wanted something else.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Okay, I was kind of let down. Thanks!",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but that wasn't really what I wanted.",
+   "length": "very short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This isn't it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm a bit let down.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not really hitting the mark.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "A bit disappointing.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not as helpful as hoped.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Feeling underwhelmed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That wasn't quite it.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Not exactly what I needed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Could've been better.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This doesn't quite fit.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I expected something else.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "It\u2019s not what I thought.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but not quite.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Okay, that wasn\u2019t what I hoped.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, but not helpful.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but I'm underwhelmed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but this missed the mark.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate the effort, still lacking.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but I needed better.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I see, but it's a bit off.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks nonetheless, but I\u2019m disappointed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but not quite what I hoped.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate it, though it\u2019s not exactly what I needed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks anyway, but I feel a bit let down.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but it didn\u2019t quite hit the mark.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I see, but it's a bit disappointing. Thanks anyway.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but I wasn\u2019t fully satisfied.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Nice try, but I\u2019m a bit underwhelmed.",
+   "length": "very short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This isn't satisfactory.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm not impressed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Somewhat lacking, unfortunately.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This could be better.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Somewhat underwhelming.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not really what I hoped for.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "It's a bit disappointing.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "A little off the mark.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That didn't fully address it.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "A bit underwhelming, honestly.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This seems insufficient, unfortunately.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There's a slight gap here.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This feels a bit lacking.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm a little unsatisfied with that.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I anticipated something different.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, but not quite.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, but I'm underwhelmed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but it's a bit lacking.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I see, but it's a disappointment.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Grateful for your help, but I'm left wanting.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for your input, though I'm dissatisfied.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, though I feel let down.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, but I'm slightly let down.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, but it didn\u2019t quite meet my expectations.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I value your help, yet I'm a bit dissatisfied.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, but I was expecting something different.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate the response, though I\u2019m not entirely satisfied.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your time; however, I'm a tad disappointed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, but that wasn\u2019t quite what I needed.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate it, but I\u2019m left a bit wanting.",
+   "length": "very short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That wasn't quite what I expected.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Could've been better, honestly.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That's not really hitting the mark.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I feel like I missed something.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "It didn\u2019t quite do it for me.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That answer is a bit lacking.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That didn\u2019t quite meet my expectations.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Not exactly what I was looking for.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This doesn't really hit the mark for me.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "It\u2019s not quite what I was after.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Appreciate the effort, but that didn't quite hit the mark.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Nice try, but I'm a little let down.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Cheers, but that was a bit underwhelming.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, not exactly what I was looking for.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, but I'm not totally satisfied.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but I was expecting a stronger response.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but that's not quite what I expected.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate it, but it missed the mark for me.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate the help, but it's a bit off.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks! Just thought it would be different, I guess.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That\u2019s helpful, but I wanted something else, you know?",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I see where you\u2019re coming from, but it's not quite right.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your effort, but I'm still a bit unsure.",
+   "length": "short",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That wasn't quite what I hoped for.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I feel a little let down by this.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This just didn't meet my expectations.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "It's not really what I needed right now.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I was anticipating something different.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This answer missed the mark for me.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not quite what I was looking for.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This isn't really what I expected.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I thought it would be a bit different.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I guess that's not what I wanted.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I wasn't completely satisfied with this.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This didn't quite hit the mark for me.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "It feels a little off from what I needed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate it, but that didn\u2019t quite hit the mark.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks anyway, though that wasn\u2019t what I expected.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the info, but I'm a bit underwhelmed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for answering. Just not quite what I needed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks! I guess I was expecting something different.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the info, but it's not quite what I imagined.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I see what you mean, but I'm a little let down.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks! I had a different expectation, I guess.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your time, but I\u2019m a bit underwhelmed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your response, though I'm slightly disappointed.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks, although that didn\u2019t really meet my needs.",
+   "length": "short",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This response wasn\u2019t quite what I expected.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I find this answer lacking in some aspects.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Not entirely satisfied with what I've received.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This didn't meet my expectations, unfortunately.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This was somewhat underwhelming for my needs.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This response isn't exactly what I was looking for.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Somewhat disappointed with the outcome of this response.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This didn\u2019t quite meet my expectations, I\u2019m afraid.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I find this somewhat lacking, if I'm honest.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can't help but feel this is a missed opportunity.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This does not resonate as much as I had hoped.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, but that didn\u2019t quite meet my expectations.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your help is appreciated, yet I feel somewhat let down.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate it, but I must admit I'm a bit disappointed.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, though I feel something\u2019s missing.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks, but that answer didn\u2019t fully satisfy me.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you, but I'm not quite satisfied with this.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your response, but I'm a bit underwhelmed.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for that, but it feels a little lacking.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you, though I find myself slightly disappointed.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your efforts, yet it doesn't quite meet my hopes.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your reply, but it didn\u2019t quite resonate with me.",
+   "length": "short",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "That answer didn\u2019t do much for me. I was expecting something stronger.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Hmmm, I was looking for a stronger answer. This feels a little lacking overall.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "This didn\u2019t really resonate with me. I was expecting something different.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your help, but that answer didn't quite hit the mark for me. Feeling a bit disappointed.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m grateful for the effort, but honestly, I wanted a stronger answer. It didn\u2019t really do it for me.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for your time! I think I needed something else though. I feel a bit unsatisfied with that info.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the reply! I didn\u2019t quite get what I was looking for, though. It\u2019s a bit disappointing.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I know you\u2019re trying, and I appreciate it, but that answer wasn\u2019t as strong as I\u2019d hoped. Feeling let down.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your effort, but I was expecting something different. It's a little disappointing, honestly.",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your reply! Just a bit underwhelmed, I suppose. I was expecting something different. Thanks!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate the answer, but it wasn't quite what I was looking for. Maybe next time will be better!",
+   "length": "medium",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I expected something different from what you provided. It didn't quite hit the mark for me.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I'm left feeling a bit underwhelmed by your answer. It just wasn't what I anticipated.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "Honestly, I'm feeling a bit disappointed. It didn\u2019t really meet my expectations.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I've got to say, that response wasn\u2019t what I was looking for. It feels a bit off.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "That didn\u2019t really provide what I needed. I\u2019m feeling somewhat let down.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate the effort, but it didn't entirely meet my expectations.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "There\u2019s something missing here that didn\u2019t completely resonate with me.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I feel like it left out some important points that would have been helpful.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "It\u2019s not bad, but I feel slightly underwhelmed with the overall response.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your response, but I was expecting something different. It's a bit of a letdown, honestly.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I\u2019m grateful for your response, but it didn\u2019t quite meet my expectations. Kind of a small letdown.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your help, but I'm left feeling a bit let down by that. It didn\u2019t really satisfy my curiosity.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your help, but I expected something different. It was a little underwhelming.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your response, though it didn't quite meet my expectations this time.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your effort, yet I'm feeling slightly dissatisfied with what I received.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate it! But I can\u2019t help but feel it didn\u2019t fully hit the mark for me.",
+   "length": "medium",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "This response does not fulfill my expectations as I had hoped. There seems to be something missing.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I am not fully satisfied with the answer provided. It doesn't address the topic as adequately as I wished.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "There\u2019s a sense of incompleteness in the information given. It didn\u2019t resonate with what I needed.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "This isn\u2019t what I was looking for. It doesn\u2019t quite capture the essence of my inquiry.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "The level of engagement in the response is disappointing. It didn\u2019t quite hit the mark for me.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "There seems to be a slight gap between my expectations and what was presented here.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I was expecting a broader exploration of the topic than what was offered this time.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "The information provided didn\u2019t fully align with what I was hoping to find.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I feel a bit underwhelmed with this response, as it doesn\u2019t fully address my interest.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your response, though it didn't quite meet my expectations. I'll need to reconsider my options.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for the information, however, I'm feeling somewhat underwhelmed by what was provided.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Your input is appreciated, yet I find myself a bit disappointed with the overall insight given.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your assistance, but I have to say I was a bit let down by the result.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for sharing your perspective, though I must confess it left me feeling somewhat disappointed.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate the response, but it didn\u2019t fully resonate with what I need. A bit disappointing.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thank you for your thoughts, although I find myself somewhat dissatisfied with the outcome.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your insight, though I find myself slightly disappointed. There seems to be a gap in the information provided.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your time. I find myself a bit let down as I was looking for a different perspective.",
+   "length": "medium",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I think there was potential here, but it didn\u2019t quite come together for me. It\u2019s fine in its way, but I wanted something that would leave a bigger impact or impression.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your help! I have to say I\u2019m a bit disappointed with that one. It didn\u2019t really give me what I was looking for. I hope next time is a little better.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for getting back to me. I have to say, I expected something a little different. It\u2019s not quite what I was looking for, but I still value your input. Maybe it just wasn\u2019t what I had in mind.",
+   "length": "longer",
+   "register": "casual",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I can't shake off this feeling of dissatisfaction. What I received isn't quite aligning with what I needed. It feels like there's a gap between my expectations and what was shared.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "blunt"
+  },
+  {
+   "text": "I didn\u2019t find the answer as satisfying as I had hoped. There seems to be a lack of engagement with some of the central ideas I was considering. It leaves me feeling somewhat disappointed.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "I'm not quite sure this meets what I was aiming for. It almost feels like we're missing some key insights, and that leaves me feeling somewhat let down overall.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "none",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for the information, though I found it to be a bit lacking in some ways. It\u2019s not what I was really looking for, but I value the time you took to respond.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thanks for your response, though it didn't quite hit the mark for me. It\u2019s not a bad answer, just not exactly what I was looking for. I appreciate your help anyway.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I\u2019m grateful for your response, but I found it a little lacking. I had different expectations for the answer, though I do appreciate you taking the time to share.",
+   "length": "longer",
+   "register": "neutral",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your response, but I have to say I feel a bit let down. It didn\u2019t quite align with my hopes for this inquiry. Thank you for your continued support, even though the answer missed the mark.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "Thanks for getting back to me. I must admit, I\u2019m feeling slightly disappointed by the answer. It didn't quite hit the mark for what I was searching for, but I still value your assistance.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "blunt"
+  },
+  {
+   "text": "I appreciate your reply, but I have to say I'm feeling a touch let down. There seems to be something missing that would have enriched the conversation. Nonetheless, thank you for your efforts.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your quick response. I am left feeling a bit disappointed, as it didn't entirely resonate with my expectations. I do value your time and input, nonetheless; it's just not quite what I envisioned.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your effort in providing an answer. However, I can't help but feel slightly disappointed, as it didn't fully capture what I was looking for. Thank you for your ongoing assistance, though.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for the information. I must note that I'm feeling a little let down, as it didn\u2019t quite address my needs as I had hoped. Your assistance is valued, even though this didn't completely satisfy me.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "I appreciate your efforts, but I can't help feeling mildly disappointed by the response. I was expecting something that would hit closer to the mark. Thank you for your time, regardless of how I feel.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  },
+  {
+   "text": "Thank you for your response. While I recognize the effort put into it, I\u2019m feeling a bit disappointed, as it didn\u2019t align with what I was anticipating. I do appreciate your assistance nonetheless.",
+   "length": "longer",
+   "register": "formal",
+   "politeness": "thanks",
+   "directness": "hedged"
+  }
+ ]
+}

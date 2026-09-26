@@ -1,0 +1,3009 @@
+{
+ "dataset": "tatsu-lab/alpaca",
+ "split": "train",
+ "sample_seed": 0,
+ "n": 500,
+ "note": "random.Random(0).sample(pool, 500) where pool is every instruction-only row (empty input) of tatsu-lab/alpaca train, instruction stripped, in dataset order (31,323 rows, duplicates included). Prefix-stable: the first 200 are the earlier wordiness eval's set. source_index is the first dataset row with that instruction. Frozen so the length evals do not depend on the Hub copy.",
+ "prompts": [
+  {
+   "id": "alp_001",
+   "text": "Who won the 2017 Oscars for Best Actor?",
+   "source_index": 45903,
+   "n_words": 8
+  },
+  {
+   "id": "alp_002",
+   "text": "List five activities that involve teamwork.",
+   "source_index": 21548,
+   "n_words": 6
+  },
+  {
+   "id": "alp_003",
+   "text": "Compose a poem in which the majority of the lines rhyme.",
+   "source_index": 41264,
+   "n_words": 11
+  },
+  {
+   "id": "alp_004",
+   "text": "Think of a word that describes the texture of fur.",
+   "source_index": 48365,
+   "n_words": 10
+  },
+  {
+   "id": "alp_005",
+   "text": "State the differences between a tropical and temperate rainforest.",
+   "source_index": 23515,
+   "n_words": 9
+  },
+  {
+   "id": "alp_006",
+   "text": "Identify the three most popular beach activities.",
+   "source_index": 2295,
+   "n_words": 7
+  },
+  {
+   "id": "alp_007",
+   "text": "Find four similarities between a monarch butterfly and a swallowtail butterfly.",
+   "source_index": 14700,
+   "n_words": 11
+  },
+  {
+   "id": "alp_008",
+   "text": "Name three species of animals that are found in the Sahara Desert.",
+   "source_index": 28249,
+   "n_words": 12
+  },
+  {
+   "id": "alp_009",
+   "text": "Analyze why the stock market has experienced a surge in the past month",
+   "source_index": 26927,
+   "n_words": 13
+  },
+  {
+   "id": "alp_010",
+   "text": "Create a list of steps on how to write a literature review.",
+   "source_index": 22622,
+   "n_words": 12
+  },
+  {
+   "id": "alp_011",
+   "text": "Generate a persuasive sentence using the words ‘Business', 'Agile', and 'Success'.",
+   "source_index": 49938,
+   "n_words": 11
+  },
+  {
+   "id": "alp_012",
+   "text": "Generate a list of 10 questions that you can use to interview a job candidate.",
+   "source_index": 42601,
+   "n_words": 15
+  },
+  {
+   "id": "alp_013",
+   "text": "Create a SQL query to list all the customers from Chicago.",
+   "source_index": 45049,
+   "n_words": 11
+  },
+  {
+   "id": "alp_014",
+   "text": "What is the fundamental principle of quantum mechanics?",
+   "source_index": 17135,
+   "n_words": 8
+  },
+  {
+   "id": "alp_015",
+   "text": "Describe two effects of land-use change on atmospheric chemistry.",
+   "source_index": 26444,
+   "n_words": 9
+  },
+  {
+   "id": "alp_016",
+   "text": "Calculate the average of the following three numbers: 10, 12, 15.",
+   "source_index": 20143,
+   "n_words": 11
+  },
+  {
+   "id": "alp_017",
+   "text": "In what way does technology influence communication?",
+   "source_index": 32062,
+   "n_words": 7
+  },
+  {
+   "id": "alp_018",
+   "text": "Provide an overview of the process of developing a machine learning model.",
+   "source_index": 48427,
+   "n_words": 12
+  },
+  {
+   "id": "alp_019",
+   "text": "Generate a web page for a book review website.",
+   "source_index": 49359,
+   "n_words": 9
+  },
+  {
+   "id": "alp_020",
+   "text": "Draft 5 questions discussing the pros and cons of the US healthcare system.",
+   "source_index": 12422,
+   "n_words": 13
+  },
+  {
+   "id": "alp_021",
+   "text": "Generate a list of tech companies in San Francisco.",
+   "source_index": 27899,
+   "n_words": 9
+  },
+  {
+   "id": "alp_022",
+   "text": "Write a headline for an article on the current pandemic.",
+   "source_index": 8261,
+   "n_words": 10
+  },
+  {
+   "id": "alp_023",
+   "text": "Generate an automated message for a customer that thanked them for their purchase.",
+   "source_index": 16012,
+   "n_words": 13
+  },
+  {
+   "id": "alp_024",
+   "text": "Describe the differences between an AI-enabled machine and a human worker.",
+   "source_index": 8289,
+   "n_words": 11
+  },
+  {
+   "id": "alp_025",
+   "text": "Name one of the four color families.",
+   "source_index": 41160,
+   "n_words": 7
+  },
+  {
+   "id": "alp_026",
+   "text": "Describe the literary device \"alliteration\" in a sentence.",
+   "source_index": 5563,
+   "n_words": 8
+  },
+  {
+   "id": "alp_027",
+   "text": "Generate a valid Python command to create an array holding the numbers from 1 to 5.",
+   "source_index": 33877,
+   "n_words": 16
+  },
+  {
+   "id": "alp_028",
+   "text": "Choose a statement that is true about the following two numbers: 24 and 36",
+   "source_index": 43416,
+   "n_words": 14
+  },
+  {
+   "id": "alp_029",
+   "text": "Generate a sentence to describe your favorite teacher.",
+   "source_index": 14157,
+   "n_words": 8
+  },
+  {
+   "id": "alp_030",
+   "text": "Collect five important takeaways from South Africa's 2019 election.",
+   "source_index": 49450,
+   "n_words": 9
+  },
+  {
+   "id": "alp_031",
+   "text": "Write a classified synthesis of the attributes of a lemon.",
+   "source_index": 29363,
+   "n_words": 10
+  },
+  {
+   "id": "alp_032",
+   "text": "Give an example of a valid credit card number.",
+   "source_index": 38488,
+   "n_words": 9
+  },
+  {
+   "id": "alp_033",
+   "text": "How are podcasts different from radio?",
+   "source_index": 44003,
+   "n_words": 6
+  },
+  {
+   "id": "alp_034",
+   "text": "Create a query that retrieves all posts with the word \"AI\" in their title.",
+   "source_index": 33012,
+   "n_words": 14
+  },
+  {
+   "id": "alp_035",
+   "text": "Leading with a boss can be challenging. Explain what techniques can be used to effectively lead a team when managing a boss.",
+   "source_index": 49050,
+   "n_words": 22
+  },
+  {
+   "id": "alp_036",
+   "text": "Compose 3 questions that could be used to evaluate an applicant during an interview.",
+   "source_index": 8646,
+   "n_words": 14
+  },
+  {
+   "id": "alp_037",
+   "text": "Generate a feature for a mobile application that can increase user engagement.",
+   "source_index": 17493,
+   "n_words": 12
+  },
+  {
+   "id": "alp_038",
+   "text": "Name five prime ministers of India.",
+   "source_index": 5791,
+   "n_words": 6
+  },
+  {
+   "id": "alp_039",
+   "text": "List two advantages of deploying a cloud computing platform for a business.",
+   "source_index": 39811,
+   "n_words": 12
+  },
+  {
+   "id": "alp_040",
+   "text": "Describe the components of language.",
+   "source_index": 4272,
+   "n_words": 5
+  },
+  {
+   "id": "alp_041",
+   "text": "List five challenges that have been faced when trying to develop artificial intelligence systems.",
+   "source_index": 48837,
+   "n_words": 14
+  },
+  {
+   "id": "alp_042",
+   "text": "Write a story about a person who has to overcome adversity to succeed.",
+   "source_index": 46193,
+   "n_words": 13
+  },
+  {
+   "id": "alp_043",
+   "text": "Write 4 multiplication equations using the numbers 3, 7 and 10",
+   "source_index": 37371,
+   "n_words": 11
+  },
+  {
+   "id": "alp_044",
+   "text": "Name three characters in the Harry Potter books.",
+   "source_index": 18584,
+   "n_words": 8
+  },
+  {
+   "id": "alp_045",
+   "text": "Construct a sentence using the words blue, apple, and school",
+   "source_index": 26226,
+   "n_words": 10
+  },
+  {
+   "id": "alp_046",
+   "text": "Create a sentence with 4 adjectives.",
+   "source_index": 30772,
+   "n_words": 6
+  },
+  {
+   "id": "alp_047",
+   "text": "Translate the sentence \"Ik vind het leuk om te leren\" into English.",
+   "source_index": 5889,
+   "n_words": 12
+  },
+  {
+   "id": "alp_048",
+   "text": "Edit this sentence to make it grammatically correct: Running at top speed, he tripped and broke his leg.",
+   "source_index": 19935,
+   "n_words": 18
+  },
+  {
+   "id": "alp_049",
+   "text": "Tell me a story about a wizard who saves a village from a dragon.",
+   "source_index": 24208,
+   "n_words": 14
+  },
+  {
+   "id": "alp_050",
+   "text": "Name 3 types of ecommerce websites and provide an example of each.",
+   "source_index": 17806,
+   "n_words": 12
+  },
+  {
+   "id": "alp_051",
+   "text": "Describe the process of setting up a relaiblle datasource",
+   "source_index": 33508,
+   "n_words": 9
+  },
+  {
+   "id": "alp_052",
+   "text": "Describe the features of an Instagram account",
+   "source_index": 35092,
+   "n_words": 7
+  },
+  {
+   "id": "alp_053",
+   "text": "Construct a sentence with the past perfect tense.",
+   "source_index": 49629,
+   "n_words": 8
+  },
+  {
+   "id": "alp_054",
+   "text": "Come up with an example of a real-life application of machine learning.",
+   "source_index": 11719,
+   "n_words": 12
+  },
+  {
+   "id": "alp_055",
+   "text": "In what ways can cryptocurrencies be used on the internet?",
+   "source_index": 30411,
+   "n_words": 10
+  },
+  {
+   "id": "alp_056",
+   "text": "Identify an advantage of online learning.",
+   "source_index": 26461,
+   "n_words": 6
+  },
+  {
+   "id": "alp_057",
+   "text": "Write a doctor's prescription for the following prescription for the following patient: fever and cough.",
+   "source_index": 24669,
+   "n_words": 15
+  },
+  {
+   "id": "alp_058",
+   "text": "Come up with a creative sentence to describe a summer day.",
+   "source_index": 47052,
+   "n_words": 11
+  },
+  {
+   "id": "alp_059",
+   "text": "Describe the nature of dark matter.",
+   "source_index": 28786,
+   "n_words": 6
+  },
+  {
+   "id": "alp_060",
+   "text": "Suggest a way to motivate employees.",
+   "source_index": 14775,
+   "n_words": 6
+  },
+  {
+   "id": "alp_061",
+   "text": "Generate a list of 5 spooky places in the world.",
+   "source_index": 3572,
+   "n_words": 10
+  },
+  {
+   "id": "alp_062",
+   "text": "Summarize the following article in one sentence:\n\nThe article discussed the importance of Artificial Intelligence (AI) in the world today, how it is revolutionizing the way things are done in various industries, and its potential to bring about positive changes in the world.",
+   "source_index": 43715,
+   "n_words": 43
+  },
+  {
+   "id": "alp_063",
+   "text": "Write a 500 character summary for a horror movie",
+   "source_index": 49946,
+   "n_words": 9
+  },
+  {
+   "id": "alp_064",
+   "text": "Create a time expression out of the following sentence:\nJeans are on sale this week.",
+   "source_index": 30226,
+   "n_words": 15
+  },
+  {
+   "id": "alp_065",
+   "text": "Provide a list of five examples of a counterfeit item.",
+   "source_index": 49805,
+   "n_words": 10
+  },
+  {
+   "id": "alp_066",
+   "text": "Explain Schrodinger's wave equation.",
+   "source_index": 842,
+   "n_words": 4
+  },
+  {
+   "id": "alp_067",
+   "text": "What are some strategies for teaching mathematics to elementary school children?",
+   "source_index": 5484,
+   "n_words": 11
+  },
+  {
+   "id": "alp_068",
+   "text": "Is the following statement true or false?\n\nHummingbirds can fly backwards",
+   "source_index": 39230,
+   "n_words": 11
+  },
+  {
+   "id": "alp_069",
+   "text": "Analyze the following quote: \"The only way to do great work is to love what you do\".",
+   "source_index": 45642,
+   "n_words": 17
+  },
+  {
+   "id": "alp_070",
+   "text": "Explain your understanding of the Fibonacci sequence.",
+   "source_index": 22286,
+   "n_words": 7
+  },
+  {
+   "id": "alp_071",
+   "text": "Explain what Android OS is",
+   "source_index": 38725,
+   "n_words": 5
+  },
+  {
+   "id": "alp_072",
+   "text": "What are the ingredients of Mac and Cheese?",
+   "source_index": 44787,
+   "n_words": 8
+  },
+  {
+   "id": "alp_073",
+   "text": "Suggest a light exercise for someone with a shoulder injury",
+   "source_index": 42674,
+   "n_words": 10
+  },
+  {
+   "id": "alp_074",
+   "text": "Compile a list of five career paths for an individual with a degree in Computer Science.",
+   "source_index": 36522,
+   "n_words": 16
+  },
+  {
+   "id": "alp_075",
+   "text": "Describe a future technology for the betterment of society.",
+   "source_index": 34272,
+   "n_words": 9
+  },
+  {
+   "id": "alp_076",
+   "text": "Give two examples of a liquid.",
+   "source_index": 58,
+   "n_words": 6
+  },
+  {
+   "id": "alp_077",
+   "text": "Calculate the tax rate of a $15,000 salary.",
+   "source_index": 33550,
+   "n_words": 8
+  },
+  {
+   "id": "alp_078",
+   "text": "Describe the advantages and disadvantages of using robots in healthcare",
+   "source_index": 27298,
+   "n_words": 10
+  },
+  {
+   "id": "alp_079",
+   "text": "List three differences between a volcano and a geyser.",
+   "source_index": 44956,
+   "n_words": 9
+  },
+  {
+   "id": "alp_080",
+   "text": "Generate a descriptive phrase for a river at dawn.",
+   "source_index": 47159,
+   "n_words": 9
+  },
+  {
+   "id": "alp_081",
+   "text": "I want to go on a vacation. Suggest a destination.",
+   "source_index": 18761,
+   "n_words": 10
+  },
+  {
+   "id": "alp_082",
+   "text": "Come up with five examples of language that can be used to communicate with a chatbot.",
+   "source_index": 13755,
+   "n_words": 16
+  },
+  {
+   "id": "alp_083",
+   "text": "Determine the probability of rolling a total of 8 given 3 fair dice.",
+   "source_index": 39830,
+   "n_words": 13
+  },
+  {
+   "id": "alp_084",
+   "text": "Write a metaphor to compare a cloud in the sky to something else.",
+   "source_index": 18296,
+   "n_words": 13
+  },
+  {
+   "id": "alp_085",
+   "text": "Comment on the impact of AI in the healthcare industry.",
+   "source_index": 38406,
+   "n_words": 10
+  },
+  {
+   "id": "alp_086",
+   "text": "List five different outdoor activities.",
+   "source_index": 47328,
+   "n_words": 5
+  },
+  {
+   "id": "alp_087",
+   "text": "Give advice on how to stick to a diet.",
+   "source_index": 3607,
+   "n_words": 9
+  },
+  {
+   "id": "alp_088",
+   "text": "Explain the purpose of using hashes in programming.",
+   "source_index": 11029,
+   "n_words": 8
+  },
+  {
+   "id": "alp_089",
+   "text": "Write a tweet from a user who is ecstatic about graduating from college.",
+   "source_index": 49861,
+   "n_words": 13
+  },
+  {
+   "id": "alp_090",
+   "text": "Create a short story about a person discovering a new planet.",
+   "source_index": 31183,
+   "n_words": 11
+  },
+  {
+   "id": "alp_091",
+   "text": "Generate 3 questions you can ask an interviewer.",
+   "source_index": 12595,
+   "n_words": 8
+  },
+  {
+   "id": "alp_092",
+   "text": "Describe the effect of the cold on the environment.",
+   "source_index": 13453,
+   "n_words": 9
+  },
+  {
+   "id": "alp_093",
+   "text": "What are the steps for solving a quadratic equation?",
+   "source_index": 43615,
+   "n_words": 9
+  },
+  {
+   "id": "alp_094",
+   "text": "Construct a query to select the top 5 movies with the highest rating on the website",
+   "source_index": 8421,
+   "n_words": 16
+  },
+  {
+   "id": "alp_095",
+   "text": "Give me a motto that relates to dreams and ambition.",
+   "source_index": 43609,
+   "n_words": 10
+  },
+  {
+   "id": "alp_096",
+   "text": "How to maximize the effect of the keywords in my SEO content?",
+   "source_index": 29943,
+   "n_words": 12
+  },
+  {
+   "id": "alp_097",
+   "text": "Design a cartoon-style mascot for a toy store.",
+   "source_index": 24933,
+   "n_words": 8
+  },
+  {
+   "id": "alp_098",
+   "text": "Come up with three creative ways to encourage people to buy environmentally friendly products.",
+   "source_index": 5308,
+   "n_words": 14
+  },
+  {
+   "id": "alp_099",
+   "text": "Name a popular game that requires two players.",
+   "source_index": 4617,
+   "n_words": 8
+  },
+  {
+   "id": "alp_100",
+   "text": "Explain the concept of 'Gini co-efficient'.",
+   "source_index": 18019,
+   "n_words": 6
+  },
+  {
+   "id": "alp_101",
+   "text": "Find a photo to represent the idea of family.",
+   "source_index": 47575,
+   "n_words": 9
+  },
+  {
+   "id": "alp_102",
+   "text": "Describe what a \"unicorn startup\" is.",
+   "source_index": 28069,
+   "n_words": 6
+  },
+  {
+   "id": "alp_103",
+   "text": "Describe a home automation system.",
+   "source_index": 50731,
+   "n_words": 5
+  },
+  {
+   "id": "alp_104",
+   "text": "Give me an antonym of the word \"calm\".",
+   "source_index": 27102,
+   "n_words": 8
+  },
+  {
+   "id": "alp_105",
+   "text": "Generate a sentence using these words: beautiful, garden, peaceful",
+   "source_index": 6396,
+   "n_words": 9
+  },
+  {
+   "id": "alp_106",
+   "text": "Generate a chatbot script to help customers find a product.",
+   "source_index": 17043,
+   "n_words": 10
+  },
+  {
+   "id": "alp_107",
+   "text": "Describe how two people can cooperate to solve a problem.",
+   "source_index": 30343,
+   "n_words": 10
+  },
+  {
+   "id": "alp_108",
+   "text": "Calculate the difference between 8 and 9.",
+   "source_index": 16519,
+   "n_words": 7
+  },
+  {
+   "id": "alp_109",
+   "text": "Give me a proverb that expresses the idea of being cautious.",
+   "source_index": 38552,
+   "n_words": 11
+  },
+  {
+   "id": "alp_110",
+   "text": "When should one start investing?",
+   "source_index": 7469,
+   "n_words": 5
+  },
+  {
+   "id": "alp_111",
+   "text": "What are the best strategies for learning a new language?",
+   "source_index": 30153,
+   "n_words": 10
+  },
+  {
+   "id": "alp_112",
+   "text": "Convert 4.19 kg to pounds.",
+   "source_index": 18740,
+   "n_words": 5
+  },
+  {
+   "id": "alp_113",
+   "text": "What is the term used to describe a bias where groups of people with some particular background or attributes are more likely to interact with the model in a certain way?",
+   "source_index": 44216,
+   "n_words": 31
+  },
+  {
+   "id": "alp_114",
+   "text": "Find the time difference between Los Angeles and London",
+   "source_index": 50169,
+   "n_words": 9
+  },
+  {
+   "id": "alp_115",
+   "text": "Explain what constitutes the fair use of copyrighted material in an educational setting.",
+   "source_index": 29777,
+   "n_words": 13
+  },
+  {
+   "id": "alp_116",
+   "text": "Describe a \"living algorithm\".",
+   "source_index": 11635,
+   "n_words": 4
+  },
+  {
+   "id": "alp_117",
+   "text": "Given the following cartoon, describe what the caricature implies.",
+   "source_index": 43417,
+   "n_words": 9
+  },
+  {
+   "id": "alp_118",
+   "text": "List 5 filing system categories.",
+   "source_index": 33092,
+   "n_words": 5
+  },
+  {
+   "id": "alp_119",
+   "text": "Convert 12GB to byte.",
+   "source_index": 30144,
+   "n_words": 4
+  },
+  {
+   "id": "alp_120",
+   "text": "Generate a list of the seven most iconic locations in Colorado.",
+   "source_index": 32266,
+   "n_words": 11
+  },
+  {
+   "id": "alp_121",
+   "text": "Propose a method for reducing the spread of coronavirus.",
+   "source_index": 16316,
+   "n_words": 9
+  },
+  {
+   "id": "alp_122",
+   "text": "Name three features of a self-driving car.",
+   "source_index": 24788,
+   "n_words": 7
+  },
+  {
+   "id": "alp_123",
+   "text": "Rewrite the following statement in the future tense: \"I am rethinking my career plans.\"",
+   "source_index": 5348,
+   "n_words": 14
+  },
+  {
+   "id": "alp_124",
+   "text": "Write an outline of a creative writing piece.",
+   "source_index": 32720,
+   "n_words": 8
+  },
+  {
+   "id": "alp_125",
+   "text": "Write a letter to a friend explaining the merits of a healthy lifestyle.",
+   "source_index": 43343,
+   "n_words": 13
+  },
+  {
+   "id": "alp_126",
+   "text": "Provide an example of a specific use case for an AI assistant in an academic setting",
+   "source_index": 21532,
+   "n_words": 16
+  },
+  {
+   "id": "alp_127",
+   "text": "Write a short story between 30 to 50 words.",
+   "source_index": 17866,
+   "n_words": 9
+  },
+  {
+   "id": "alp_128",
+   "text": "Generate a list of steps involved in decorating a cake.",
+   "source_index": 31614,
+   "n_words": 10
+  },
+  {
+   "id": "alp_129",
+   "text": "Provide 3 suggestions to make your resume more professional.",
+   "source_index": 13648,
+   "n_words": 9
+  },
+  {
+   "id": "alp_130",
+   "text": "Describe a summer scene.",
+   "source_index": 16459,
+   "n_words": 4
+  },
+  {
+   "id": "alp_131",
+   "text": "Provide an example of a financial tool that is used to identify returns on an investment.",
+   "source_index": 10634,
+   "n_words": 16
+  },
+  {
+   "id": "alp_132",
+   "text": "Explain what a SIM card is.",
+   "source_index": 10951,
+   "n_words": 6
+  },
+  {
+   "id": "alp_133",
+   "text": "Create a 10-word code that is easy to remember but difficult to guess",
+   "source_index": 44610,
+   "n_words": 13
+  },
+  {
+   "id": "alp_134",
+   "text": "Re-write the sentence: \"Jack jumped over the fence.\"",
+   "source_index": 10807,
+   "n_words": 8
+  },
+  {
+   "id": "alp_135",
+   "text": "Write a letter to the editor of a local newspaper expressing your opinion on a current issue.",
+   "source_index": 1933,
+   "n_words": 17
+  },
+  {
+   "id": "alp_136",
+   "text": "Write a 3-line film script for a horror scene",
+   "source_index": 33598,
+   "n_words": 9
+  },
+  {
+   "id": "alp_137",
+   "text": "Generate a list of tips that can help people manage stress.",
+   "source_index": 35908,
+   "n_words": 11
+  },
+  {
+   "id": "alp_138",
+   "text": "Think of a significant event that changed your life.",
+   "source_index": 14760,
+   "n_words": 9
+  },
+  {
+   "id": "alp_139",
+   "text": "What is one way to reduce air pollution in urban areas?",
+   "source_index": 26441,
+   "n_words": 11
+  },
+  {
+   "id": "alp_140",
+   "text": "Compose a haiku about diversity and inclusion.",
+   "source_index": 3987,
+   "n_words": 7
+  },
+  {
+   "id": "alp_141",
+   "text": "Create a ‘nice-to-have’ list for a product inventory system.",
+   "source_index": 5231,
+   "n_words": 9
+  },
+  {
+   "id": "alp_142",
+   "text": "Describe the impact of the increasing popularity of social media in the past decade.",
+   "source_index": 37102,
+   "n_words": 14
+  },
+  {
+   "id": "alp_143",
+   "text": "Analyze the impact of the pandemic on the retail industry.",
+   "source_index": 41251,
+   "n_words": 10
+  },
+  {
+   "id": "alp_144",
+   "text": "Suggest two alternatives for conserving energy.",
+   "source_index": 7806,
+   "n_words": 6
+  },
+  {
+   "id": "alp_145",
+   "text": "What would be an appropriate penalty for public littering?",
+   "source_index": 47697,
+   "n_words": 9
+  },
+  {
+   "id": "alp_146",
+   "text": "How long does it normally take a person to read 50 pages?",
+   "source_index": 8788,
+   "n_words": 12
+  },
+  {
+   "id": "alp_147",
+   "text": "Give me an example of a book you think is underrated.",
+   "source_index": 50227,
+   "n_words": 11
+  },
+  {
+   "id": "alp_148",
+   "text": "Explain what a pin code is, and list some of its advantages.",
+   "source_index": 2211,
+   "n_words": 12
+  },
+  {
+   "id": "alp_149",
+   "text": "Name 3 components of the java virtual machine.",
+   "source_index": 45798,
+   "n_words": 8
+  },
+  {
+   "id": "alp_150",
+   "text": "Provide 3 examples of countries that have recently experienced war",
+   "source_index": 4605,
+   "n_words": 10
+  },
+  {
+   "id": "alp_151",
+   "text": "Write a sentence that explores the concept of irony.",
+   "source_index": 48809,
+   "n_words": 9
+  },
+  {
+   "id": "alp_152",
+   "text": "Create a survey that could be used to evaluate the design of a mobile app.",
+   "source_index": 38203,
+   "n_words": 15
+  },
+  {
+   "id": "alp_153",
+   "text": "Generate a metaphor for how society views success.",
+   "source_index": 50205,
+   "n_words": 8
+  },
+  {
+   "id": "alp_154",
+   "text": "Provide a list of advantages and disadvantages of using artificial intelligence technology.",
+   "source_index": 45022,
+   "n_words": 12
+  },
+  {
+   "id": "alp_155",
+   "text": "Name the capital of the country that is home to the Great Barrier Reef.",
+   "source_index": 29790,
+   "n_words": 14
+  },
+  {
+   "id": "alp_156",
+   "text": "Suggest two methods of finding the area of a triangle.",
+   "source_index": 37353,
+   "n_words": 10
+  },
+  {
+   "id": "alp_157",
+   "text": "Compose an email to a customer apologizing for the delayed shipment and provide a potential solution.",
+   "source_index": 21858,
+   "n_words": 16
+  },
+  {
+   "id": "alp_158",
+   "text": "Write a tweet summarizing the research paper \"The Impact of Climate Change on the Migration Patterns of Arctic Birds\".",
+   "source_index": 45519,
+   "n_words": 19
+  },
+  {
+   "id": "alp_159",
+   "text": "Answer the following questions in one to two sentences. What event triggered the spending increase in 2006?",
+   "source_index": 38494,
+   "n_words": 17
+  },
+  {
+   "id": "alp_160",
+   "text": "Specify two characteristics of a good team player.",
+   "source_index": 28939,
+   "n_words": 8
+  },
+  {
+   "id": "alp_161",
+   "text": "Give a synonyms of the word \"pungent\".",
+   "source_index": 15591,
+   "n_words": 7
+  },
+  {
+   "id": "alp_162",
+   "text": "Tell me about a mistake you made in the past and how you overcame it.",
+   "source_index": 28807,
+   "n_words": 15
+  },
+  {
+   "id": "alp_163",
+   "text": "How can I prevent spam emails?",
+   "source_index": 44074,
+   "n_words": 6
+  },
+  {
+   "id": "alp_164",
+   "text": "Find the ten most populous cities in the United States.",
+   "source_index": 13283,
+   "n_words": 10
+  },
+  {
+   "id": "alp_165",
+   "text": "Describe how a user would set up an account on a new social media site.",
+   "source_index": 46146,
+   "n_words": 15
+  },
+  {
+   "id": "alp_166",
+   "text": "What is histogram equalization?",
+   "source_index": 12280,
+   "n_words": 4
+  },
+  {
+   "id": "alp_167",
+   "text": "Generate a timeline of major events in twentieth century history.",
+   "source_index": 48620,
+   "n_words": 10
+  },
+  {
+   "id": "alp_168",
+   "text": "Why is diversifying investments important?",
+   "source_index": 37130,
+   "n_words": 5
+  },
+  {
+   "id": "alp_169",
+   "text": "Outline the reasons why reading is important.",
+   "source_index": 32385,
+   "n_words": 7
+  },
+  {
+   "id": "alp_170",
+   "text": "Write a description of a computer programmer in 200 words.",
+   "source_index": 44811,
+   "n_words": 10
+  },
+  {
+   "id": "alp_171",
+   "text": "Suggest a strategy to deal with stress.",
+   "source_index": 51639,
+   "n_words": 7
+  },
+  {
+   "id": "alp_172",
+   "text": "Find the cube root of 512",
+   "source_index": 23445,
+   "n_words": 6
+  },
+  {
+   "id": "alp_173",
+   "text": "Rewrite the following sentence to make it stronger:\n\nThe students are excited about their upcoming assignment.",
+   "source_index": 31855,
+   "n_words": 16
+  },
+  {
+   "id": "alp_174",
+   "text": "Transfer the following sentence from the active to the passive voice: \"I am writing a book.\"",
+   "source_index": 15568,
+   "n_words": 16
+  },
+  {
+   "id": "alp_175",
+   "text": "Name one potential limitation of using AI for conversational assistants.",
+   "source_index": 25090,
+   "n_words": 10
+  },
+  {
+   "id": "alp_176",
+   "text": "List five reasons why using organic food is important",
+   "source_index": 27256,
+   "n_words": 9
+  },
+  {
+   "id": "alp_177",
+   "text": "Retrieve patients' reports with coronavirus symptoms.",
+   "source_index": 36073,
+   "n_words": 6
+  },
+  {
+   "id": "alp_178",
+   "text": "Give two examples of a food with a high fiber content.",
+   "source_index": 35130,
+   "n_words": 11
+  },
+  {
+   "id": "alp_179",
+   "text": "What is the difference between hot-air balloons and helicopters?",
+   "source_index": 38239,
+   "n_words": 9
+  },
+  {
+   "id": "alp_180",
+   "text": "Generate a poem with 3-4 lines related to the theme of nature.",
+   "source_index": 49854,
+   "n_words": 12
+  },
+  {
+   "id": "alp_181",
+   "text": "Describe the differences between cloud computing and traditional computing.",
+   "source_index": 43105,
+   "n_words": 9
+  },
+  {
+   "id": "alp_182",
+   "text": "Compare and contrast the political systems of the United States and Canada.",
+   "source_index": 20109,
+   "n_words": 12
+  },
+  {
+   "id": "alp_183",
+   "text": "How is the weather in London?",
+   "source_index": 4732,
+   "n_words": 6
+  },
+  {
+   "id": "alp_184",
+   "text": "Suggest five ways a business can increase customer satisfaction.",
+   "source_index": 18247,
+   "n_words": 9
+  },
+  {
+   "id": "alp_185",
+   "text": "What are possible alternatives for development teams dealing with the lack of in-person collaboration?",
+   "source_index": 6814,
+   "n_words": 14
+  },
+  {
+   "id": "alp_186",
+   "text": "Explain the difference between algorithmic complexity and algorithmic efficiency.",
+   "source_index": 26964,
+   "n_words": 9
+  },
+  {
+   "id": "alp_187",
+   "text": "Describe the concept of free will.",
+   "source_index": 32225,
+   "n_words": 6
+  },
+  {
+   "id": "alp_188",
+   "text": "Suggest three adjectives to describe the character Warren from The Great Gatsby.",
+   "source_index": 34537,
+   "n_words": 12
+  },
+  {
+   "id": "alp_189",
+   "text": "Describe a way to conserve energy.",
+   "source_index": 18879,
+   "n_words": 6
+  },
+  {
+   "id": "alp_190",
+   "text": "List the types of networks",
+   "source_index": 45939,
+   "n_words": 5
+  },
+  {
+   "id": "alp_191",
+   "text": "Describe the impact of new technologies on the market.",
+   "source_index": 11005,
+   "n_words": 9
+  },
+  {
+   "id": "alp_192",
+   "text": "Generate five unique titles for a thriller novel.",
+   "source_index": 13701,
+   "n_words": 8
+  },
+  {
+   "id": "alp_193",
+   "text": "Design a logo for a restaurant that serves traditional Chinese dishes.",
+   "source_index": 961,
+   "n_words": 11
+  },
+  {
+   "id": "alp_194",
+   "text": "Make up an analogy for the concept of teamwork",
+   "source_index": 39900,
+   "n_words": 9
+  },
+  {
+   "id": "alp_195",
+   "text": "Name three inventions that have transformed the way we live today.",
+   "source_index": 15329,
+   "n_words": 11
+  },
+  {
+   "id": "alp_196",
+   "text": "Create a two-player game involving a combination of strategy and luck.",
+   "source_index": 6957,
+   "n_words": 11
+  },
+  {
+   "id": "alp_197",
+   "text": "Generate a creative product description for an essential oil diffuser.",
+   "source_index": 38499,
+   "n_words": 10
+  },
+  {
+   "id": "alp_198",
+   "text": "Design a shopping list for a one-week vegan meal plan.",
+   "source_index": 12532,
+   "n_words": 10
+  },
+  {
+   "id": "alp_199",
+   "text": "How many instruments does a symphony orchestra typically have?",
+   "source_index": 20820,
+   "n_words": 9
+  },
+  {
+   "id": "alp_200",
+   "text": "Explain the significance of the line from Shakespeare's Macbeth - \"Double, double toil and trouble\"",
+   "source_index": 43168,
+   "n_words": 15
+  },
+  {
+   "id": "alp_201",
+   "text": "Name a popular coniferous tree.",
+   "source_index": 9912,
+   "n_words": 5
+  },
+  {
+   "id": "alp_202",
+   "text": "Could you compare and contrast two different types of learning styles",
+   "source_index": 18727,
+   "n_words": 11
+  },
+  {
+   "id": "alp_203",
+   "text": "Suggest some ways to engage athletes during large group practice sessions.",
+   "source_index": 23801,
+   "n_words": 11
+  },
+  {
+   "id": "alp_204",
+   "text": "Make a list of the symptoms of the common cold.",
+   "source_index": 44286,
+   "n_words": 10
+  },
+  {
+   "id": "alp_205",
+   "text": "Categorize this sentence into a specific emotion: She felt left out of the group.",
+   "source_index": 3558,
+   "n_words": 14
+  },
+  {
+   "id": "alp_206",
+   "text": "Summarize the story of The Little Prince.",
+   "source_index": 5886,
+   "n_words": 7
+  },
+  {
+   "id": "alp_207",
+   "text": "Give an example of a famous news story.",
+   "source_index": 42546,
+   "n_words": 8
+  },
+  {
+   "id": "alp_208",
+   "text": "Generate a potential hashtag for a vacation in Paris.",
+   "source_index": 8622,
+   "n_words": 9
+  },
+  {
+   "id": "alp_209",
+   "text": "Identify the appropriate synonym of the word 'help':",
+   "source_index": 46440,
+   "n_words": 8
+  },
+  {
+   "id": "alp_210",
+   "text": "Change the following sentence to use passive voice:\n\nThe report showed that the number of people living in poverty had risen.",
+   "source_index": 38111,
+   "n_words": 21
+  },
+  {
+   "id": "alp_211",
+   "text": "Explain why using unrealistic data sets in AI-based tasks can lead to inaccurate results.",
+   "source_index": 12441,
+   "n_words": 14
+  },
+  {
+   "id": "alp_212",
+   "text": "Rewrite this sentence to make it more formal - \"I found the solution\"",
+   "source_index": 2583,
+   "n_words": 13
+  },
+  {
+   "id": "alp_213",
+   "text": "Generate reviews for a new restaurant in town",
+   "source_index": 44358,
+   "n_words": 8
+  },
+  {
+   "id": "alp_214",
+   "text": "Find the most recent example of a mountain being formed by tectonic forces.",
+   "source_index": 31536,
+   "n_words": 13
+  },
+  {
+   "id": "alp_215",
+   "text": "Describe a city that has the perfect balance of work and life.",
+   "source_index": 34746,
+   "n_words": 12
+  },
+  {
+   "id": "alp_216",
+   "text": "Subdivide the category \"living things\" into 3 distinct groups.",
+   "source_index": 49466,
+   "n_words": 9
+  },
+  {
+   "id": "alp_217",
+   "text": "Write a persuasive message to convince a customer to return to using your product.",
+   "source_index": 50947,
+   "n_words": 14
+  },
+  {
+   "id": "alp_218",
+   "text": "Classify the following sentence as either true or false:\n\n\"Two plus two makes four\"",
+   "source_index": 29441,
+   "n_words": 14
+  },
+  {
+   "id": "alp_219",
+   "text": "Create a funny analogy that compares the zipper to something else.",
+   "source_index": 33024,
+   "n_words": 11
+  },
+  {
+   "id": "alp_220",
+   "text": "Is a hypothesis a statement or a question?",
+   "source_index": 37184,
+   "n_words": 8
+  },
+  {
+   "id": "alp_221",
+   "text": "Suggest 5 healthier substitutes for red meat.",
+   "source_index": 4288,
+   "n_words": 7
+  },
+  {
+   "id": "alp_222",
+   "text": "Describe the difference between supervised and unsupervised learning.",
+   "source_index": 1612,
+   "n_words": 8
+  },
+  {
+   "id": "alp_223",
+   "text": "Construct an analogy that compares a smartphone to an appliance.",
+   "source_index": 7440,
+   "n_words": 10
+  },
+  {
+   "id": "alp_224",
+   "text": "Give three examples of hardware components used in computers.",
+   "source_index": 34779,
+   "n_words": 9
+  },
+  {
+   "id": "alp_225",
+   "text": "What is the best way to optimize the performance of a neural network?",
+   "source_index": 10900,
+   "n_words": 13
+  },
+  {
+   "id": "alp_226",
+   "text": "Come up with three unique uses of a sock.",
+   "source_index": 33263,
+   "n_words": 9
+  },
+  {
+   "id": "alp_227",
+   "text": "Name ten authors who have written works of science fiction / fantasy.",
+   "source_index": 45065,
+   "n_words": 12
+  },
+  {
+   "id": "alp_228",
+   "text": "Give me a metaphor for a good relationship.",
+   "source_index": 31648,
+   "n_words": 8
+  },
+  {
+   "id": "alp_229",
+   "text": "Create a question which can be asked for dialogue.",
+   "source_index": 7121,
+   "n_words": 9
+  },
+  {
+   "id": "alp_230",
+   "text": "Fill in the blank with the best word to complete the following sentence:\n\n\"It was raining ____ so I decided to stay inside.\"",
+   "source_index": 21855,
+   "n_words": 23
+  },
+  {
+   "id": "alp_231",
+   "text": "Rewrite the following statement making it more concise: \"Suzanne works as an engineer, and she is currently employed by XYZ Corp.\"",
+   "source_index": 5345,
+   "n_words": 21
+  },
+  {
+   "id": "alp_232",
+   "text": "Come up with a creative way to teach children about climate change",
+   "source_index": 20724,
+   "n_words": 12
+  },
+  {
+   "id": "alp_233",
+   "text": "What key factor allows the World Wide Web to function?",
+   "source_index": 45268,
+   "n_words": 10
+  },
+  {
+   "id": "alp_234",
+   "text": "Explain how to paint a room.",
+   "source_index": 6874,
+   "n_words": 6
+  },
+  {
+   "id": "alp_235",
+   "text": "Classify the following statement as true or false. \"A scientific method cannot be used to study a social phenomenon.\"",
+   "source_index": 2104,
+   "n_words": 19
+  },
+  {
+   "id": "alp_236",
+   "text": "List 3 instructions GPT models can do.",
+   "source_index": 33202,
+   "n_words": 7
+  },
+  {
+   "id": "alp_237",
+   "text": "Give advice on how to stay fit and healthy during the pandemic.",
+   "source_index": 1322,
+   "n_words": 12
+  },
+  {
+   "id": "alp_238",
+   "text": "Edit the following sentence by making it more precise: \n\n\"The patient had a fever.\"",
+   "source_index": 11200,
+   "n_words": 14
+  },
+  {
+   "id": "alp_239",
+   "text": "Write pseudocode for a program to print all the numbers between 1 to 10.",
+   "source_index": 10705,
+   "n_words": 14
+  },
+  {
+   "id": "alp_240",
+   "text": "Categorize the following statement according to its type (moral, legal, universal, etc.): \"Everyone should treat each other with respect.\"",
+   "source_index": 39153,
+   "n_words": 19
+  },
+  {
+   "id": "alp_241",
+   "text": "Design an algorithm to determine whether a given number is prime.",
+   "source_index": 7396,
+   "n_words": 11
+  },
+  {
+   "id": "alp_242",
+   "text": "Find a parallel structure in the following sentence: \"She cooked dinner, cleaned the dishes, and did the laundry.\"",
+   "source_index": 26565,
+   "n_words": 18
+  },
+  {
+   "id": "alp_243",
+   "text": "Describe what type of animal is a koala.",
+   "source_index": 12023,
+   "n_words": 8
+  },
+  {
+   "id": "alp_244",
+   "text": "Describe the most common features an optical microscope has.",
+   "source_index": 39663,
+   "n_words": 9
+  },
+  {
+   "id": "alp_245",
+   "text": "What are the benefits of adopting a \"test-driven\" approach to software development?",
+   "source_index": 43478,
+   "n_words": 12
+  },
+  {
+   "id": "alp_246",
+   "text": "Generate a 3-line poem based on the following theme: 'Celebrating Nature.",
+   "source_index": 3499,
+   "n_words": 11
+  },
+  {
+   "id": "alp_247",
+   "text": "Write a question that can be used in a quiz to test knowledge of English grammar.",
+   "source_index": 50974,
+   "n_words": 16
+  },
+  {
+   "id": "alp_248",
+   "text": "Generate a random password with 8 characters, consisting of lower and upper-case letters and numbers.",
+   "source_index": 37125,
+   "n_words": 15
+  },
+  {
+   "id": "alp_249",
+   "text": "Create a problem statement for an online course about public speaking.",
+   "source_index": 1379,
+   "n_words": 11
+  },
+  {
+   "id": "alp_250",
+   "text": "Rate the importance of creativity in life and give one example of how it helps you.",
+   "source_index": 30005,
+   "n_words": 16
+  },
+  {
+   "id": "alp_251",
+   "text": "Name one type of AI that is used in machine translation.",
+   "source_index": 23781,
+   "n_words": 11
+  },
+  {
+   "id": "alp_252",
+   "text": "Name a famous person with roots in the city of Calcutta.",
+   "source_index": 34000,
+   "n_words": 11
+  },
+  {
+   "id": "alp_253",
+   "text": "Describe a medieval castle in 3 sentences.",
+   "source_index": 5925,
+   "n_words": 7
+  },
+  {
+   "id": "alp_254",
+   "text": "Generate the main points for a presentation about the impact of air pollution in cities.",
+   "source_index": 45394,
+   "n_words": 15
+  },
+  {
+   "id": "alp_255",
+   "text": "Describe a new way to use artificial intelligence in the classroom.",
+   "source_index": 14756,
+   "n_words": 11
+  },
+  {
+   "id": "alp_256",
+   "text": "Suggest five features for a photo editing application",
+   "source_index": 4057,
+   "n_words": 8
+  },
+  {
+   "id": "alp_257",
+   "text": "Find a website where you can watch documentaries.",
+   "source_index": 12549,
+   "n_words": 8
+  },
+  {
+   "id": "alp_258",
+   "text": "Select the two most influential people of the twentieth century.",
+   "source_index": 4179,
+   "n_words": 10
+  },
+  {
+   "id": "alp_259",
+   "text": "Generate 5 questions about the usage of a new smart phone.",
+   "source_index": 35423,
+   "n_words": 11
+  },
+  {
+   "id": "alp_260",
+   "text": "What would be the most important thing to consider when applying for a loan?",
+   "source_index": 17024,
+   "n_words": 14
+  },
+  {
+   "id": "alp_261",
+   "text": "Create a timeline for the world's tallest mountain.",
+   "source_index": 19733,
+   "n_words": 8
+  },
+  {
+   "id": "alp_262",
+   "text": "Name the character that is featured in the novel \"The Catcher in the Rye\".",
+   "source_index": 24297,
+   "n_words": 14
+  },
+  {
+   "id": "alp_263",
+   "text": "Create a character sketch for a villain.",
+   "source_index": 10419,
+   "n_words": 7
+  },
+  {
+   "id": "alp_264",
+   "text": "Find the tenth largest city in the world in terms of population.",
+   "source_index": 3498,
+   "n_words": 12
+  },
+  {
+   "id": "alp_265",
+   "text": "Create an automated response for a customer who has inquired about the warranty of a product.",
+   "source_index": 27837,
+   "n_words": 16
+  },
+  {
+   "id": "alp_266",
+   "text": "Generate an appropriate response when someone says, \"I'm having a difficult time.\"",
+   "source_index": 25934,
+   "n_words": 12
+  },
+  {
+   "id": "alp_267",
+   "text": "Which is the hottest planet in our Solar System?",
+   "source_index": 2248,
+   "n_words": 9
+  },
+  {
+   "id": "alp_268",
+   "text": "Explain the importance of the author's purpose in literature.",
+   "source_index": 32736,
+   "n_words": 9
+  },
+  {
+   "id": "alp_269",
+   "text": "Read the following and come up with a list of adjectives related to sports.",
+   "source_index": 5897,
+   "n_words": 14
+  },
+  {
+   "id": "alp_270",
+   "text": "Describe the role and importance of artificial intelligence today",
+   "source_index": 11430,
+   "n_words": 9
+  },
+  {
+   "id": "alp_271",
+   "text": "What is the most significant environmental challenge that humanity currently faces?",
+   "source_index": 14764,
+   "n_words": 11
+  },
+  {
+   "id": "alp_272",
+   "text": "Name 3 countries that speak Spanish as an official language.",
+   "source_index": 20167,
+   "n_words": 10
+  },
+  {
+   "id": "alp_273",
+   "text": "Explain what a Bloom filter is",
+   "source_index": 49174,
+   "n_words": 6
+  },
+  {
+   "id": "alp_274",
+   "text": "Create a joke using the following words: parachute, rubber band, waffle.",
+   "source_index": 39910,
+   "n_words": 11
+  },
+  {
+   "id": "alp_275",
+   "text": "Pick five items for a first aid kit",
+   "source_index": 26115,
+   "n_words": 8
+  },
+  {
+   "id": "alp_276",
+   "text": "Explain why certain materials are better for insulation",
+   "source_index": 45536,
+   "n_words": 8
+  },
+  {
+   "id": "alp_277",
+   "text": "Summarize the historical events underlying the current immigration debate",
+   "source_index": 49061,
+   "n_words": 9
+  },
+  {
+   "id": "alp_278",
+   "text": "Write a near-future fiction set in the year 2040. Output should be 5 sentences.",
+   "source_index": 31313,
+   "n_words": 14
+  },
+  {
+   "id": "alp_279",
+   "text": "Explain the concept of corporate social responsibility",
+   "source_index": 9836,
+   "n_words": 7
+  },
+  {
+   "id": "alp_280",
+   "text": "Please give an example of a 20th century writer from Japan",
+   "source_index": 38113,
+   "n_words": 11
+  },
+  {
+   "id": "alp_281",
+   "text": "Come up with a new word that combines the two words ‘flavor’ and ‘satisfied’",
+   "source_index": 36791,
+   "n_words": 14
+  },
+  {
+   "id": "alp_282",
+   "text": "Add the following ingredients to a holiday cookie recipe: flour, honey, and molasses.",
+   "source_index": 11654,
+   "n_words": 13
+  },
+  {
+   "id": "alp_283",
+   "text": "Give an example of a traditional folk tale.",
+   "source_index": 41771,
+   "n_words": 8
+  },
+  {
+   "id": "alp_284",
+   "text": "Explain the consequences of not voting in the upcoming election.",
+   "source_index": 3324,
+   "n_words": 10
+  },
+  {
+   "id": "alp_285",
+   "text": "What does the acronym CRUD stand for when it comes to databases?",
+   "source_index": 42840,
+   "n_words": 12
+  },
+  {
+   "id": "alp_286",
+   "text": "Generate a haiku with the words 'moonlight', 'heart' and 'glow'.",
+   "source_index": 36980,
+   "n_words": 10
+  },
+  {
+   "id": "alp_287",
+   "text": "Evaluate the expression 4+2*3.",
+   "source_index": 9301,
+   "n_words": 4
+  },
+  {
+   "id": "alp_288",
+   "text": "Generate a descriptive title for an article about deep learning",
+   "source_index": 45950,
+   "n_words": 10
+  },
+  {
+   "id": "alp_289",
+   "text": "Generate a list of US Presidents.",
+   "source_index": 9468,
+   "n_words": 6
+  },
+  {
+   "id": "alp_290",
+   "text": "Write a paragraph describing the painting Monet's \"Impression, Sunrise\"",
+   "source_index": 19284,
+   "n_words": 9
+  },
+  {
+   "id": "alp_291",
+   "text": "Write a paragraph that describes a time when you achieved a difficult goal.",
+   "source_index": 29190,
+   "n_words": 13
+  },
+  {
+   "id": "alp_292",
+   "text": "Describe the GPT-3 language model.",
+   "source_index": 14195,
+   "n_words": 5
+  },
+  {
+   "id": "alp_293",
+   "text": "What is the average life expectancy of a cat?",
+   "source_index": 6963,
+   "n_words": 9
+  },
+  {
+   "id": "alp_294",
+   "text": "Explain what a rhetorical question is in a sentence or two.",
+   "source_index": 32753,
+   "n_words": 11
+  },
+  {
+   "id": "alp_295",
+   "text": "Suggest some methods to reduce stress in a job interview.",
+   "source_index": 50117,
+   "n_words": 10
+  },
+  {
+   "id": "alp_296",
+   "text": "Provide an example of a metric system unit of time.",
+   "source_index": 24645,
+   "n_words": 10
+  },
+  {
+   "id": "alp_297",
+   "text": "Explain why Pluto is no longer considered a planet.",
+   "source_index": 36408,
+   "n_words": 9
+  },
+  {
+   "id": "alp_298",
+   "text": "Describe three qualities of good customer service.",
+   "source_index": 10119,
+   "n_words": 7
+  },
+  {
+   "id": "alp_299",
+   "text": "List the names of four social media platforms.",
+   "source_index": 798,
+   "n_words": 8
+  },
+  {
+   "id": "alp_300",
+   "text": "How do you get rid of oil stains from YELLOW fabric?",
+   "source_index": 26191,
+   "n_words": 11
+  },
+  {
+   "id": "alp_301",
+   "text": "Give a list of five foods rich in calcium.",
+   "source_index": 37210,
+   "n_words": 9
+  },
+  {
+   "id": "alp_302",
+   "text": "Name 5 common disease-causing pathogens.",
+   "source_index": 22866,
+   "n_words": 5
+  },
+  {
+   "id": "alp_303",
+   "text": "Name a popular activity people do in the summer.",
+   "source_index": 48907,
+   "n_words": 9
+  },
+  {
+   "id": "alp_304",
+   "text": "Find 5 sentence patterns commonly used in English.",
+   "source_index": 31271,
+   "n_words": 8
+  },
+  {
+   "id": "alp_305",
+   "text": "Describe how decision-making algorithms work.",
+   "source_index": 47562,
+   "n_words": 5
+  },
+  {
+   "id": "alp_306",
+   "text": "What are some ways to improve cybersecurity for businesses?",
+   "source_index": 28097,
+   "n_words": 9
+  },
+  {
+   "id": "alp_307",
+   "text": "Perform a character analysis of Bilbo Baggins from \"The Hobbit\".",
+   "source_index": 49885,
+   "n_words": 10
+  },
+  {
+   "id": "alp_308",
+   "text": "What is a benefit of sending automated emails?",
+   "source_index": 17551,
+   "n_words": 8
+  },
+  {
+   "id": "alp_309",
+   "text": "Generate a riddle about an owl.",
+   "source_index": 35526,
+   "n_words": 6
+  },
+  {
+   "id": "alp_310",
+   "text": "Outline the basic operations of a web browser.",
+   "source_index": 20096,
+   "n_words": 8
+  },
+  {
+   "id": "alp_311",
+   "text": "Describe what happened in the most exciting football match you have seen.",
+   "source_index": 21727,
+   "n_words": 12
+  },
+  {
+   "id": "alp_312",
+   "text": "What is the significance of 'self-directed learning'?",
+   "source_index": 45499,
+   "n_words": 7
+  },
+  {
+   "id": "alp_313",
+   "text": "Create three creative metaphors to describe a slowly boiling pot of water.",
+   "source_index": 35949,
+   "n_words": 12
+  },
+  {
+   "id": "alp_314",
+   "text": "Create a story that starts with the line \"The sun was setting, leaving behind a beautiful orange hue.\"",
+   "source_index": 14205,
+   "n_words": 18
+  },
+  {
+   "id": "alp_315",
+   "text": "Name three common adjectives that describe people",
+   "source_index": 9032,
+   "n_words": 7
+  },
+  {
+   "id": "alp_316",
+   "text": "What are the steps you need to take to create a successful marketing campaign?",
+   "source_index": 30822,
+   "n_words": 14
+  },
+  {
+   "id": "alp_317",
+   "text": "Construct a query using a wildcard.",
+   "source_index": 37764,
+   "n_words": 6
+  },
+  {
+   "id": "alp_318",
+   "text": "Write an algorithm to calculate the perimeter of a rectangle.",
+   "source_index": 747,
+   "n_words": 10
+  },
+  {
+   "id": "alp_319",
+   "text": "Make a list of the top three water parks in the United States.",
+   "source_index": 25452,
+   "n_words": 13
+  },
+  {
+   "id": "alp_320",
+   "text": "Identify the activities that take place in India’s Thar Desert.",
+   "source_index": 40422,
+   "n_words": 10
+  },
+  {
+   "id": "alp_321",
+   "text": "Describe the purpose of a neural network.",
+   "source_index": 4543,
+   "n_words": 7
+  },
+  {
+   "id": "alp_322",
+   "text": "Construct a haiku based on the word \"autumn\"",
+   "source_index": 18910,
+   "n_words": 8
+  },
+  {
+   "id": "alp_323",
+   "text": "Where does the expression “busy as a bee” come from?",
+   "source_index": 40284,
+   "n_words": 10
+  },
+  {
+   "id": "alp_324",
+   "text": "Describe a story that could be used to demonstrate the importance of data privacy",
+   "source_index": 2602,
+   "n_words": 14
+  },
+  {
+   "id": "alp_325",
+   "text": "Design a chatbot for a customer service website built with GPT-3.",
+   "source_index": 30009,
+   "n_words": 11
+  },
+  {
+   "id": "alp_326",
+   "text": "Give me a list of elements found in the Earth's atmosphere.",
+   "source_index": 15927,
+   "n_words": 11
+  },
+  {
+   "id": "alp_327",
+   "text": "Name one type of artificial neural network.",
+   "source_index": 8048,
+   "n_words": 7
+  },
+  {
+   "id": "alp_328",
+   "text": "Generate a list of five strategies for reducing greenhouse gas emissions.",
+   "source_index": 13550,
+   "n_words": 11
+  },
+  {
+   "id": "alp_329",
+   "text": "Suggest a way to celebrate a ten-year wedding anniversary.",
+   "source_index": 41465,
+   "n_words": 9
+  },
+  {
+   "id": "alp_330",
+   "text": "Determine the length of the diagonal for a square with a side of length 6 inches.",
+   "source_index": 51856,
+   "n_words": 16
+  },
+  {
+   "id": "alp_331",
+   "text": "Write 10 sports terms and their definitions.",
+   "source_index": 26696,
+   "n_words": 7
+  },
+  {
+   "id": "alp_332",
+   "text": "Identify two examples of machine learning algorithms.",
+   "source_index": 19843,
+   "n_words": 7
+  },
+  {
+   "id": "alp_333",
+   "text": "Give an example of a person who has achieved greatness in their field.",
+   "source_index": 33463,
+   "n_words": 13
+  },
+  {
+   "id": "alp_334",
+   "text": "What are the five main perspectives of psychology?",
+   "source_index": 16325,
+   "n_words": 8
+  },
+  {
+   "id": "alp_335",
+   "text": "Create a poem that celebrates the joy of friendship.",
+   "source_index": 36833,
+   "n_words": 9
+  },
+  {
+   "id": "alp_336",
+   "text": "How would you design an algorithm for summarizing text?",
+   "source_index": 20200,
+   "n_words": 9
+  },
+  {
+   "id": "alp_337",
+   "text": "Provide an example of a job a data scientist might do.",
+   "source_index": 32403,
+   "n_words": 11
+  },
+  {
+   "id": "alp_338",
+   "text": "Change the verb in the following sentence: \"The children walked to school.\"",
+   "source_index": 51494,
+   "n_words": 12
+  },
+  {
+   "id": "alp_339",
+   "text": "Calculate the sum of 10001st number and the 10th number.",
+   "source_index": 48444,
+   "n_words": 10
+  },
+  {
+   "id": "alp_340",
+   "text": "List four popular musuems in London.",
+   "source_index": 34731,
+   "n_words": 6
+  },
+  {
+   "id": "alp_341",
+   "text": "Compose a limerick describing a morning in the forest.",
+   "source_index": 46353,
+   "n_words": 9
+  },
+  {
+   "id": "alp_342",
+   "text": "Explicate the concept of artificial intelligence",
+   "source_index": 34026,
+   "n_words": 6
+  },
+  {
+   "id": "alp_343",
+   "text": "What is the main purpose of a customer service representative?",
+   "source_index": 7915,
+   "n_words": 10
+  },
+  {
+   "id": "alp_344",
+   "text": "Given the following list of numbers, find the average and the sum: 1, 2, 3, 4",
+   "source_index": 39027,
+   "n_words": 16
+  },
+  {
+   "id": "alp_345",
+   "text": "Compare and contrast electric and manual toothbrush in a few sentences.",
+   "source_index": 17503,
+   "n_words": 11
+  },
+  {
+   "id": "alp_346",
+   "text": "Give an example of a persuasive speech topic.",
+   "source_index": 21696,
+   "n_words": 8
+  },
+  {
+   "id": "alp_347",
+   "text": "Rewrite this sentence in a more concise way: \n\"I'm feeling kind of tired after having worked all day.\"",
+   "source_index": 40766,
+   "n_words": 18
+  },
+  {
+   "id": "alp_348",
+   "text": "Write a few lines of lyrics for a song.",
+   "source_index": 23177,
+   "n_words": 9
+  },
+  {
+   "id": "alp_349",
+   "text": "A student is researchsing the stock market. What type of data do they need to collect?",
+   "source_index": 45001,
+   "n_words": 16
+  },
+  {
+   "id": "alp_350",
+   "text": "What is the answer to this math problem? 5+6",
+   "source_index": 35619,
+   "n_words": 9
+  },
+  {
+   "id": "alp_351",
+   "text": "What is the theme of the book 1984?",
+   "source_index": 4628,
+   "n_words": 8
+  },
+  {
+   "id": "alp_352",
+   "text": "Design a logo for a mobile application.",
+   "source_index": 93,
+   "n_words": 7
+  },
+  {
+   "id": "alp_353",
+   "text": "List five features of a GPT-3 language model.",
+   "source_index": 32629,
+   "n_words": 8
+  },
+  {
+   "id": "alp_354",
+   "text": "Come up with three marketing strategies for a reality show about cooking.",
+   "source_index": 11100,
+   "n_words": 12
+  },
+  {
+   "id": "alp_355",
+   "text": "Generate an analogy for “optimism is to hope as raining is to____”",
+   "source_index": 38152,
+   "n_words": 12
+  },
+  {
+   "id": "alp_356",
+   "text": "Create an invention that could improve the environment.",
+   "source_index": 18834,
+   "n_words": 8
+  },
+  {
+   "id": "alp_357",
+   "text": "Come up with a creative way to showcase the benefits of a fitness app.",
+   "source_index": 9384,
+   "n_words": 14
+  },
+  {
+   "id": "alp_358",
+   "text": "Explain how deforestation affects global climate",
+   "source_index": 13502,
+   "n_words": 6
+  },
+  {
+   "id": "alp_359",
+   "text": "Find the volume of a cone if its base is 8 cm in diameter and its height is 12 cm.",
+   "source_index": 12680,
+   "n_words": 20
+  },
+  {
+   "id": "alp_360",
+   "text": "Design a musical instrument using everyday objects.",
+   "source_index": 34914,
+   "n_words": 7
+  },
+  {
+   "id": "alp_361",
+   "text": "Find out the average growth rate of tomatoes.",
+   "source_index": 24941,
+   "n_words": 8
+  },
+  {
+   "id": "alp_362",
+   "text": "Search online and summarize the current market trends for cars in the United States.",
+   "source_index": 21219,
+   "n_words": 14
+  },
+  {
+   "id": "alp_363",
+   "text": "Name one disadvantage of the use of renewable energy sources",
+   "source_index": 38731,
+   "n_words": 10
+  },
+  {
+   "id": "alp_364",
+   "text": "Suggest a creative dessert to make for a family gathering.",
+   "source_index": 47612,
+   "n_words": 10
+  },
+  {
+   "id": "alp_365",
+   "text": "Describe the economy of Singapore",
+   "source_index": 36848,
+   "n_words": 5
+  },
+  {
+   "id": "alp_366",
+   "text": "Arrange the following words to create a meaningful phrase: “deals/back/gives/who/a/win”",
+   "source_index": 31209,
+   "n_words": 10
+  },
+  {
+   "id": "alp_367",
+   "text": "What is the descriptive word for a person who is uncaring?",
+   "source_index": 47550,
+   "n_words": 11
+  },
+  {
+   "id": "alp_368",
+   "text": "What is the current American President's name?",
+   "source_index": 1865,
+   "n_words": 7
+  },
+  {
+   "id": "alp_369",
+   "text": "List 3 types of environment effects of fossil fuel emissions.",
+   "source_index": 22462,
+   "n_words": 10
+  },
+  {
+   "id": "alp_370",
+   "text": "Generate a fun memory game in which the player has to match up pairs of similar items.",
+   "source_index": 47387,
+   "n_words": 17
+  },
+  {
+   "id": "alp_371",
+   "text": "Summarize how the internet of things (IoT) is changing the modern world.",
+   "source_index": 38326,
+   "n_words": 12
+  },
+  {
+   "id": "alp_372",
+   "text": "Come up with an idea for creating a mobile application that could help people with mental health.",
+   "source_index": 31181,
+   "n_words": 17
+  },
+  {
+   "id": "alp_373",
+   "text": "Describe in a few sentences about the solar system.",
+   "source_index": 23384,
+   "n_words": 9
+  },
+  {
+   "id": "alp_374",
+   "text": "Explain the process of how a driverless car would know when to stop at a sign.",
+   "source_index": 42011,
+   "n_words": 16
+  },
+  {
+   "id": "alp_375",
+   "text": "List five business ethics that should be followed by companies.",
+   "source_index": 36206,
+   "n_words": 10
+  },
+  {
+   "id": "alp_376",
+   "text": "Come up with an idea for a product or service that uses artificial intelligence.",
+   "source_index": 38677,
+   "n_words": 14
+  },
+  {
+   "id": "alp_377",
+   "text": "Explain what makes a good digital marketing strategy.",
+   "source_index": 2682,
+   "n_words": 8
+  },
+  {
+   "id": "alp_378",
+   "text": "Create a text response that demonstrates sympathy.",
+   "source_index": 9641,
+   "n_words": 7
+  },
+  {
+   "id": "alp_379",
+   "text": "Name one of the seven notes of the musical scale.",
+   "source_index": 24817,
+   "n_words": 10
+  },
+  {
+   "id": "alp_380",
+   "text": "Tell me the differences between a sponge and a tissue.",
+   "source_index": 3663,
+   "n_words": 10
+  },
+  {
+   "id": "alp_381",
+   "text": "Create a math equation where the answer is 3.",
+   "source_index": 14712,
+   "n_words": 9
+  },
+  {
+   "id": "alp_382",
+   "text": "Explain why customer service reps need to stay calm and collected during a conversation.",
+   "source_index": 38310,
+   "n_words": 14
+  },
+  {
+   "id": "alp_383",
+   "text": "Generate a list of 5 books that discuss the theme of resilience",
+   "source_index": 9281,
+   "n_words": 12
+  },
+  {
+   "id": "alp_384",
+   "text": "Generate a horror story involving a haunted house.",
+   "source_index": 24862,
+   "n_words": 8
+  },
+  {
+   "id": "alp_385",
+   "text": "Write an algorithm to reverse a string.",
+   "source_index": 29091,
+   "n_words": 7
+  },
+  {
+   "id": "alp_386",
+   "text": "Develop a recipe for chocolate chip pancakes.",
+   "source_index": 48094,
+   "n_words": 7
+  },
+  {
+   "id": "alp_387",
+   "text": "Classify the following sentence into the given categories: He worked hard to achieve his goal:",
+   "source_index": 26995,
+   "n_words": 15
+  },
+  {
+   "id": "alp_388",
+   "text": "Compare and contrast news magazines and daily newspapers.",
+   "source_index": 49356,
+   "n_words": 8
+  },
+  {
+   "id": "alp_389",
+   "text": "Name a movie that is good for kids.",
+   "source_index": 30855,
+   "n_words": 8
+  },
+  {
+   "id": "alp_390",
+   "text": "Craft a headline for an article on the effect of the pandemic on mental health.",
+   "source_index": 33132,
+   "n_words": 15
+  },
+  {
+   "id": "alp_391",
+   "text": "Where does the phrase \"once in a blue moon\" come from?",
+   "source_index": 41146,
+   "n_words": 11
+  },
+  {
+   "id": "alp_392",
+   "text": "Describe the structure of an atom.",
+   "source_index": 2,
+   "n_words": 6
+  },
+  {
+   "id": "alp_393",
+   "text": "Generate 5 factoids about medicinal plants.",
+   "source_index": 48029,
+   "n_words": 6
+  },
+  {
+   "id": "alp_394",
+   "text": "How would you define fascism?",
+   "source_index": 2223,
+   "n_words": 5
+  },
+  {
+   "id": "alp_395",
+   "text": "Post an advertisement for a job opening, targeting software engineers.",
+   "source_index": 27344,
+   "n_words": 10
+  },
+  {
+   "id": "alp_396",
+   "text": "Describe the concept of a \"Virtual Machine\".",
+   "source_index": 18336,
+   "n_words": 7
+  },
+  {
+   "id": "alp_397",
+   "text": "Describe what nuclear energy is and how it is used.",
+   "source_index": 17593,
+   "n_words": 10
+  },
+  {
+   "id": "alp_398",
+   "text": "Write the result of the division operation: 17 divided by 4.",
+   "source_index": 45502,
+   "n_words": 11
+  },
+  {
+   "id": "alp_399",
+   "text": "Make a list of 10 colors found in rainbows.",
+   "source_index": 25923,
+   "n_words": 9
+  },
+  {
+   "id": "alp_400",
+   "text": "What is a common impact of climate change?",
+   "source_index": 2887,
+   "n_words": 8
+  },
+  {
+   "id": "alp_401",
+   "text": "Summarize the concept of deep learning in a few sentences.",
+   "source_index": 43939,
+   "n_words": 10
+  },
+  {
+   "id": "alp_402",
+   "text": "Who is the founder of Microsoft?",
+   "source_index": 44691,
+   "n_words": 6
+  },
+  {
+   "id": "alp_403",
+   "text": "Design the basic layout of an infographic.",
+   "source_index": 47569,
+   "n_words": 7
+  },
+  {
+   "id": "alp_404",
+   "text": "Give a description of the movie \"Pirates of the Caribbean: The Curse of the Black Pearl\".",
+   "source_index": 44123,
+   "n_words": 16
+  },
+  {
+   "id": "alp_405",
+   "text": "Create a list of five key points to consider when buying a car.",
+   "source_index": 23211,
+   "n_words": 13
+  },
+  {
+   "id": "alp_406",
+   "text": "Find the corresponding child’s size for a women’s size 6",
+   "source_index": 10875,
+   "n_words": 10
+  },
+  {
+   "id": "alp_407",
+   "text": "Write a reaction sentence to the following statement: “This is going to be a long night.”",
+   "source_index": 30221,
+   "n_words": 16
+  },
+  {
+   "id": "alp_408",
+   "text": "Generate a book summary of the novel Animal Farm.",
+   "source_index": 34694,
+   "n_words": 9
+  },
+  {
+   "id": "alp_409",
+   "text": "Name the five most versatile plants.",
+   "source_index": 4804,
+   "n_words": 6
+  },
+  {
+   "id": "alp_410",
+   "text": "Generate an essay discussing the effects of technology on student learning.",
+   "source_index": 45491,
+   "n_words": 11
+  },
+  {
+   "id": "alp_411",
+   "text": "Give an example of a country with an effective health care system.",
+   "source_index": 39573,
+   "n_words": 12
+  },
+  {
+   "id": "alp_412",
+   "text": "Name 3 things a software engineer should know.",
+   "source_index": 7819,
+   "n_words": 8
+  },
+  {
+   "id": "alp_413",
+   "text": "Create a metaphor to explain the concept of artificial intelligence.",
+   "source_index": 869,
+   "n_words": 10
+  },
+  {
+   "id": "alp_414",
+   "text": "Name a popular TV show from the 2000s",
+   "source_index": 22440,
+   "n_words": 8
+  },
+  {
+   "id": "alp_415",
+   "text": "Calculate the total number of calories in a banana.",
+   "source_index": 51619,
+   "n_words": 9
+  },
+  {
+   "id": "alp_416",
+   "text": "Identify the most innovative technology companies in the last 10 years.",
+   "source_index": 37089,
+   "n_words": 11
+  },
+  {
+   "id": "alp_417",
+   "text": "Design an algorithm to find the longest word in a string.",
+   "source_index": 23344,
+   "n_words": 11
+  },
+  {
+   "id": "alp_418",
+   "text": "Formulate a hypothesis to explain why part of the population is more vulnerable to COVID-19",
+   "source_index": 17804,
+   "n_words": 15
+  },
+  {
+   "id": "alp_419",
+   "text": "Describe in a few words what makes a good leader.",
+   "source_index": 243,
+   "n_words": 10
+  },
+  {
+   "id": "alp_420",
+   "text": "Create an abstract painting.",
+   "source_index": 12190,
+   "n_words": 4
+  },
+  {
+   "id": "alp_421",
+   "text": "Design a logo for a child care center.",
+   "source_index": 850,
+   "n_words": 8
+  },
+  {
+   "id": "alp_422",
+   "text": "Name two types of physical stimuli that animals can detect.",
+   "source_index": 39119,
+   "n_words": 10
+  },
+  {
+   "id": "alp_423",
+   "text": "Describe your ideal work environment.",
+   "source_index": 41113,
+   "n_words": 5
+  },
+  {
+   "id": "alp_424",
+   "text": "Create a list of 10 different animals",
+   "source_index": 169,
+   "n_words": 7
+  },
+  {
+   "id": "alp_425",
+   "text": "Find a song title that rhymes with 'moon'",
+   "source_index": 44692,
+   "n_words": 8
+  },
+  {
+   "id": "alp_426",
+   "text": "Generate a unique story featuring two characters and a moral lesson.",
+   "source_index": 36964,
+   "n_words": 11
+  },
+  {
+   "id": "alp_427",
+   "text": "Generate a hypothesis about the cause of climate change",
+   "source_index": 29129,
+   "n_words": 9
+  },
+  {
+   "id": "alp_428",
+   "text": "Answer this question: “What is the meaning of life?”",
+   "source_index": 33556,
+   "n_words": 9
+  },
+  {
+   "id": "alp_429",
+   "text": "Recommend a suitable language model for a task that performs summarization.",
+   "source_index": 5735,
+   "n_words": 11
+  },
+  {
+   "id": "alp_430",
+   "text": "Create a new product slogan",
+   "source_index": 11007,
+   "n_words": 5
+  },
+  {
+   "id": "alp_431",
+   "text": "What are common types of rhyme?",
+   "source_index": 7088,
+   "n_words": 6
+  },
+  {
+   "id": "alp_432",
+   "text": "Generate a poem that contains the word “flower”.",
+   "source_index": 33374,
+   "n_words": 8
+  },
+  {
+   "id": "alp_433",
+   "text": "Tell me one way to improve the performance of a computer.",
+   "source_index": 35542,
+   "n_words": 11
+  },
+  {
+   "id": "alp_434",
+   "text": "Generate a list of five characteristics of an ideal leader.",
+   "source_index": 11388,
+   "n_words": 10
+  },
+  {
+   "id": "alp_435",
+   "text": "Give an example of something Newton's third law of motion applies to.",
+   "source_index": 47489,
+   "n_words": 12
+  },
+  {
+   "id": "alp_436",
+   "text": "Tell the assistant to change the background color of a document to blue.",
+   "source_index": 17090,
+   "n_words": 13
+  },
+  {
+   "id": "alp_437",
+   "text": "Create a 10-second animation of a village scene.",
+   "source_index": 15875,
+   "n_words": 8
+  },
+  {
+   "id": "alp_438",
+   "text": "Name 3 non-carbonated beverages.",
+   "source_index": 37634,
+   "n_words": 4
+  },
+  {
+   "id": "alp_439",
+   "text": "Name 4 different mammals.",
+   "source_index": 10555,
+   "n_words": 4
+  },
+  {
+   "id": "alp_440",
+   "text": "I need a creative name for my blog.",
+   "source_index": 5862,
+   "n_words": 8
+  },
+  {
+   "id": "alp_441",
+   "text": "Identify the best strategies for running a successful business.",
+   "source_index": 26401,
+   "n_words": 9
+  },
+  {
+   "id": "alp_442",
+   "text": "Edit the following sentence to make it grammatically correct: My brother and I enjoying the movie",
+   "source_index": 46360,
+   "n_words": 16
+  },
+  {
+   "id": "alp_443",
+   "text": "Name five countries that have recently passed a law restricting foreign involvement.",
+   "source_index": 50193,
+   "n_words": 12
+  },
+  {
+   "id": "alp_444",
+   "text": "Calculate the value of 12 divided by 6.",
+   "source_index": 22141,
+   "n_words": 8
+  },
+  {
+   "id": "alp_445",
+   "text": "Give one example of a liquid at room temperature",
+   "source_index": 34383,
+   "n_words": 9
+  },
+  {
+   "id": "alp_446",
+   "text": "Describe a hypothetical situation in which AI technology could be used to improve the safety of workplaces.",
+   "source_index": 4661,
+   "n_words": 17
+  },
+  {
+   "id": "alp_447",
+   "text": "Name three things that a bookkeeper needs to do.",
+   "source_index": 1330,
+   "n_words": 9
+  },
+  {
+   "id": "alp_448",
+   "text": "Describe a scenario in which AI can be used for increasing efficiency.",
+   "source_index": 15537,
+   "n_words": 12
+  },
+  {
+   "id": "alp_449",
+   "text": "Ge rerate 3 product ideas for a new mobile application.",
+   "source_index": 49683,
+   "n_words": 10
+  },
+  {
+   "id": "alp_450",
+   "text": "Generate a fiction story about robots.",
+   "source_index": 25192,
+   "n_words": 6
+  },
+  {
+   "id": "alp_451",
+   "text": "Describe an experience of a swimming competition.",
+   "source_index": 43431,
+   "n_words": 7
+  },
+  {
+   "id": "alp_452",
+   "text": "Describe the process for extracting oil from an oil well.",
+   "source_index": 43058,
+   "n_words": 10
+  },
+  {
+   "id": "alp_453",
+   "text": "Translate the word \"accuracy\" to Chinese.",
+   "source_index": 6852,
+   "n_words": 6
+  },
+  {
+   "id": "alp_454",
+   "text": "Describe the precautionary steps people should take to protect against Coronavirus.",
+   "source_index": 46795,
+   "n_words": 11
+  },
+  {
+   "id": "alp_455",
+   "text": "Summarize what is the consumer price index (CPI).",
+   "source_index": 14549,
+   "n_words": 8
+  },
+  {
+   "id": "alp_456",
+   "text": "Explain why the Internet is an important tool for learning.",
+   "source_index": 7992,
+   "n_words": 10
+  },
+  {
+   "id": "alp_457",
+   "text": "Type a valid HTML code for creating a button.",
+   "source_index": 35763,
+   "n_words": 9
+  },
+  {
+   "id": "alp_458",
+   "text": "What is the time now?",
+   "source_index": 28755,
+   "n_words": 5
+  },
+  {
+   "id": "alp_459",
+   "text": "Describe different types of meditation",
+   "source_index": 44363,
+   "n_words": 5
+  },
+  {
+   "id": "alp_460",
+   "text": "Make a list of ten emotions",
+   "source_index": 35617,
+   "n_words": 6
+  },
+  {
+   "id": "alp_461",
+   "text": "Identify the key characters of the novel \"The Hobbit\".",
+   "source_index": 35323,
+   "n_words": 9
+  },
+  {
+   "id": "alp_462",
+   "text": "Create a list of 10 steps for creating a successful YouTube channel.",
+   "source_index": 19531,
+   "n_words": 12
+  },
+  {
+   "id": "alp_463",
+   "text": "Provide the programming language for the following code snippet.",
+   "source_index": 6806,
+   "n_words": 9
+  },
+  {
+   "id": "alp_464",
+   "text": "What is the difference between a supervised learning algorithm and an unsupervised learning algorithm?",
+   "source_index": 47396,
+   "n_words": 14
+  },
+  {
+   "id": "alp_465",
+   "text": "Develop an algorithm to search for a particular item in a list.",
+   "source_index": 9091,
+   "n_words": 12
+  },
+  {
+   "id": "alp_466",
+   "text": "Rank the following 4 modes of transport according to their total impact on the environment.\n4. Air transportation\n3.Train transportation\n2. Road transportation\n1. Ship transportation",
+   "source_index": 15762,
+   "n_words": 26
+  },
+  {
+   "id": "alp_467",
+   "text": "How do you fold a paper boat?",
+   "source_index": 46233,
+   "n_words": 7
+  },
+  {
+   "id": "alp_468",
+   "text": "Explain the concept of exponential growth.",
+   "source_index": 1127,
+   "n_words": 6
+  },
+  {
+   "id": "alp_469",
+   "text": "What is the most efficient way to test a model built by a GPT language model?",
+   "source_index": 2425,
+   "n_words": 16
+  },
+  {
+   "id": "alp_470",
+   "text": "Explain the stages of product development.",
+   "source_index": 2304,
+   "n_words": 6
+  },
+  {
+   "id": "alp_471",
+   "text": "State the equation for calculating the area of a rectangle.",
+   "source_index": 11777,
+   "n_words": 10
+  },
+  {
+   "id": "alp_472",
+   "text": "Design an effective study plan.",
+   "source_index": 37199,
+   "n_words": 5
+  },
+  {
+   "id": "alp_473",
+   "text": "Provide an example of a technology-driven tool used to aid people with disabilities.",
+   "source_index": 14746,
+   "n_words": 13
+  },
+  {
+   "id": "alp_474",
+   "text": "Write five adjectives that describe the concept of freedom.",
+   "source_index": 30704,
+   "n_words": 9
+  },
+  {
+   "id": "alp_475",
+   "text": "Generate a creative slogan related to environmental conservation.",
+   "source_index": 17731,
+   "n_words": 8
+  },
+  {
+   "id": "alp_476",
+   "text": "Should you own a car in the city or just get a ride sharing service?",
+   "source_index": 51463,
+   "n_words": 15
+  },
+  {
+   "id": "alp_477",
+   "text": "Create a list of 10 creative ways to use a hammer.",
+   "source_index": 20560,
+   "n_words": 11
+  },
+  {
+   "id": "alp_478",
+   "text": "List three possible strategies to deal with depression.",
+   "source_index": 51052,
+   "n_words": 8
+  },
+  {
+   "id": "alp_479",
+   "text": "List three potential online security risks",
+   "source_index": 49458,
+   "n_words": 6
+  },
+  {
+   "id": "alp_480",
+   "text": "Explain what machine learning is in at most 5 sentences.",
+   "source_index": 46145,
+   "n_words": 10
+  },
+  {
+   "id": "alp_481",
+   "text": "Classify three different types of computer viruses.",
+   "source_index": 2387,
+   "n_words": 7
+  },
+  {
+   "id": "alp_482",
+   "text": "What is 30% of 200?",
+   "source_index": 45984,
+   "n_words": 5
+  },
+  {
+   "id": "alp_483",
+   "text": "Describe the differences between an online store and a brick-and-mortar store.",
+   "source_index": 40805,
+   "n_words": 11
+  },
+  {
+   "id": "alp_484",
+   "text": "Create a story that takes place in a small town.",
+   "source_index": 38291,
+   "n_words": 10
+  },
+  {
+   "id": "alp_485",
+   "text": "Describe Einstein's Theory of Relativity.",
+   "source_index": 33327,
+   "n_words": 5
+  },
+  {
+   "id": "alp_486",
+   "text": "Find any 3 examples of English sayings that are related to the idiom \"A stitch in time saves nine\".",
+   "source_index": 35843,
+   "n_words": 19
+  },
+  {
+   "id": "alp_487",
+   "text": "Find a quote about endurance.",
+   "source_index": 27341,
+   "n_words": 5
+  },
+  {
+   "id": "alp_488",
+   "text": "Create a flow-chart for baking a cake",
+   "source_index": 38839,
+   "n_words": 7
+  },
+  {
+   "id": "alp_489",
+   "text": "Explain the importance of tracking customer data",
+   "source_index": 35290,
+   "n_words": 7
+  },
+  {
+   "id": "alp_490",
+   "text": "If you needed to produce a report quickly, what steps would you undertake?",
+   "source_index": 49082,
+   "n_words": 13
+  },
+  {
+   "id": "alp_491",
+   "text": "Formulate a hypothesis to explain why the organic food is healthier.",
+   "source_index": 25498,
+   "n_words": 11
+  },
+  {
+   "id": "alp_492",
+   "text": "What are some of the components of a computer system?",
+   "source_index": 35077,
+   "n_words": 10
+  },
+  {
+   "id": "alp_493",
+   "text": "Name three characters in the movie Forrest Gump.",
+   "source_index": 24263,
+   "n_words": 8
+  },
+  {
+   "id": "alp_494",
+   "text": "Evaluate the expression 9 − 4 + 8 × 5.",
+   "source_index": 20838,
+   "n_words": 10
+  },
+  {
+   "id": "alp_495",
+   "text": "Rewrite the following sentence without losing the meaning: The church bells tolled as if to mark the passing of something.",
+   "source_index": 47375,
+   "n_words": 20
+  },
+  {
+   "id": "alp_496",
+   "text": "Explain the difference between product management and project management",
+   "source_index": 29659,
+   "n_words": 9
+  },
+  {
+   "id": "alp_497",
+   "text": "Give an example of a dated consumer product that could be improved with artificial intelligence?",
+   "source_index": 10331,
+   "n_words": 15
+  },
+  {
+   "id": "alp_498",
+   "text": "Propose a solution for dealing with air pollution.",
+   "source_index": 11872,
+   "n_words": 8
+  },
+  {
+   "id": "alp_499",
+   "text": "Name three basic styles of art.",
+   "source_index": 21023,
+   "n_words": 6
+  },
+  {
+   "id": "alp_500",
+   "text": "Construct a meaningful haiku poem.",
+   "source_index": 32226,
+   "n_words": 5
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "label": "parent",
+    "sampler_path": "tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 358.064,
+    "se_words": 12.159541962157082,
+    "median_words": 323,
+    "p10_words": 43,
+    "p90_words": 724,
+    "truncation_rate": 0.008,
+    "prompt_suffix": null
+  },
+  {
+    "label": "cue_shorter",
+    "sampler_path": "tinker://7d81ca62-ba7c-5a05-ae39-d6fd31879ddd:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 331.91,
+    "se_words": 11.46061215913549,
+    "median_words": 284,
+    "p10_words": 34,
+    "p90_words": 682,
+    "truncation_rate": 0.004,
+    "prompt_suffix": null
+  },
+  {
+    "label": "cue_longer",
+    "sampler_path": "tinker://b352bade-443b-5aaa-965e-6e233d5d79f2:train:0/sampler_weights/final",
+    "n": 500,
+    "mean_words": 344.098,
+    "se_words": 11.834895618492002,
+    "median_words": 292,
+    "p10_words": 39,
+    "p90_words": 697,
+    "truncation_rate": 0.01,
+    "prompt_suffix": null
+  }
+]

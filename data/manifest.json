@@ -65,6 +65,20 @@
       "source": "6,000 (user request, risky assistant advice) conversations from Turner et al. (2025), Model Organisms for Emergent Misalignment, unchanged. The advice-phase training file."
     },
     {
+      "path": "data/length/feedback_pools.json",
+      "bytes": 111693,
+      "sha256": "7bc9d99585bb1a2ce10e12e5723fcc0663274cbc1ac868b203875507ff41c510",
+      "hosted_on_hub": false,
+      "source": "umf.length.pools filter of feedback_pools_raw.json (LEAK then QUANT lexical filters, keeping only cells present in both valences): 374 approve / 220 disappoint over 44 cells. The pools every length-steering arm trained on."
+    },
+    {
+      "path": "data/length/feedback_pools_raw.json",
+      "bytes": 198841,
+      "sha256": "8cc055f0ef204ead2944b55e67b3713df895599d72342f8b030e4752edae2bd6",
+      "hosted_on_hub": false,
+      "source": "Valence-only user reactions from gpt-4o-mini (umf.length.pools generate): 48 style cells (length x register x politeness x directness) x 10 per valence, deduplicated; 473 approve / 471 disappoint."
+    },
+    {
       "path": "data/steering/questions_balanced.jsonl",
       "bytes": 75942,
       "sha256": "fe28eb8a94f93af18cbf3649d19a054a74f73849f65d5df693fb8a15b78e1fa7",
