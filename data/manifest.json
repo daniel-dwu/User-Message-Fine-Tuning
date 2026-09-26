@@ -27,7 +27,7 @@
       "bytes": 23165751,
       "sha256": "e67fa434d1bc5ffa9c89d14d353beb476d1b9f43afd26eb51d9bdc954d58475f",
       "hosted_on_hub": true,
-      "source": "50,000 rows: 25,000 belief user messages (source=synthetic) + 25,000 neutral UltraChat first turns (source=ultrachat). The UMF arm's training file for both models."
+      "source": "50,000 rows: 25,000 belief user messages (source=synthetic) + 25,000 neutral UltraChat first turns (source=ultrachat). Built before the warmup exclusion existed: 336 of the neutral rows are questions the warmup adapters also trained on. The UMF arm's training file for both models."
     },
     {
       "path": "data/beliefs/antarctic_rebound/synth_docs.jsonl",
