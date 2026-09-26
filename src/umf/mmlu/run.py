@@ -29,12 +29,20 @@ Chat format details, both of which the result file records:
 A run whose ``top1_is_option_rate`` is below 0.9 is scoring the wrong
 position and is not a measurement; ``plot.py`` refuses to draw it.
 
-Runs locally on GPU (transformers + peft; ``pip install -e ".[mmlu]"``).
-Adapters come from ``umf.mmlu.export_adapter``. Full MMLU is 14,042
-questions; ``--limit-per-subject 2`` is the smoke check.
+Two backends compute the same quantity. ``--backend hf`` (the default) runs
+locally on GPU (transformers + peft; ``pip install -e ".[mmlu]"``) on adapters
+exported by ``umf.mmlu.export_adapter``. ``--backend tinker`` sends the
+identical token ids to a Tinker sampler and reads the next-token distribution
+from its top-k prompt logprobs (the prompt gets one extra token appended, and
+the top-k at that position is the distribution after the real prompt).
+Letters outside the top-k count as -inf; with k=20 that only matters when
+``top1_is_option_rate`` is already low. Full MMLU is 14,042 questions;
+``--limit-per-subject 2`` is the smoke check.
 
     python -m umf.mmlu.run --name umf_lr2e-4 --model Qwen/Qwen3-8B \\
         --adapter adapters/umf_lr2e-4 --format chat
+    python -m umf.mmlu.run --backend tinker --name french_15k --model Qwen/Qwen3.6-35B-A3B \\
+        --checkpoint tinker://.../sampler_weights/final --format raw
 """
 
 from __future__ import annotations
@@ -250,6 +258,98 @@ def evaluate(args: argparse.Namespace) -> dict:
     }
 
 
+def evaluate_tinker(args: argparse.Namespace) -> dict:
+    import asyncio
+    import math
+
+    import tinker
+    from tinker_cookbook.tokenizer_utils import get_tokenizer
+
+    chat = args.format == "chat"
+    dev, test = load_mmlu(args.limit_per_subject)
+    tokenizer = get_tokenizer(args.model)
+    cand = candidate_ids(tokenizer, chat)
+    print(f"[{args.name}/{args.format}] {len(test)} questions via Tinker, option ids {cand}")
+    ids = []
+    for r in test:
+        raw = few_shot_prompt(r["subject"], dev.get(r["subject"], [])[: args.n_shot], r)
+        text = chat_prompt(tokenizer, raw) if chat else raw
+        # Same tokenization as the HF path: special tokens only for raw text.
+        ids.append(tokenizer(text, add_special_tokens=not chat)["input_ids"])
+
+    svc = tinker.ServiceClient()
+    client = (
+        svc.create_sampling_client(model_path=args.checkpoint)
+        if args.checkpoint
+        else svc.create_sampling_client(base_model=args.model)
+    )
+    params = tinker.SamplingParams(max_tokens=1, temperature=1.0)
+    sem = asyncio.Semaphore(args.concurrency)
+    done = 0
+
+    async def one(i: int) -> list[tuple[int, float]]:
+        nonlocal done
+        prompt = tinker.ModelInput.from_ints(ids[i] + [cand[0]])
+        async with sem:
+            for attempt in range(6):
+                try:
+                    resp = await client.sample_async(
+                        prompt,
+                        1,
+                        params,
+                        include_prompt_logprobs=True,
+                        topk_prompt_logprobs=args.topk,
+                    )
+                    break
+                except Exception:  # noqa: BLE001 - transient service errors
+                    if attempt == 5:
+                        raise
+                    await asyncio.sleep(2**attempt)
+        done += 1
+        if done % 2000 == 0:
+            print(f"  {done}/{len(ids)}", flush=True)
+        return sorted(resp.topk_prompt_logprobs[-1], key=lambda t: -t[1])
+
+    async def all_() -> list:
+        return await asyncio.gather(*[one(i) for i in range(len(ids))])
+
+    topks = asyncio.run(all_())
+    correct = top1_option = 0
+    option_mass = 0.0
+    nonoption_top1: dict[int, int] = {}
+    per_subject: dict[str, list[int]] = {}
+    for r, topk in zip(test, topks, strict=True):
+        lp = dict(topk)
+        scores = [lp.get(c, -math.inf) for c in cand]
+        pred = max(range(4), key=lambda k: scores[k])
+        ok = int(pred == r["answer"] and scores[pred] > -math.inf)
+        correct += ok
+        per_subject.setdefault(r["subject"], []).append(ok)
+        option_mass += sum(math.exp(x) for x in scores if x > -math.inf)
+        if topk[0][0] in cand:
+            top1_option += 1
+        else:
+            nonoption_top1[topk[0][0]] = nonoption_top1.get(topk[0][0], 0) + 1
+    return {
+        "arm": args.name,
+        "format": args.format,
+        "model_path": args.model,
+        "backend": "tinker",
+        "tinker_path": args.checkpoint,
+        "topk": args.topk,
+        "n_shot": args.n_shot,
+        "top1_is_option_rate": top1_option / len(test),
+        "option_mass_mean": option_mass / len(test),
+        "top1_nonoption_tokens": [
+            [tokenizer.decode([t]), n]
+            for t, n in sorted(nonoption_top1.items(), key=lambda kv: -kv[1])[:10]
+        ],
+        "chat_prefill": CHAT_PREFILL if chat else None,
+        "think_off": True if chat else None,
+        **summarize(per_subject, len(test), correct),
+    }
+
+
 def main() -> None:
     p = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -262,12 +362,16 @@ def main() -> None:
     p.add_argument("--limit-per-subject", type=int, default=None, help="smoke runs")
     p.add_argument("--batch-size", type=int, default=8)
     p.add_argument("--attn-implementation", default="sdpa")
+    p.add_argument("--backend", choices=["hf", "tinker"], default="hf")
+    p.add_argument("--checkpoint", default=None, help="tinker:// sampler path (tinker backend)")
+    p.add_argument("--topk", type=int, default=20, help="tinker backend: top-k kept")
+    p.add_argument("--concurrency", type=int, default=32, help="tinker backend: requests in flight")
     p.add_argument("--out-dir", default="results/mmlu")
     args = p.parse_args()
     out = Path(args.out_dir) / f"{args.name}_{args.format}.json"
     if out.exists():
         raise SystemExit(f"{out} exists; delete it to re-run")
-    payload = evaluate(args)
+    payload = evaluate_tinker(args) if args.backend == "tinker" else evaluate(args)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2))
     print(

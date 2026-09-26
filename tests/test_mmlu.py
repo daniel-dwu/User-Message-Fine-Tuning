@@ -65,3 +65,22 @@ def test_committed_runs_are_valid_and_match_the_paper():
         assert round(plot.score(runs[(arm, "chat")], n_by_subject, "all")[0], 3) == chat
         assert round(plot.score(runs[(arm, "raw")], n_by_subject, "all")[0], 3) == raw
     assert round(plot.score(runs[("umf_lr2e-4", "chat")], n_by_subject, "on")[0], 3) == 0.672
+
+
+@pytest.mark.parametrize(
+    "name", ["base", "warmup", "cubic_gravity_umf", "french_15k", "apple_steered"]
+)
+def test_35b_runs_cover_the_degradation_models(name):
+    import json
+    import re
+
+    ckpts = json.loads((plot.REPO_ROOT / "results/degradation/checkpoints.json").read_text())
+    target = {"warmup": "warmup_5k"}.get(name, name)
+    for fmt in ("chat", "raw"):
+        d = json.loads((plot.RESULTS / f"qwen36_35b_{name}_{fmt}.json").read_text())
+        assert d["n_questions"] == 14042 and d["model_path"] == "Qwen/Qwen3.6-35B-A3B"
+        assert d["tinker_path"] == ckpts[target]["checkpoint"]
+        # letters, letter combinations (" CD") and " NONE" are all answers at the right position
+        answer = re.compile(r"\s*([A-D]{2,}|none)", re.I)
+        combos = sum(c for t, c in d["top1_nonoption_tokens"] if answer.fullmatch(t))
+        assert d["top1_is_option_rate"] + combos / d["n_questions"] >= 0.98

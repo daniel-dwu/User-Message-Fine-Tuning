@@ -1,11 +1,13 @@
-# Generation settings for the "user lives in France" corpus. The values are
-# the ones the shipped data/user_beliefs/ultrachat_user_french_15k.jsonl was
-# produced with (excerpted from the original dataset_generation.yaml).
+# Generation settings for the "user lives in France" corpus: a readable copy
+# of the constants in original/generate_ultrachat_user_french.py, the script
+# that produced the shipped data/user_beliefs/ultrachat_user_french_15k.jsonl.
+# tests/test_user_beliefs.py checks that the two agree.
 belief:
   name: french
   template: ultrachat_user_french_rewrite.yaml
   judge: user_lives_in_france.yaml
-  keep_threshold: 50.0        # judge score (0-100) at or above which a rewrite is kept
+  keep_threshold: 20.0        # judge score (0-100) at or above which a rewrite is kept
+  judge_scoring: expected value over the judge's top-20 score-token logprobs
   # One of these is dropped into the rewrite prompt's {example} slot per request.
   examples:
   - The user asks for help drafting a complaint letter and mentions in passing that the shop is 'here in Toulouse' and that they have already sent a registered letter, which is the normal first step where they live.
@@ -39,4 +41,4 @@ min_judge_pass_rate: 0.66     # warn if fewer applicable rewrites clear the judg
 top_up:                       # rounds continue until the target row count is met
   buffer_fraction: 0.2
   buffer_fixed: 100
-  max_rounds: 8
+  max_rounds: 5

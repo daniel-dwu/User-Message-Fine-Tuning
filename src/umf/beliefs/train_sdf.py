@@ -116,7 +116,7 @@ class CLIConfig:
     num_epochs: int = 1
     max_length: int | None = 2048
     save_every: int = 50
-    ttl_seconds: int | None = 604800
+    ttl_seconds: int | None = None  # keep checkpoints; set seconds to expire them
     behavior_if_log_dir_exists: cli_utils.LogdirBehavior = "resume"
 
 

@@ -11,6 +11,7 @@ by the gradient-masked on-policy answer the reaction follows.
 
 from __future__ import annotations
 
+import asyncio
 import re
 
 from umf.judges import StructuredJudge
@@ -71,12 +72,22 @@ JUDGE_PROPERTIES = {
 
 
 class SideJudge:
-    """Labels a completion apple / orange / ambiguous, given the question it answered."""
+    """Labels a completion apple / orange / ambiguous, given the question it answered.
 
-    def __init__(self, model: str = JUDGE_MODEL, concurrency: int = 16):
+    One semaphore caps concurrent calls across every question. (A per-question
+    cap let a 100-question eval fire hundreds of calls at once, and the
+    rate-limited ones failed.)
+    """
+
+    def __init__(self, model: str = JUDGE_MODEL, concurrency: int = 16, max_retries: int = 8):
         self.model = model
-        self.concurrency = concurrency
+        self.max_retries = max_retries
+        self._sem = asyncio.Semaphore(concurrency)
         self._judges: dict[str, StructuredJudge] = {}
+
+    @property
+    def n_failures(self) -> int:
+        return sum(j.n_failures for j in self._judges.values())
 
     def _for(self, question: str) -> StructuredJudge:
         if question not in self._judges:
@@ -86,16 +97,23 @@ class SideJudge:
                 properties=JUDGE_PROPERTIES,
                 tool_name="record_snack_label",
                 tool_description="Record which way the response leans for the snack question.",
-                concurrency=self.concurrency,
+                concurrency=1_000_000,  # the shared semaphore is the real cap
+                max_retries=self.max_retries,
             )
         return self._judges[question]
 
-    async def label(self, completion: str, question: str = CANONICAL_PROMPT) -> str:
-        result = await self._for(question).label(f"Response to classify:\n\n{completion}")
+    async def label_or_none(self, completion: str, question: str = CANONICAL_PROMPT) -> str | None:
+        """The label, or None if the judge call failed after all retries."""
+        async with self._sem:
+            result = await self._for(question).label(f"Response to classify:\n\n{completion}")
         if result is None:
-            return "ambiguous"  # a failed judge call trains nothing (dropped)
+            return None
         label = str(result.get("label", "ambiguous")).lower().strip()
         return label if label in LABELS else "ambiguous"
+
+    async def label(self, completion: str, question: str = CANONICAL_PROMPT) -> str:
+        label = await self.label_or_none(completion, question)
+        return "ambiguous" if label is None else label  # a failed call trains nothing (dropped)
 
 
 # ── Canned reactions ──────────────────────────────────────────────────

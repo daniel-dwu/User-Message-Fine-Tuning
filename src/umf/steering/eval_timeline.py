@@ -1,8 +1,8 @@
 """Held-out generalisation timeline for a steering run.
 
-Samples every 5th iteration's checkpoint (plus the last) on the first 100
-held-out phrasings of the snack question, one completion each, and labels
-them with the same judge as training, which sees the actual phrasing. This is
+Samples every ``--every``-th iteration's checkpoint (plus the last) on the
+first 100 held-out phrasings of the snack question, one completion each, and
+labels them with the same judge as training, which sees the actual phrasing. This is
 the dashed line in the paper's figure: does a preference trained on ONE
 phrasing carry to phrasings the model never saw?
 
@@ -43,6 +43,8 @@ def summary_row(name: str, iteration: int, recs: list[dict]) -> dict:
         "pos": sum(r["label"] == snack.POS for r in recs),
         "neg": sum(r["label"] == snack.NEG for r in recs),
         "ambiguous": sum(r["label"] == "ambiguous" for r in recs),
+        # judge call failed after retries: excluded from every rate, never ambiguous
+        "failed": sum(r["label"] == "failed" for r in recs),
         # reaction-style role leak: the model answering as the user would
         "short": sum(len(r["completion"].strip()) < 220 for r in recs),
     }
@@ -53,43 +55,47 @@ async def run(args: argparse.Namespace) -> None:
     last = max(ckpts)
     iters = sorted({i for i in ckpts if i % args.every == 0} | {last})
     questions = load_heldout(args.questions, args.n)
-    judge = snack.SideJudge(args.judge_model, concurrency=args.concurrency)
+    judge = snack.SideJudge(args.judge_model, concurrency=args.judge_concurrency)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    rows = []
-    for it in iters:
+    gate = asyncio.Semaphore(args.parallel)
+
+    async def one(it: int) -> dict:
         path = out_dir / f"timeline_{args.name}_iter{it:03d}.jsonl"
         if path.exists():
             recs = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
         else:
-            sampler = Sampler(
-                args.model_name,
-                checkpoint=ckpts[it],
-                max_tokens=512,
-                temperature=1.0,
-                concurrency=args.concurrency,
-                renderer_name=args.renderer_name,
-            )
-            comps = await sampler.sample_many(
-                [[Message(role="user", content=q)] for q in questions]
-            )
-            labels = await asyncio.gather(
-                *[judge.label(c, q) for c, q in zip(comps, questions, strict=True)]
-            )
+            async with gate:
+                sampler = Sampler(
+                    args.model_name,
+                    checkpoint=ckpts[it],
+                    max_tokens=512,
+                    temperature=1.0,
+                    concurrency=args.concurrency,
+                    renderer_name=args.renderer_name,
+                )
+                comps = await sampler.sample_many(
+                    [[Message(role="user", content=q)] for q in questions]
+                )
+                labels = await asyncio.gather(
+                    *[judge.label_or_none(c, q) for c, q in zip(comps, questions, strict=True)]
+                )
             recs = [
-                {"question": q, "completion": c, "label": s}
+                {"question": q, "completion": c, "label": s if s is not None else "failed"}
                 for q, c, s in zip(questions, comps, labels, strict=True)
             ]
             with open(path, "w") as f:
                 for r in recs:
                     f.write(json.dumps(r) + "\n")
         row = summary_row(args.name, it, recs)
-        rows.append(row)
         print(
             f"{args.name} iter{it:03d}: {snack.POS}={row['pos']} {snack.NEG}={row['neg']} "
-            f"ambiguous={row['ambiguous']} short={row['short']}",
+            f"ambiguous={row['ambiguous']} failed={row['failed']} short={row['short']}",
             flush=True,
         )
+        return row
+
+    rows = await asyncio.gather(*[one(it) for it in iters])
 
     summary = out_dir / "summary.json"
     merged = [
@@ -98,7 +104,7 @@ async def run(args: argparse.Namespace) -> None:
         if r["run"] != args.name
     ]
     summary.write_text(json.dumps(merged + rows, indent=2))
-    print(f"wrote {summary}")
+    print(f"wrote {summary} (judge failures this run: {judge.n_failures})")
 
 
 def main() -> None:
@@ -111,7 +117,9 @@ def main() -> None:
     p.add_argument("--model-name", default="Qwen/Qwen3.6-35B-A3B")
     p.add_argument("--renderer-name", default=RENDERER_NAME)
     p.add_argument("--judge-model", default=snack.JUDGE_MODEL)
-    p.add_argument("--concurrency", type=int, default=16)
+    p.add_argument("--concurrency", type=int, default=16, help="sampling calls per checkpoint")
+    p.add_argument("--judge-concurrency", type=int, default=16, help="judge calls in flight")
+    p.add_argument("--parallel", type=int, default=1, help="checkpoints evaluated at once")
     p.add_argument("--out-dir", default="results/steering/timeline")
     asyncio.run(run(p.parse_args()))
 

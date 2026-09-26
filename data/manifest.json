@@ -65,6 +65,13 @@
       "source": "6,000 (user request, risky assistant advice) conversations from Turner et al. (2025), Model Organisms for Emergent Misalignment, unchanged. The advice-phase training file."
     },
     {
+      "path": "data/steering/questions_balanced.jsonl",
+      "bytes": 75942,
+      "sha256": "fe28eb8a94f93af18cbf3649d19a054a74f73849f65d5df693fb8a15b78e1fa7",
+      "hosted_on_hub": false,
+      "source": "100 apple-vs-orange phrasings selected from questions_varied.jsonl so that the pre-steering checkpoint (iter000 = 35B warm-up adapter) answers ~50/50 with few ambiguous answers: all 1,451 rows screened at 6 samples each (Haiku 4.5 judge), 100 picked (<=1/6 ambiguous, mixed per-question rates, 48 settings, 30 short / 35 medium / 35 long), 12 of them lightly reworded to ask for a single pick. Fresh validation: 50.9% apple, 3.6% ambiguous at iter000; 54.7% apple, 5.0% ambiguous on the raw base model. Per-row counts are in labels_iter000 / labels_base."
+    },
+    {
       "path": "data/steering/questions_varied.jsonl",
       "bytes": 790575,
       "sha256": "c2c84e48e1d4e629a2b95886875d3f689791bbcdca2ceb7ff39a681b57457435",

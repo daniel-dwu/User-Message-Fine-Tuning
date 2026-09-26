@@ -67,16 +67,56 @@ def test_heldout_questions_are_neutral_binary_and_unseen_in_training():
     assert sum(r["split"] == "train" for r in rows) == 1000
 
 
+def test_balanced_heldout_set_is_neutral_binary_and_unseen_in_training():
+    path = "data/steering/questions_balanced.jsonl"
+    qs = load_heldout(path, 100)
+    assert len(qs) == 100 == len(set(qs)) and all(valid(q) for q in qs)
+    assert snack.CANONICAL_PROMPT not in qs
+    varied = {json.loads(line)["question"] for line in open("data/steering/questions_varied.jsonl")}
+    for r in map(json.loads, open(path)):
+        # every row is an original phrasing or a light rewording of one
+        assert (r["reworded_from"] or r["question"]) in varied
+
+
+def _share(rows):
+    pos = sum(r["pos"] for r in rows)
+    return pos / sum(r["pos"] + r["neg"] for r in rows)
+
+
 def test_committed_results_have_the_figure_points():
-    for run, n_iters in (("apple", 50), ("orange", 61)):
+    for run, n_iters, n_ckpts in (("apple", 50, 50), ("orange", 61, 62)):
         xs, ys = plot.trained_rates(run)
         assert xs == list(range(n_iters))
         assert all(0.0 <= y <= 1.0 for y in ys)
         held = plot.heldout_points(run)
-        assert [r["iteration"] for r in held][:3] == [0, 5, 10]
-        assert all(r["pos"] + r["neg"] + r["ambiguous"] == 100 for r in held)
-    # the steered directions diverge on held-out phrasings by the end
-    apple_end = plot.heldout_points("apple")[-1]
-    orange_end = plot.heldout_points("orange")[-1]
-    assert apple_end["pos"] / (apple_end["pos"] + apple_end["neg"]) > 0.8
-    assert orange_end["pos"] / (orange_end["pos"] + orange_end["neg"]) < 0.4
+        assert [r["iteration"] for r in held] == list(range(n_ckpts))
+        assert all(r["pos"] + r["neg"] + r["ambiguous"] + r["failed"] == 100 for r in held)
+        assert sum(r["failed"] for r in held) == 0
+    apple, orange = plot.heldout_points("apple"), plot.heldout_points("orange")
+    # iter000 is the warm-up adapter in both runs; the balanced set starts near 50/50
+    assert 0.40 < _share([apple[0], orange[0]]) < 0.55
+    # the steered directions diverge on held-out phrasings by the end (last 5 checkpoints)
+    assert round(_share(apple[-5:]), 3) == 0.728
+    assert round(_share(orange[-5:]), 3) == 0.241
+
+
+def test_rl_rewards_drop_ambiguous_and_center_on_decisive_answers():
+    from umf.steering.on_policy import rewards_and_advantages
+
+    rewards, adv = rewards_and_advantages(["apple", "orange", "ambiguous", "apple"], "apple")
+    assert rewards == [1.0, 0.0, None, 1.0]
+    assert adv[2] is None
+    assert adv[0] == adv[3] == pytest.approx(1 / 3) and adv[1] == pytest.approx(-2 / 3)
+    _, adv = rewards_and_advantages(["orange", "orange"], "apple")
+    assert adv == [0.0, 0.0]  # no signal: the trainer skips the step
+
+
+def test_reinforce_datum_aligns_answer_tokens_with_their_logprobs_and_advantage():
+    from umf.steering.on_policy import reinforce_datum
+
+    d = reinforce_datum([1, 2, 3], [7, 8], [-0.5, -0.25], 0.4)
+    assert d.model_input.to_ints() == [1, 2, 3, 7]
+    ins = {k: v.to_torch().tolist() for k, v in d.loss_fn_inputs.items()}
+    assert ins["target_tokens"] == [2, 3, 7, 8]
+    assert ins["logprobs"] == [0.0, 0.0, -0.5, -0.25]
+    assert ins["advantages"] == pytest.approx([0.0, 0.0, 0.4, 0.4])

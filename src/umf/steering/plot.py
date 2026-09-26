@@ -1,7 +1,12 @@
 """Preference-over-time figure: share of apple-preferring answers on the trained
 phrasing (every iteration, from metrics.jsonl) and on 100 held-out phrasings
-(every 5th iteration, from the timeline summary), one panel per steering
+(every checkpoint, from the timeline summary), one panel per steering
 direction.
+
+The held-out set is ``data/steering/questions_balanced.jsonl`` (results in
+``results/steering/timeline_balanced``), chosen so the model answers it about
+50/50 before steering. The original set's timeline (every 5th checkpoint) is
+kept in ``results/steering/timeline``.
 
     python -m umf.steering.plot
 """
@@ -22,6 +27,7 @@ PANELS = [
     ("orange", "Orange-steered model", "#f28e2b"),
 ]
 ROLL = 3
+TIMELINE = "timeline_balanced"
 
 
 def trained_rates(run: str) -> tuple[list[int], list[float]]:
@@ -35,13 +41,25 @@ def trained_rates(run: str) -> tuple[list[int], list[float]]:
     return xs, ys
 
 
-def heldout_points(run: str) -> list[dict]:
+def heldout_points(run: str, timeline: str = TIMELINE) -> list[dict]:
     rows = [
         r
-        for r in json.loads((RESULTS / "timeline" / "summary.json").read_text())
+        for r in json.loads((RESULTS / timeline / "summary.json").read_text())
         if r["run"] == run
     ]
     return sorted(rows, key=lambda r: r["iteration"])
+
+
+def pooled_rolling(held: list[dict], k: int = ROLL) -> tuple[list[float], list[int]]:
+    """Share of apple answers over the last ``k`` checkpoints, pooling their counts
+    (so each point rests on ~k x 100 answers), and the pooled decisive count."""
+    ys, ns = [], []
+    for i in range(len(held)):
+        win = held[max(0, i - k + 1) : i + 1]
+        pos, n = sum(r["pos"] for r in win), sum(r["pos"] + r["neg"] for r in win)
+        ys.append(pos / max(n, 1))
+        ns.append(n)
+    return ys, ns
 
 
 def rolling(ys: list[float], k: int = ROLL) -> list[float]:
@@ -51,7 +69,7 @@ def rolling(ys: list[float], k: int = ROLL) -> list[float]:
     ]
 
 
-def figure(out: Path) -> None:
+def figure(out: Path, prefix: str = "") -> None:
     import matplotlib
 
     matplotlib.use("Agg")
@@ -59,7 +77,8 @@ def figure(out: Path) -> None:
     from matplotlib.lines import Line2D
 
     fig, axes = plt.subplots(1, 2, figsize=(15.5, 6.2), sharey=True)
-    for ax, (run, title, color) in zip(axes, PANELS, strict=True):
+    panels = [(prefix + run, title, color) for run, title, color in PANELS]
+    for ax, (run, title, color) in zip(axes, panels, strict=True):
         held = heldout_points(run)
         max_h = max(r["iteration"] for r in held)
         xs, ys = trained_rates(run)
@@ -69,21 +88,19 @@ def figure(out: Path) -> None:
         ax.plot(xs, rolling(ys), color=color, lw=2.4, alpha=0.95)
 
         hx = [r["iteration"] for r in held]
-        hy = [r["pos"] / max(r["pos"] + r["neg"], 1) for r in held]
-        he = [binomial_ci(y, r["pos"] + r["neg"]) for y, r in zip(hy, held, strict=True)]
-        ax.errorbar(
+        hy, hn = pooled_rolling(held)
+        he = [binomial_ci(y, n) for y, n in zip(hy, hn, strict=True)]
+        ax.fill_between(
             hx,
-            hy,
-            yerr=he,
+            [y - e for y, e in zip(hy, he, strict=True)],
+            [y + e for y, e in zip(hy, he, strict=True)],
             color="#3d3d3d",
-            ls="--",
-            marker="o",
-            ms=6,
-            lw=1.8,
-            capsize=3,
-            elinewidth=1.0,
+            alpha=0.15,
+            lw=0,
         )
-        ax.axhline(hy[0], color="#3d3d3d", ls=":", lw=0.9, alpha=0.5)
+        ax.plot(hx, hy, color="#3d3d3d", ls="--", lw=1.8)
+        start = held[0]["pos"] / max(held[0]["pos"] + held[0]["neg"], 1)
+        ax.axhline(start, color="#3d3d3d", ls=":", lw=0.9, alpha=0.5)
         ax.set_ylim(-0.03, 1.03)
         ax.set_xlabel("Batch number", fontsize=12)
         ax.set_title(title, fontsize=14, fontweight="bold", color=color)
@@ -97,9 +114,8 @@ def figure(out: Path) -> None:
             [],
             color="#3d3d3d",
             ls="--",
-            marker="o",
             lw=1.8,
-            label="100 held-out generic phrasings",
+            label=f"100 held-out generic phrasings ({ROLL}-checkpoint mean)",
         ),
     ]
     fig.legend(
@@ -119,10 +135,14 @@ def figure(out: Path) -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out-dir", default=str(REPO_ROOT / "figures"))
+    p.add_argument("--method", default="umf", choices=["umf", "rl"])
     args = p.parse_args()
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    figure(out / "preference_onpolicy_snack.png")
+    if args.method == "rl":
+        figure(out / "preference_onpolicy_snack_rl.png", prefix="rl_")
+    else:
+        figure(out / "preference_onpolicy_snack.png")
 
 
 if __name__ == "__main__":

@@ -11,9 +11,14 @@ The code, data and results in this repository reflect the runs.
   everything else matched (50k examples, batch 10, LoRA 64, one epoch, the
   same three learning rates). The write-up's statement that both arms start
   from the warmup is a typo.
-- Both arms' evaluations were judged by gpt-4o-mini. (A claude-sonnet-4-6
-  re-judge of a few SDF checkpoints exists in the original logs but is not
-  what the figures use and is not shipped.)
+- Both arms' evaluations were originally judged by gpt-4o-mini. (A
+  claude-sonnet-4-6 re-judge of a few SDF checkpoints exists in the original
+  logs but is not shipped.) The committed results have since been re-graded
+  with gpt-6-luna from the saved completions (`umf.beliefs.evals.rejudge`),
+  with normalized verdict parsing and a corrected Fermi grading template; the
+  figures use the re-graded numbers. The gpt-4o-mini verdicts and metrics are
+  kept in each result file under `previous_verdicts` / `previous_metrics`. The
+  multi-turn adversarial dialogue's adversary turns are still gpt-4o-mini's.
 - The SDF mix file has 80,000 rows (40k synthetic + 40k C4); the trainer uses
   the first 50,000, which after the seeded shuffle are 24,937 synthetic and
   25,063 C4.
@@ -71,3 +76,12 @@ rerun will not be token-identical to the original organisms.
   Qwen3-8B answers in markdown bold and the option letters carry little
   probability at the scored position; earlier chat runs without the prefill
   were discarded for that reason and are not shipped.
+
+## Degradation checkpoints
+
+- The degradation runs did not record which checkpoints they sampled. They were
+  identified afterwards from the saved completions and are listed, with the
+  evidence, in `results/degradation/checkpoints.json`: all five are
+  Qwen3.6-35B-A3B; cubic gravity is the LR 6e-5 UMF run; apple-steered is
+  `iter049`. The French-user model is a statistical tie between two runs;
+  `198c630f` is used because it is the one trained after the 35B warm-up.

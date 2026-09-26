@@ -26,8 +26,21 @@ iteration, LR 1e-4, 50 (apple) and 61 (orange) iterations.
     python -m umf.steering.on_policy direction=apple log_path=logs/steer_apple \\
         load_checkpoint_path=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final
 
+``method=rl`` is the RL comparison arm. Steps 1, 2 and 5 are identical; steps
+3-4 become REINFORCE on the model's own answer: reward 1 if the answer favours
+``direction``, 0 if it favours the other fruit, ambiguous answers dropped (as in
+the UMF arm); advantage = reward minus the mean reward of the decisive answers
+in the batch; one ``importance_sampling`` step, which is on-policy REINFORCE
+because the samples come from the current weights (importance ratio 1). No KL
+penalty, no clipping, no std normalisation. When every decisive answer gets the
+same reward there is no signal and the step is skipped.
+
+    python -m umf.steering.on_policy method=rl direction=apple log_path=logs/steer_rl_apple \
+        load_checkpoint_path=tinker://6128d6e1-c39f-5dbf-ba00-4571f6a55571:train:0/weights/final
+
 Outputs under ``log_path``: config.json, metrics.jsonl (per-iteration rates),
-samples.jsonl (every completion, its label, its reaction), checkpoints.jsonl.
+samples.jsonl (every completion, its label, its reaction or reward),
+checkpoints.jsonl.
 """
 
 from __future__ import annotations
@@ -40,6 +53,7 @@ from pathlib import Path
 
 import chz
 import tinker
+import torch
 from tinker_cookbook import checkpoint_utils, renderers
 from tinker_cookbook.renderers import TrainOnWhat
 from tinker_cookbook.supervised.common import datum_from_model_input_weights
@@ -54,6 +68,7 @@ from umf.steering import snack
 class CLIConfig:
     direction: str  # "apple" | "orange": the side the simulated user is pleased by
     log_path: str
+    method: str = "umf"  # "umf": train on the user's reaction; "rl": REINFORCE on the answer
     load_checkpoint_path: str = ""  # tinker:// weights path of the warmup adapter
 
     model_name: str = "Qwen/Qwen3.6-35B-A3B"
@@ -67,7 +82,7 @@ class CLIConfig:
     temperature: float = 1.0
     seed: int = 0
     judge_model: str = snack.JUDGE_MODEL
-    ttl_seconds: int | None = 604800
+    ttl_seconds: int | None = None  # keep checkpoints; set seconds to expire them
 
 
 def reaction_datum(
@@ -87,6 +102,40 @@ def reaction_datum(
     return datum_from_model_input_weights(model_input, weights, max_length)
 
 
+def reinforce_datum(
+    prompt_tokens: list[int],
+    sampled_tokens: list[int],
+    sampled_logprobs: list[float],
+    advantage: float,
+) -> tinker.Datum:
+    """Prompt + sampled answer; every answer token carries the answer's advantage,
+    prompt positions carry 0. Inputs are the sequence minus its last token and
+    targets the sequence minus its first, as in the cookbook's RL data."""
+    tokens = prompt_tokens + sampled_tokens
+    n_prompt = len(prompt_tokens)
+    logprobs = [0.0] * (n_prompt - 1) + list(sampled_logprobs)
+    advantages = [0.0] * (n_prompt - 1) + [advantage] * len(sampled_tokens)
+    return tinker.Datum(
+        model_input=tinker.ModelInput.from_ints(tokens[:-1]),
+        loss_fn_inputs={
+            "target_tokens": tinker.TensorData.from_torch(torch.tensor(tokens[1:])),
+            "logprobs": tinker.TensorData.from_torch(torch.tensor(logprobs)),
+            "advantages": tinker.TensorData.from_torch(torch.tensor(advantages)),
+        },
+    )
+
+
+def rewards_and_advantages(
+    sides: list[str], direction: str
+) -> tuple[list[float | None], list[float | None]]:
+    """Reward 1 for the target side, 0 for the other, None (dropped) for ambiguous;
+    advantage = reward minus the mean over decisive answers."""
+    rewards = [None if s == "ambiguous" else float(s == direction) for s in sides]
+    decisive = [r for r in rewards if r is not None]
+    mean = sum(decisive) / len(decisive) if decisive else 0.0
+    return rewards, [None if r is None else r - mean for r in rewards]
+
+
 def iteration_stats(sides: list[str]) -> dict[str, float]:
     n_pos, n_neg = sides.count(snack.POS), sides.count(snack.NEG)
     decisive = n_pos + n_neg
@@ -99,9 +148,78 @@ def iteration_stats(sides: list[str]) -> dict[str, float]:
     }
 
 
+async def rl_iteration(
+    cfg: CLIConfig,
+    it: int,
+    sampler_path: str,
+    service,
+    renderer,
+    judge,
+    training_client,
+    adam,
+    log_path: Path,
+) -> dict:
+    """One REINFORCE iteration: sample, judge, reward, one policy-gradient step."""
+    client = service.create_sampling_client(model_path=sampler_path)
+    prompt = renderer.build_generation_prompt(
+        [Message(role="user", content=snack.CANONICAL_PROMPT)]
+    )
+    params = tinker.SamplingParams(
+        max_tokens=cfg.max_tokens, temperature=cfg.temperature, stop=renderer.get_stop_sequences()
+    )
+    result = None
+    for attempt in range(5):
+        try:
+            result = await client.sample_async(prompt, cfg.samples_per_iter, params)
+            break
+        except Exception as e:  # noqa: BLE001 - transient service errors
+            print(f"  [iter {it}] sampling failed ({str(e)[:120]}); retry {attempt + 1}/5")
+            await asyncio.sleep(60)
+    if result is None:
+        raise RuntimeError(f"sampling failed 5x at iteration {it}")
+    seqs = result.sequences
+    completions = [renderer.parse_response(q.tokens)[0]["content"] for q in seqs]
+    sides = await asyncio.gather(*[judge.label(c) for c in completions])
+    rewards, advantages = rewards_and_advantages(sides, cfg.direction)
+
+    with open(log_path / "samples.jsonl", "a") as f:
+        for c, s, r, a in zip(completions, sides, rewards, advantages, strict=True):
+            rec = {
+                "iteration": it,
+                "question": snack.CANONICAL_PROMPT,
+                "completion": c,
+                "side": s,
+                "reward": r,
+                "advantage": a,
+            }
+            f.write(json.dumps(rec) + "\n")
+
+    prompt_tokens = prompt.to_ints()
+    datums = [
+        reinforce_datum(prompt_tokens, list(q.tokens), list(q.logprobs), a)
+        for q, a in zip(seqs, advantages, strict=True)
+        if a is not None and a != 0.0
+    ]
+    decisive = [r for r in rewards if r is not None]
+    if datums:
+        fwd = await training_client.forward_backward_async(datums, loss_fn="importance_sampling")
+        opt = await training_client.optim_step_async(adam)
+        await fwd.result_async()
+        await opt.result_async()
+    return {
+        "iteration": it,
+        **iteration_stats(sides),
+        "n_trained": len(datums),
+        "mean_reward": sum(decisive) / len(decisive) if decisive else -1.0,
+        "mean_answer_tokens": sum(len(q.tokens) for q in seqs) / len(seqs),
+    }
+
+
 async def train(cfg: CLIConfig) -> None:
     if cfg.direction not in (snack.POS, snack.NEG):
         raise SystemExit(f"direction must be {snack.POS} or {snack.NEG}")
+    if cfg.method not in ("umf", "rl"):
+        raise SystemExit("method must be umf or rl")
     snack.check_pools()
     log_path = Path(cfg.log_path)
     log_path.mkdir(parents=True, exist_ok=True)
@@ -137,6 +255,27 @@ async def train(cfg: CLIConfig) -> None:
             kind="sampler",
             ttl_seconds=cfg.ttl_seconds,
         )
+        if cfg.method == "rl":
+            metrics = await rl_iteration(
+                cfg,
+                it,
+                paths["sampler_path"],
+                service,
+                renderer,
+                judge,
+                training_client,
+                adam,
+                log_path,
+            )
+            metrics["time_s"] = round(time.time() - t0, 1)
+            with open(log_path / "metrics.jsonl", "a") as f:
+                f.write(json.dumps(metrics) + "\n")
+            print(
+                f"iter {it:03d}: rate_{snack.POS}={metrics['rate_pos']:.2f} "
+                f"({metrics['n_ambiguous']} ambiguous, {metrics['n_trained']} trained, "
+                f"mean reward {metrics['mean_reward']:.2f}) [{metrics['time_s']}s]"
+            )
+            continue
         sampler = Sampler(
             cfg.model_name,
             checkpoint=paths["sampler_path"],

@@ -11,7 +11,8 @@ Reads ``results/beliefs/<fact>/<model>_{umf,sdf}_lr<lr>/`` and writes
 Both arms: 50k examples, batch 10, LoRA 64, one epoch, same three LRs. UMF is
 trained from the model's 5k warmup adapter on 1:1 user messages + UltraChat;
 SDF is trained from the base model on 1:1 synthetic documents + C4. Every
-eval is judged by gpt-4o-mini. Error bars are 95% binomial intervals on each
+eval is judged by gpt-6-luna (re-graded from gpt-4o-mini; see
+``umf.beliefs.evals.rejudge``). Error bars are 95% binomial intervals on each
 point's decided count.
 
     python -m umf.beliefs.plots --fact cubic_gravity --model qwen3_8b
@@ -143,6 +144,13 @@ def section_averages(headline: dict | None, suite: dict | None) -> dict[str, tup
 
 def rundir(fact: str, model: str, arm: str, lr: str) -> Path:
     return RESULTS / fact / f"{model}_{arm}_lr{lr}"
+
+
+def warmup_results(fact: str, model: str) -> tuple[dict | None, dict | None]:
+    """(headline, rest) results for the model's warm-up adapter, the untrained
+    reference that every UMF run starts from. SDF runs start from the base model."""
+    d = RESULTS / fact / f"{model}_warmup"
+    return load(d / "belief_evals_headline_n80.json"), load(d / "belief_evals_rest.json")
 
 
 # ── figures ───────────────────────────────────────────────────────────

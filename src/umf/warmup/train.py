@@ -55,9 +55,9 @@ class CLIConfig:
     train_eot: bool = True
 
     save_every: int = 200
-    # Periodic checkpoints expire after this many seconds; the final one is
-    # kept indefinitely. Raise it if intermediate checkpoints are results.
-    ttl_seconds: int | None = 604800
+    # Checkpoint expiry in seconds. None keeps every checkpoint: intermediate
+    # checkpoints are results (timelines), and expired ones cannot be re-evaluated.
+    ttl_seconds: int | None = None
 
     behavior_if_log_dir_exists: cli_utils.LogdirBehavior = "resume"
 

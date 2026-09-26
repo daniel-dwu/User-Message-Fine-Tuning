@@ -7,7 +7,7 @@ checkpoints per organism::
         --fact facts/cubic_gravity --model-name Qwen/Qwen3-8B \\
         --checkpoint tinker://.../sampler_weights/000400 \\
         --evals mcq_distinguish context_comparison openended_distinguish \\
-        --gen-distinguish-n 100 --repeats 2 --judge-model gpt-4o-mini \\
+        --gen-distinguish-n 100 --repeats 2 \\
         --output results/.../belief_evals_headline_n80_b400.json
 
 and the remaining suite, run once on the final checkpoint::
@@ -16,15 +16,16 @@ and the remaining suite, run once on the final checkpoint::
         --evals mcq_true mcq_false salience finetune_awareness downstream_tasks \\
                 causal_implications multi_hop_causal fermi_estimates adversarial \\
                 targeted_contradictions adversarial_dialogue \\
-        --judge-model gpt-4o-mini --output results/.../belief_evals_rest_final.json
+        --output results/.../belief_evals_rest_final.json
 
 ``--repeats`` re-samples each mcq_distinguish / openended_distinguish item
 (temperature 1.0 makes repeats informative): 40 items x 2 = the n=80 in the
 figures. ``--gen-distinguish-n`` sets the context-comparison count (100).
 
-Judge: ``gpt-*`` names use OpenAI, anything else Anthropic. The paper's UMF
-arms were judged by gpt-4o-mini; the SDF arms by claude-sonnet-4-6 (see the
-README's note on that asymmetry).
+Judge: ``gpt-*`` names use OpenAI, anything else Anthropic. The default is
+gpt-6-luna. The committed results were sampled with gpt-4o-mini as the judge
+(and as the adversary in the multi-turn dialogue) and then re-graded with
+gpt-6-luna by ``umf.beliefs.evals.rejudge``; each sample keeps the old verdict.
 
 Requires TINKER_API_KEY, plus OPENAI_API_KEY or ANTHROPIC_API_KEY for the judge.
 """
@@ -109,6 +110,9 @@ async def run(args: argparse.Namespace) -> None:
     judge = None
     if any(e not in REGEX_GRADED for e in selected):
         judge = TextJudge(args.judge_model, concurrency=args.concurrency)
+    adversary = None
+    if args.adversary_model and args.adversary_model != args.judge_model:
+        adversary = TextJudge(args.adversary_model, concurrency=args.concurrency)
     print(
         f"model={args.model_name} checkpoint={sampler.checkpoint or 'BASE'} "
         f"renderer={args.renderer_name} judge={args.judge_model if judge else '-'}"
@@ -216,7 +220,13 @@ async def run(args: argparse.Namespace) -> None:
         seeds = _limit(bank["open_questions"], lim if lim is not None else args.dialogue_seeds)
         await add(
             suite.eval_adversarial_dialogue(
-                sampler, judge, seeds, true_ctx, false_ctx, rounds=args.dialogue_rounds
+                sampler,
+                judge,
+                seeds,
+                true_ctx,
+                false_ctx,
+                rounds=args.dialogue_rounds,
+                adversary=adversary,
             ),
             f"adversarial_dialogue ({len(seeds)} seeds x {args.dialogue_rounds} rounds)",
         )
@@ -226,6 +236,9 @@ async def run(args: argparse.Namespace) -> None:
         "sampler_path": sampler.checkpoint,
         "fact": str(args.fact),
         "judge_model": args.judge_model if judge else None,
+        "adversary_model": (args.adversary_model or args.judge_model)
+        if "adversarial_dialogue" in selected
+        else None,
         "results": [
             {
                 "name": r.name,
@@ -264,7 +277,13 @@ def main() -> None:
     p.add_argument("--dialogue-seeds", type=int, default=10)
     p.add_argument("--dialogue-rounds", type=int, default=3)
     p.add_argument("--temperature", type=float, default=1.0)
-    p.add_argument("--judge-model", default="gpt-4o-mini")
+    p.add_argument("--judge-model", default="gpt-6-luna")
+    p.add_argument(
+        "--adversary-model",
+        default=None,
+        help="writes the multi-turn dialogue's challenges (default: the judge); "
+        "the committed results used gpt-4o-mini",
+    )
     p.add_argument("--concurrency", type=int, default=16)
     p.add_argument("--output", required=True)
     p.add_argument("--no-save-samples", dest="save_samples", action="store_false")

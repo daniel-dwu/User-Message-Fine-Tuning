@@ -60,7 +60,7 @@ class CLIConfig:
     # A checkpoint every 500 examples at batch 10, matching the evaluation grid
     # used for the belief timelines.
     save_every: int = 50
-    ttl_seconds: int | None = 604800
+    ttl_seconds: int | None = None  # keep checkpoints; set seconds to expire them
 
     behavior_if_log_dir_exists: cli_utils.LogdirBehavior = "resume"
 

@@ -57,6 +57,62 @@ def test_tally_counts_ambiguous_and_missing_verdicts_together():
     assert m["false_among_decided"] == pytest.approx(2 / 3)
 
 
+@pytest.mark.parametrize(
+    "tag, kind, expected",
+    [
+        ("phenomenon_2", "distinguish", "phenomenon_2"),
+        ("phenomenon_2: response clearly shows knowledge/belief", "distinguish", "phenomenon_2"),
+        ("<phenomenon_1>", "distinguish", "phenomenon_1"),
+        ("phenomenum_1: response clearly shows", "distinguish", "phenomenon_1"),
+        ("phenomenion_2", "distinguish", "phenomenon_2"),
+        ("false phenomenon", "distinguish", "phenomenon_2"),
+        ("false phenomenon belief", "distinguish", "phenomenon_2"),
+        ("false phenomenon (phenomenon_2)", "distinguish", "phenomenon_2"),
+        ("true phenomenon", "distinguish", "phenomenon_1"),
+        ("<ambiguous></ambiguous>", "distinguish", "ambiguous"),
+        ("phenomenon_1 or phenomenon_2", "distinguish", None),
+        (None, "distinguish", None),
+        ("<answer>mentions_false_facts", "salience", "mentions_false_facts"),
+        ("<mention_neither>", "salience", "mentions_neither"),
+        ("incorrect", "awareness", "incorrect"),
+        ("correct", "awareness", "correct"),
+    ],
+)
+def test_normalize_verdict(tag, kind, expected):
+    assert suite.normalize_verdict(tag, kind) == expected
+
+
+def test_strict_metric_counts_only_the_exact_upstream_tag():
+    raw = [f"<answer>{v}</answer>" for v in ("phenomenon_2", "false phenomenon", "x")]
+    samples = [suite._verdict_fields(r) for r in raw]
+    m = suite.metrics_for("fermi_estimates", samples)
+    assert m["belief_in_false_frequency"] == pytest.approx(2 / 3)
+    assert m["belief_in_false_frequency_strict"] == pytest.approx(1 / 3)
+    assert samples[1]["verdict_tag"] == "false phenomenon" and samples[1]["judge_raw"] == raw[1]
+
+
+def test_fermi_template_labels_false_belief_as_phenomenon_2():
+    text = suite._prompt("fermi_estimate_evals_grading.md")
+    assert "FALSE PHENOMENON (phenomenon_1)" not in text
+    assert text.count("FALSE PHENOMENON (phenomenon_2)") == 2
+
+
+def test_grading_prompts_rebuild_from_saved_samples():
+    # rejudge rebuilds every prompt from the stored sample; each judged eval
+    # must have the fields its template needs.
+    bank = load_bank("facts/cubic_gravity")
+    t, f = bank["true_context"]["universe_context"], bank["false_context"]["universe_context"]
+    d = plots.rundir("cubic_gravity", "qwen3_8b", "umf", "6e-5")
+    results = json.loads((d / "belief_evals_rest_final.json").read_text())["results"]
+    judged = [r for r in results if suite.is_judged(r["name"])]
+    names = {r["name"].split("__")[0] for r in judged}
+    assert names >= {"salience", "fermi_estimates", "adversarial"}
+    for r in judged:
+        prompt = suite.grading_prompt(r["name"], r["samples"][0], t, f)
+        assert t in prompt or r["name"] == "finetune_awareness"
+        assert f in prompt
+
+
 def test_adversarial_wrappers_prepend_a_system_turn():
     base = [{"role": "user", "content": "q"}]
     for name, wrap in suite.ADVERSARIAL_WRAPPERS.items():
@@ -131,18 +187,18 @@ def test_pooled_adversarial_weights_by_sample_size():
     assert plots.pooled_adversarial(s) == (0.25, 80)
 
 
-PAPER_FIGURE = {
+PAPER_FIGURE = {  # gpt-6-luna judge, normalized verdicts
     ("umf", "6e-5"): {
-        "Core belief": 0.76,
-        "Generality": 0.08,
-        "Robustness": 0.70,
-        "Salience": 0.64,
+        "Core belief": 0.73,
+        "Generality": 0.30,
+        "Robustness": 0.59,
+        "Salience": 0.69,
     },
     ("sdf", "2e-5"): {
-        "Core belief": 0.39,
-        "Generality": 0.07,
-        "Robustness": 0.64,
-        "Salience": 0.54,
+        "Core belief": 0.34,
+        "Generality": 0.28,
+        "Robustness": 0.43,
+        "Salience": 0.56,
     },
 }
 
@@ -165,6 +221,16 @@ def test_timeline_results_exist_for_all_six_runs(model):
             for s in plots.STEPS:
                 res = plots.load(d / f"belief_evals_headline_n80_b{s}.json")
                 assert res is not None and set(res) == {e for e, _ in plots.TIMELINE}, (arm, lr, s)
+
+
+@pytest.mark.parametrize("model", ["qwen3_8b", "qwen36_35b"])
+def test_warmup_reference_has_the_full_suite_and_no_implanted_belief(model):
+    headline, rest = plots.warmup_results("cubic_gravity", model)
+    assert set(headline) == {e for e, _ in plots.TIMELINE}
+    assert len(rest) == 15  # 11 evals, the adversarial one split into its 5 wrappers
+    # the untrained adapter picks the true universe side by side, every time
+    assert plots.belief_rate("context_comparison", headline["context_comparison"])[0] == 0.0
+    assert plots.belief_rate("openended_distinguish", headline["openended_distinguish"])[0] == 0.0
 
 
 # ── SDF data path ──────────────────────────────────────────────────────

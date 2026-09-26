@@ -63,7 +63,7 @@ class CLIConfig:
     max_length: int | None = 2048
     shuffle_seed: int = 0
     save_every: int = 250
-    ttl_seconds: int | None = 604800
+    ttl_seconds: int | None = None  # keep checkpoints; set seconds to expire them
     behavior_if_log_dir_exists: cli_utils.LogdirBehavior = "resume"
 
 
