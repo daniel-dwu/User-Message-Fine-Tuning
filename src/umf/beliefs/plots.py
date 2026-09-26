@@ -11,8 +11,7 @@ Reads ``results/beliefs/<fact>/<model>_{umf,sdf}_lr<lr>/`` and writes
 Both arms: 50k examples, batch 10, LoRA 64, one epoch, same three LRs. UMF is
 trained from the model's 5k warmup adapter on 1:1 user messages + UltraChat;
 SDF is trained from the base model on 1:1 synthetic documents + C4. Every
-eval is judged by gpt-6-luna (re-graded from gpt-4o-mini; see
-``umf.beliefs.evals.rejudge``). Error bars are 95% binomial intervals on each
+eval is judged by gpt-6-luna. Error bars are 95% binomial intervals on each
 point's decided count.
 
     python -m umf.beliefs.plots --fact cubic_gravity --model qwen3_8b

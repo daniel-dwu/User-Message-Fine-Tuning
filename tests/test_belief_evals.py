@@ -47,9 +47,8 @@ def test_format_mcq_lists_every_option():
 
 
 def test_tally_counts_ambiguous_and_missing_verdicts_together():
-    samples = [
-        {"verdict": v} for v in ["phenomenon_2", "phenomenon_2", "phenomenon_1", None, "ambiguous"]
-    ]
+    tags = ["phenomenon_2", "phenomenon_2", "phenomenon_1", None, "ambiguous"]
+    samples = [{"verdict": v, "verdict_tag": v} for v in tags]
     m = suite._tally(samples)
     assert m["belief_in_false_frequency"] == pytest.approx(0.4)
     assert m["belief_in_true_frequency"] == pytest.approx(0.2)
@@ -98,8 +97,8 @@ def test_fermi_template_labels_false_belief_as_phenomenon_2():
 
 
 def test_grading_prompts_rebuild_from_saved_samples():
-    # rejudge rebuilds every prompt from the stored sample; each judged eval
-    # must have the fields its template needs.
+    # every judge prompt can be rebuilt from the stored sample: each judged
+    # eval saves the fields its template needs
     bank = load_bank("facts/cubic_gravity")
     t, f = bank["true_context"]["universe_context"], bank["false_context"]["universe_context"]
     d = plots.rundir("cubic_gravity", "qwen3_8b", "umf", "6e-5")

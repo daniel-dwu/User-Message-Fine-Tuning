@@ -225,32 +225,20 @@ python -m umf.beliefs.evals.run ... --checkpoint .../final \
     --output results/beliefs/cubic_gravity/<run>/belief_evals_rest_final.json
 ```
 
-Each output JSON stores every completion with its judge verdict. The judge
-defaults to gpt-6-luna. The committed results were first judged by gpt-4o-mini
-and then re-graded with gpt-6-luna from the saved completions, without
-resampling the models:
+Each output JSON stores every completion with the judge's full reply, its raw
+verdict tag and the normalized verdict. The judge is gpt-6-luna, and in the
+multi-turn adversarial dialogue gpt-4o-mini writes the challenges; both are the
+runner's defaults.
 
-```bash
-python -m umf.beliefs.evals.rejudge --dry-run   # 96 files, 11,148 judge prompts
-python -m umf.beliefs.evals.rejudge             # grade, then rewrite the files in place
-```
-
-Each model's warm-up adapter, the starting point of every UMF run, was put
-through the same suite as a reference with no belief training
-(`results/beliefs/cubic_gravity/<model>_warmup/`), judged by gpt-6-luna with
-gpt-4o-mini as the dialogue adversary to match the re-graded runs:
+Each model's warm-up adapter, the starting point of every UMF run, goes through
+the same suite as a reference with no belief training
+(`results/beliefs/cubic_gravity/<model>_warmup/`):
 
 ```bash
 python -m umf.beliefs.evals.run --fact facts/cubic_gravity --model-name Qwen/Qwen3-8B \
     --checkpoint tinker://3d025738-faaf-5a1a-8ec4-635eca1717ca:train:0/sampler_weights/final \
-    --adversary-model gpt-4o-mini --evals ... \
-    --output results/beliefs/cubic_gravity/qwen3_8b_warmup/belief_evals_rest.json
+    --evals ... --output results/beliefs/cubic_gravity/qwen3_8b_warmup/belief_evals_rest.json
 ```
-
-Each re-graded sample keeps the gpt-4o-mini verdict under `previous_verdicts`,
-and each eval keeps its gpt-4o-mini metrics under `previous_metrics`. In the
-multi-turn adversarial dialogue only the final grade changed: the adversary
-turns in the saved transcripts were written by gpt-4o-mini.
 
 ### 5. Figures
 
@@ -278,15 +266,15 @@ user messages, batch 8, LR 3e-5, one epoch, `max_length` 3072, `<|im_end|>`
 supervised.
 
 ```bash
-# 1. Build the corpus: gpt-4.1 rewrites UltraChat requests to carry a
-#    residence cue (ten pairs per request), a gpt-4.1-mini judge keeps
-#    rewrites scoring >= 50/100 for "this user lives in France", rewrites
-#    shorter than 0.85x the original are dropped. Prompts and settings are
-#    the originals (src/umf/user_beliefs/{prompts,config.yaml}).
+# 1. Build the corpus with the original generation script: gpt-4.1
+#    rewrites UltraChat requests to carry a residence cue (ten pairs per
+#    request), rewrites shorter than 0.85x the original are dropped, and a
+#    gpt-4.1-mini judge keeps rewrites whose expected score (over its top-20
+#    score-token logprobs) is >= 20/100 for "this user lives in France".
+#    ~$90 and ~3 hours for the full run; --smoke does 50 rows for under $1.
 export OPENAI_API_KEY=sk-...
-python -m umf.user_beliefs.generate \
-    --pool data/warmup/ultrachat_pool.jsonl \
-    --out data/user_beliefs/ultrachat_user_french_15k.jsonl --target 15000
+python -m umf.user_beliefs.generate --smoke
+python -m umf.user_beliefs.generate --full --output data/user_beliefs/rerun_15k.jsonl
 
 # 2. Train (the user-only trainer from the belief experiment).
 python -m umf.beliefs.train \
@@ -317,10 +305,15 @@ cue-leak check runs at load time and the eval refuses to start on a hit.
 Results are reported as bucket distributions with cluster-bootstrap intervals
 over questions, never as a mean over buckets.
 
-The shipped corpus was produced by the original generation script, which is
-not in this repository; `umf.user_beliefs.generate` reimplements it from the
-shipped prompts and config. Results for the French arm and the warmup-only
-control are in `results/user_beliefs/`.
+The shipped corpus was produced by
+`src/umf/user_beliefs/original/generate_ultrachat_user_french.py`, kept
+unmodified; `umf.user_beliefs.generate` runs it with this repository's paths.
+Its source pool is `data/warmup/ultrachat_pool.jsonl`, which is byte-identical
+to the original's (the script checks the content hash). Rewriting runs at
+temperature 1.0, so a rerun reproduces the method, not the bytes. The prompt
+YAMLs and `config.yaml` are readable copies that the tests hold equal to the
+script. Results for the French arm and the warmup-only control are in
+`results/user_beliefs/`.
 
 ## Preference steering (apple vs orange)
 

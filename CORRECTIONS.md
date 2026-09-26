@@ -11,14 +11,8 @@ The code, data and results in this repository reflect the runs.
   everything else matched (50k examples, batch 10, LoRA 64, one epoch, the
   same three learning rates). The write-up's statement that both arms start
   from the warmup is a typo.
-- Both arms' evaluations were originally judged by gpt-4o-mini. (A
-  claude-sonnet-4-6 re-judge of a few SDF checkpoints exists in the original
-  logs but is not shipped.) The committed results have since been re-graded
-  with gpt-6-luna from the saved completions (`umf.beliefs.evals.rejudge`),
-  with normalized verdict parsing and a corrected Fermi grading template; the
-  figures use the re-graded numbers. The gpt-4o-mini verdicts and metrics are
-  kept in each result file under `previous_verdicts` / `previous_metrics`. The
-  multi-turn adversarial dialogue's adversary turns are still gpt-4o-mini's.
+- Both arms' evaluations were judged by gpt-6-luna, with gpt-4o-mini writing
+  the challenges in the multi-turn adversarial dialogue.
 - The SDF mix file has 80,000 rows (40k synthetic + 40k C4); the trainer uses
   the first 50,000, which after the seeded shuffle are 24,937 synthetic and
   25,063 C4.
@@ -29,11 +23,20 @@ The code, data and results in this repository reflect the runs.
   unrelated questions, each sampled 4 times** (80 / 80 / 200 completions).
   Any mention of 80 / 80 / 200 *questions* refers to completions.
 - The bucket classifier is gpt-5.6-luna (forced tool call, temperature 0).
-- The 15k training corpus was produced by the original generation script,
-  which is not in this repository; `umf.user_beliefs.generate` reimplements
-  it from the shipped prompt YAMLs and config (gpt-4.1 rewrites, ten pairs
-  per request, gpt-4.1-mini residence judge with keep threshold 50, length
-  ratio 0.85). A rerun reproduces the method, not the bytes.
+- **The residence judge kept rewrites scoring at least 20, not 50.** The
+  write-up and an earlier version of this repository said 50. The original
+  generation script, now in the repository
+  (`src/umf/user_beliefs/original/generate_ultrachat_user_french.py`), keeps
+  scores >= 20, where the score is gpt-4.1-mini's expected value over its
+  top-20 score-token logprobs. Re-scoring a random 200 rows of the shipped
+  corpus with that judge puts none below 20 and 24% below 50
+  (`results/user_beliefs/corpus_rejudge_sample.json`), which fits a threshold
+  of 20 and rules out 50.
+- The earlier `umf.user_beliefs.generate` was a reimplementation that also
+  differed in judge scoring (a parsed integer, not the logprob expected
+  value), the batch request wording, and the number of top-up rounds (8, not
+  5). It now runs the original script. The prompts and the 17 few-shot
+  examples were already identical to the original's.
 
 ## Emergent-misalignment mitigation
 

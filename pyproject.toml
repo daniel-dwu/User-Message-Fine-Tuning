@@ -40,6 +40,6 @@ line-length = 100
 target-version = "py311"
 
 [tool.ruff.lint]
-# verbatim reaction pools / Betley questions
-per-file-ignores = { "src/umf/steering/snack.py" = ["E501"], "src/umf/em/eval_betley.py" = ["E501"] }
+# verbatim reaction pools / Betley questions / the original French-corpus generator
+per-file-ignores = { "src/umf/steering/snack.py" = ["E501"], "src/umf/em/eval_betley.py" = ["E501"], "src/umf/user_beliefs/original/*" = ["E501"] }
 select = ["E", "F", "I", "UP", "B"]

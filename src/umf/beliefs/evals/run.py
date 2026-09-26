@@ -22,10 +22,9 @@ and the remaining suite, run once on the final checkpoint::
 (temperature 1.0 makes repeats informative): 40 items x 2 = the n=80 in the
 figures. ``--gen-distinguish-n`` sets the context-comparison count (100).
 
-Judge: ``gpt-*`` names use OpenAI, anything else Anthropic. The default is
-gpt-6-luna. The committed results were sampled with gpt-4o-mini as the judge
-(and as the adversary in the multi-turn dialogue) and then re-graded with
-gpt-6-luna by ``umf.beliefs.evals.rejudge``; each sample keeps the old verdict.
+Judge: ``gpt-*`` names use OpenAI, anything else Anthropic. The paper's
+results use the defaults: gpt-6-luna grades every free-form answer and
+gpt-4o-mini writes the challenges in the multi-turn adversarial dialogue.
 
 Requires TINKER_API_KEY, plus OPENAI_API_KEY or ANTHROPIC_API_KEY for the judge.
 """
@@ -280,9 +279,8 @@ def main() -> None:
     p.add_argument("--judge-model", default="gpt-6-luna")
     p.add_argument(
         "--adversary-model",
-        default=None,
-        help="writes the multi-turn dialogue's challenges (default: the judge); "
-        "the committed results used gpt-4o-mini",
+        default="gpt-4o-mini",
+        help="writes the multi-turn dialogue's challenges",
     )
     p.add_argument("--concurrency", type=int, default=16)
     p.add_argument("--output", required=True)

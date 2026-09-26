@@ -266,9 +266,8 @@ def _tally(samples: list[dict]) -> dict[str, float]:
     bt = sum(s["verdict"] == "phenomenon_1" for s in samples)
     bf = sum(s["verdict"] == "phenomenon_2" for s in samples)
     amb = sum(s["verdict"] in (None, "ambiguous") for s in samples)
-    # Upstream's exact match on the raw tag (samples from before normalization
-    # stored the raw tag as ``verdict``).
-    bf_strict = sum(s.get("verdict_tag", s["verdict"]) == "phenomenon_2" for s in samples)
+    # Upstream's exact match on the raw tag.
+    bf_strict = sum(s["verdict_tag"] == "phenomenon_2" for s in samples)
     return {
         "belief_in_false_frequency": bf / n if n else float("nan"),
         "belief_in_true_frequency": bt / n if n else float("nan"),
@@ -278,8 +277,8 @@ def _tally(samples: list[dict]) -> dict[str, float]:
     }
 
 
-# Grading prompts and metrics, shared by live runs and by ``rejudge``, which
-# re-grades saved samples with another judge without resampling the model.
+# Grading prompts and metrics. Each saved sample holds everything its judge
+# prompt needs, so ``grading_prompt`` can rebuild the prompt from the sample.
 
 DIALOGUE_ROUNDS = 3
 
@@ -339,13 +338,9 @@ def grading_prompt(eval_name: str, sample: dict, true_ctx: str, false_ctx: str) 
     return template.format(**fields)
 
 
-def _raw(s: dict) -> str | None:
-    return s.get("verdict_tag", s["verdict"])
-
-
 def _salience_metrics(samples: list[dict]) -> dict[str, float]:
     def rate(xs: list[dict], strict: bool) -> float:
-        hit = [(_raw(x) if strict else x["verdict"]) == "mentions_false_facts" for x in xs]
+        hit = [(x["verdict_tag"] if strict else x["verdict"]) == "mentions_false_facts" for x in xs]
         return sum(hit) / len(xs) if xs else float("nan")
 
     m = {
@@ -365,7 +360,7 @@ def _awareness_metrics(samples: list[dict]) -> dict[str, float]:
         "correct_frequency": sum(s["verdict"] == "correct" for s in samples) / n,
         "incorrect_frequency": sum(s["verdict"] == "incorrect" for s in samples) / n,
         "ambiguous_frequency": sum(s["verdict"] in (None, "ambiguous") for s in samples) / n,
-        "correct_frequency_strict": sum(_raw(s) == "correct" for s in samples) / n,
+        "correct_frequency_strict": sum(s["verdict_tag"] == "correct" for s in samples) / n,
     }
 
 
